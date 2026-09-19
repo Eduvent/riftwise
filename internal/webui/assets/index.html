@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d12">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Panel local de recomendación de objetos para League of Legends.">
+  <title>LoL Engine · Próxima decisión</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/state.js" defer></script>
+  <script src="/assets/history-state.js" defer></script>
+  <script src="/assets/app.js" defer></script>
+  <script src="/assets/history.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <div class="demo-banner" id="demo-banner" hidden>
+    <span class="demo-dot" aria-hidden="true"></span>
+    MODO DEMO · Datos de muestra, sin conexión con tu partida
+  </div>
+
+  <header class="topbar">
+    <div class="brand" aria-label="LoL Engine">
+      <span class="brand-mark" aria-hidden="true">LE</span>
+      <span class="brand-copy">
+        <strong>LoL Engine</strong>
+        <small>Motor local de decisiones</small>
+      </span>
+    </div>
+
+    <div class="status-cluster" id="live-status-cluster" aria-label="Estado del sistema">
+      <span class="status-pill" id="connection-pill" data-tone="pending">
+        <span class="status-light" aria-hidden="true"></span>
+        <span id="connection-status">Conectando</span>
+      </span>
+      <span class="status-pill" id="tracker-pill" data-tone="neutral">
+        <span class="status-label">Partida</span>
+        <strong id="tracker-status">Verificando</strong>
+      </span>
+      <span class="status-pill" id="catalog-pill" data-tone="neutral">
+        <span class="status-label">Catálogo</span>
+        <strong id="catalog-status">Cargando</strong>
+      </span>
+      <span class="patch-chip">Parche <strong id="patch-label">—</strong></span>
+    </div>
+  </header>
+
+  <main id="main-content" class="shell" tabindex="-1">
+    <nav class="view-switcher" aria-label="Vistas del motor">
+      <button id="live-view-button" class="view-switch-button is-active" type="button" aria-controls="live-view" aria-pressed="true">Partida en vivo</button>
+      <button id="pregame-view-button" class="view-switch-button" type="button" aria-controls="pregame-view" aria-pressed="false">Plan prepartida</button>
+      <button id="history-view-button" class="view-switch-button" type="button" aria-controls="history-view" aria-pressed="false">Historial y privacidad</button>
+    </nav>
+
+    <div id="live-view" class="view-panel">
+    <div class="system-alert" id="system-alert" role="status" aria-live="polite" hidden>
+      <span class="alert-symbol" aria-hidden="true">!</span>
+      <div class="alert-content">
+        <span id="system-alert-text"></span>
+        <ul class="alert-detail-list" id="system-alert-details" hidden></ul>
+      </div>
+    </div>
+
+    <section class="decision-alert-panel panel" aria-labelledby="decision-alert-title">
+      <div class="panel-heading alert-panel-heading">
+        <div>
+          <p class="eyebrow">CAMBIOS IMPORTANTES</p>
+          <h2 id="decision-alert-title">Avisos de opciones</h2>
+          <p class="alert-policy-copy">El texto siempre está disponible. El tono o la voz requieren activación explícita y empiezan desactivados.</p>
+        </div>
+        <span class="alert-history-status" id="decision-history-status">Sin avisos en esta sesión</span>
+      </div>
+
+      <div class="alert-preferences" aria-label="Preferencias de avisos">
+        <label>
+          <span>Modo</span>
+          <select id="alert-mode">
+            <option value="off">Desactivado</option>
+            <option value="tone">Tono</option>
+            <option value="voice">Voz</option>
+          </select>
+        </label>
+        <label>
+          <span>Volumen <output id="alert-volume-value" for="alert-volume">50%</output></span>
+          <input id="alert-volume" type="range" min="0" max="1" step="0.05" value="0.5">
+        </label>
+        <label>
+          <span>Intervalo mínimo</span>
+          <input id="alert-cooldown" type="number" min="5" max="300" step="5" value="30" inputmode="numeric" aria-describedby="alert-cooldown-unit">
+          <span class="control-hint" id="alert-cooldown-unit">segundos (5–300)</span>
+        </label>
+        <label class="mute-control">
+          <input id="alert-muted" type="checkbox" checked>
+          <span>Silenciado</span>
+        </label>
+      </div>
+
+      <div class="decision-alert-region" id="decision-alert-region" role="status" aria-live="polite" aria-atomic="false"></div>
+      <ol class="decision-history-list" id="decision-history-list" aria-label="Historial de cambios importantes"></ol>
+    </section>
+
+    <section class="panel personalization-panel" aria-labelledby="personalization-title">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">AJUSTES LOCALES</p>
+          <h2 id="personalization-title">Personalización</h2>
+          <p>Ordena las opciones con reglas deterministas locales. No predice resultados, victorias ni rendimiento.</p>
+        </div>
+        <span id="personalization-version">Valores predeterminados</span>
+      </div>
+      <form id="personalization-form" class="personalization-form">
+        <label for="personalization-style">
+          <span>Estilo y contraparte</span>
+          <select id="personalization-style">
+            <option value="balanced">Equilibrado · sin ajuste</option>
+            <option value="safe">Seguro · prioriza supervivencia y tenacidad</option>
+            <option value="aggressive">Agresivo · prioriza daño, penetración y movilidad</option>
+          </select>
+        </label>
+        <p id="personalization-style-help" class="control-hint">Los contadores críticos permanecen disponibles aunque elijas otro estilo.</p>
+        <div class="personalization-item-grid">
+          <label for="personalization-preferred">
+            <span>Objetos preferidos</span>
+            <select id="personalization-preferred" multiple size="5" aria-describedby="personalization-preferred-help"></select>
+            <span id="personalization-preferred-help" class="control-hint">Bonificación pequeña; usa Cmd/Ctrl para varias opciones.</span>
+          </label>
+          <label for="personalization-avoided">
+            <span>Objetos evitados</span>
+            <select id="personalization-avoided" multiple size="5" aria-describedby="personalization-avoided-help"></select>
+            <span id="personalization-avoided-help" class="control-hint">Si quedan menos de tres opciones, el motor mostrará contexto insuficiente.</span>
+          </label>
+        </div>
+        <div class="personalization-chips" aria-live="polite">
+          <div><strong>Preferidos:</strong><ul id="personalization-preferred-chips"></ul></div>
+          <div><strong>Evitados:</strong><ul id="personalization-avoided-chips"></ul></div>
+        </div>
+        <label class="mute-control" for="personalization-feedback-enabled">
+          <input id="personalization-feedback-enabled" type="checkbox">
+          <span>Usar mis valoraciones locales para ajustes pequeños después de un mínimo de muestras</span>
+        </label>
+        <div class="history-privacy-actions">
+          <button id="personalization-save" class="recalculate-button" type="submit">Guardar personalización</button>
+          <button id="personalization-reset" class="history-danger-button" type="button">Restablecer ajustes</button>
+          <button id="personalization-delete-feedback" class="history-danger-button" type="button">Eliminar valoraciones locales</button>
+          <a class="recalculate-button" href="/api/personalization/export" download>Exportar resumen sin identidad</a>
+        </div>
+        <p id="personalization-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="state-panel panel" id="state-panel" data-state="loading" aria-live="polite">
+      <div class="state-visual" aria-hidden="true">
+        <span class="state-orbit"></span>
+        <span class="state-core">LE</span>
+      </div>
+      <p class="eyebrow" id="state-kicker">INICIANDO</p>
+      <h1 id="state-title">Preparando el panel</h1>
+      <p id="state-detail">Leyendo el estado local y el catálogo del parche.</p>
+      <p class="state-secondary" id="state-secondary">Esta pantalla se actualizará automáticamente.</p>
+    </section>
+
+    <div class="dashboard" id="dashboard-content" hidden>
+      <section class="purchase-panel panel" aria-labelledby="next-name">
+        <div class="panel-heading purchase-heading">
+          <div>
+            <p class="eyebrow">PRÓXIMA DECISIÓN</p>
+            <span class="decision-badge" id="decision-status">OPCIÓN DISPONIBLE</span>
+          </div>
+          <div class="live-stamp">
+            <span class="pulse" aria-hidden="true"></span>
+            <span id="advice-freshness">En vivo</span>
+          </div>
+        </div>
+
+        <div class="purchase-focus">
+          <div class="item-art item-art-xl" id="next-art">
+            <img id="next-icon" alt="" width="128" height="128" loading="eager" fetchpriority="high" hidden>
+            <span class="item-fallback" id="next-fallback" aria-hidden="true">?</span>
+          </div>
+          <div class="purchase-copy">
+            <p class="purchase-command" id="purchase-command">Componente sugerido</p>
+            <h1 id="next-name">—</h1>
+            <div class="price-line">
+              <span class="gold-icon" aria-hidden="true">◆</span>
+              <strong id="next-price">—</strong>
+              <span class="divider" aria-hidden="true"></span>
+              <span id="gold-message">Calculando disponibilidad</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gold-strip">
+          <span>
+            <small>ORO ACTUAL</small>
+            <strong id="current-gold">—</strong>
+          </span>
+          <span class="gold-strip-rule" aria-hidden="true"></span>
+          <span>
+            <small>RESULTADO</small>
+            <strong id="gold-remaining">—</strong>
+          </span>
+        </div>
+
+        <div class="reason-block">
+          <span class="reason-index" aria-hidden="true">01</span>
+          <div>
+            <small>POR QUÉ DESTACA</small>
+            <p id="recommendation-reason">—</p>
+          </div>
+        </div>
+
+        <section class="choice-section" aria-labelledby="ranked-choice-heading">
+          <div class="choice-heading">
+            <h2 id="ranked-choice-heading">OPCIONES PARA COMPARAR</h2>
+            <span id="ranked-choice-count" aria-live="polite">—</span>
+          </div>
+          <ol class="ranked-choice-list" id="ranked-choice-list"></ol>
+        </section>
+
+        <div class="recalculate-row">
+          <button class="recalculate-button" id="recalculate-button" type="button">
+            <span class="button-icon" aria-hidden="true">↻</span>
+            <span id="recalculate-label">Recalcular</span>
+          </button>
+          <p class="action-feedback" id="action-feedback" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <aside class="context-column" aria-label="Contexto de la recomendación">
+        <section class="panel match-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">LECTURA DE PARTIDA</p>
+              <h2>Tu posición</h2>
+            </div>
+            <span class="player-state" id="player-state" data-state="even">Parejo</span>
+          </div>
+
+          <dl class="player-metrics">
+            <div>
+              <dt>Campeón</dt>
+              <dd id="player-champion">Garen</dd>
+            </div>
+            <div>
+              <dt>K / D / A</dt>
+              <dd id="player-kda">—</dd>
+            </div>
+            <div>
+              <dt>Nivel</dt>
+              <dd id="player-level">—</dd>
+            </div>
+            <div>
+              <dt>CS</dt>
+              <dd id="player-cs">—</dd>
+            </div>
+          </dl>
+
+          <div class="confidence-block">
+            <div class="metric-label">
+              <span>Confianza del análisis</span>
+              <strong id="confidence-label">—</strong>
+            </div>
+            <div class="meter" role="progressbar" id="confidence-meter" aria-label="Confianza" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="confidence-bar"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel damage-panel" aria-labelledby="damage-title">
+          <div class="panel-heading compact-heading">
+            <div>
+              <p class="eyebrow">PERFIL ENEMIGO</p>
+              <h2 id="damage-title">Daño estimado</h2>
+            </div>
+          </div>
+
+          <div class="damage-list">
+            <div class="damage-row">
+              <div class="metric-label"><span>Físico</span><strong id="physical-label">0%</strong></div>
+              <div class="damage-track" role="progressbar" id="physical-meter" aria-label="Daño físico" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span class="physical" id="physical-bar"></span>
+              </div>
+            </div>
+            <div class="damage-row">
+              <div class="metric-label"><span>Mágico</span><strong id="magic-label">0%</strong></div>
+              <div class="damage-track" role="progressbar" id="magic-meter" aria-label="Daño mágico" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span class="magic" id="magic-bar"></span>
+              </div>
+            </div>
+            <div class="damage-row">
+              <div class="metric-label"><span>Verdadero</span><strong id="true-label">0%</strong></div>
+              <div class="damage-track" role="progressbar" id="true-meter" aria-label="Daño verdadero" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span class="true" id="true-bar"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel threat-panel" aria-labelledby="threat-title">
+          <div class="threat-header">
+            <span class="threat-rank" aria-hidden="true">#1</span>
+            <div>
+              <p class="eyebrow">AMENAZA PRINCIPAL</p>
+              <h2 id="threat-title">—</h2>
+              <p id="threat-identity">Esperando datos</p>
+            </div>
+            <span class="threat-score"><small>ÍNDICE</small><strong id="threat-score">—</strong></span>
+          </div>
+          <dl class="threat-metrics">
+            <div><dt>Nivel</dt><dd id="threat-level">—</dd></div>
+            <div><dt>K / D / A</dt><dd id="threat-kda">—</dd></div>
+            <div><dt>CS</dt><dd id="threat-cs">—</dd></div>
+            <div><dt>Inventario</dt><dd id="threat-value">—</dd></div>
+          </dl>
+        </section>
+      </aside>
+
+      <section class="panel inventory-panel" aria-labelledby="inventory-title">
+        <div class="panel-heading inventory-heading">
+          <div>
+            <p class="eyebrow">EQUIPO ACTUAL</p>
+            <h2 id="inventory-title">Tu inventario</h2>
+          </div>
+          <span id="inventory-count">0 / 6 espacios</span>
+        </div>
+        <ul class="inventory-list" id="inventory-list" aria-label="Objetos actuales"></ul>
+      </section>
+
+      <section class="panel session-panel" aria-label="Datos de sesión">
+        <dl class="session-metrics">
+          <div><dt>Mapa</dt><dd id="map-name">—</dd></div>
+          <div><dt>Modo</dt><dd id="game-mode">—</dd></div>
+          <div><dt>Tiempo</dt><dd id="game-time">—</dd></div>
+          <div><dt>Revisión</dt><dd id="dashboard-revision">—</dd></div>
+        </dl>
+        <div class="update-meta">
+          <span>Última actualización</span>
+          <strong id="last-update">—</strong>
+        </div>
+      </section>
+    </div>
+    </div>
+
+    <section id="pregame-view" class="pregame-view view-panel" aria-labelledby="pregame-title" hidden>
+      <header class="panel pregame-intro">
+        <p class="eyebrow">PLAN PREPARTIDA</p>
+        <h1 id="pregame-title">Comparar opciones para un escenario manual</h1>
+        <p class="pregame-disclaimer"><strong>Escenario manual. No representa datos de una partida activa.</strong></p>
+        <p>Las presiones que no indiques pueden usar únicamente rasgos estructurados del oponente seleccionado. No se infieren equipo enemigo, KDA, ventaja de oro ni probabilidad de victoria.</p>
+        <p id="pregame-options-status" role="status" aria-live="polite">Cargando opciones del catálogo…</p>
+      </header>
+
+      <form id="pregame-form" class="panel pregame-form" novalidate>
+        <div id="pregame-error-summary" class="pregame-error-summary" role="alert" tabindex="-1" hidden>
+          <h2>Revisa el escenario manual</h2>
+          <ul id="pregame-error-list"></ul>
+        </div>
+
+        <fieldset class="pregame-fieldset">
+          <legend>Escenario</legend>
+          <div class="pregame-grid">
+            <label for="pregame-champion"><span>Campeón</span><select id="pregame-champion" name="champion" required><option value="">Selecciona un campeón</option></select></label>
+            <label for="pregame-role"><span>Rol</span><select id="pregame-role" name="role" required><option value="">Selecciona un rol</option><option value="top">Superior</option><option value="jungle">Jungla</option><option value="middle">Central</option><option value="bottom">Inferior</option><option value="support">Soporte</option></select></label>
+            <label for="pregame-stage"><span>Etapa</span><select id="pregame-stage" name="stage" required><option value="">Selecciona una etapa</option><option value="lane_start">Inicio de línea</option><option value="first_recall">Primer regreso</option><option value="mid_game">Medio juego</option><option value="late_game">Juego tardío</option></select></label>
+            <label for="pregame-strategy"><span>Estrategia</span><select id="pregame-strategy" name="strategy" required><option value="">Selecciona una estrategia</option><option value="balanced">Equilibrada</option><option value="split_push">Presión lateral</option><option value="teamfight">Pelea de equipo</option></select></label>
+            <label for="pregame-lane-opponent"><span>Oponente de línea (opcional)</span><select id="pregame-lane-opponent" name="lane_opponent"><option value="">Sin oponente indicado</option></select></label>
+            <label for="pregame-gold"><span>Oro disponible</span><input id="pregame-gold" name="gold" type="number" min="0" max="100000" step="1" value="0" inputmode="numeric" required></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="pregame-fieldset">
+          <legend>Presiones explícitas</legend>
+          <p class="control-hint">“Sin indicar” permite un supuesto estructurado solo si seleccionaste un oponente conocido. Tu selección explícita siempre prevalece.</p>
+          <div class="pregame-pressure-grid">
+            <label for="pregame-pressure-physical"><span>Daño físico</span><select id="pregame-pressure-physical" data-pregame-pressure="physical"></select></label>
+            <label for="pregame-pressure-magic"><span>Daño mágico</span><select id="pregame-pressure-magic" data-pregame-pressure="magic"></select></label>
+            <label for="pregame-pressure-crowd-control"><span>Control de masas</span><select id="pregame-pressure-crowd-control" data-pregame-pressure="crowd_control"></select></label>
+            <label for="pregame-pressure-healing"><span>Curación</span><select id="pregame-pressure-healing" data-pregame-pressure="healing"></select></label>
+            <label for="pregame-pressure-shielding"><span>Escudos</span><select id="pregame-pressure-shielding" data-pregame-pressure="shielding"></select></label>
+            <label for="pregame-pressure-armor"><span>Armadura</span><select id="pregame-pressure-armor" data-pregame-pressure="armor"></select></label>
+            <label for="pregame-pressure-magic-resist"><span>Resistencia mágica</span><select id="pregame-pressure-magic-resist" data-pregame-pressure="magic_resist"></select></label>
+            <label for="pregame-pressure-burst"><span>Ráfaga</span><select id="pregame-pressure-burst" data-pregame-pressure="burst"></select></label>
+            <label for="pregame-pressure-sustained"><span>Daño sostenido</span><select id="pregame-pressure-sustained" data-pregame-pressure="sustained"></select></label>
+            <label for="pregame-pressure-slows"><span>Ralentizaciones</span><select id="pregame-pressure-slows" data-pregame-pressure="slows"></select></label>
+            <label for="pregame-pressure-lane"><span>Presión de línea</span><select id="pregame-pressure-lane" data-pregame-pressure="lane_pressure"></select></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="pregame-fieldset">
+          <legend>Inventario manual</legend>
+          <p class="control-hint">Hasta siete pilas. Deja una fila en “Sin objeto” para omitirla.</p>
+          <div id="pregame-inventory-rows" class="pregame-inventory-rows"></div>
+        </fieldset>
+
+        <button id="pregame-submit" class="recalculate-button" type="submit">Generar opciones manuales</button>
+      </form>
+
+      <section id="pregame-result" class="panel pregame-result" aria-labelledby="pregame-result-title" role="status" aria-live="polite" aria-atomic="false" hidden>
+        <div class="panel-heading">
+          <div><p class="eyebrow">RESULTADO MANUAL</p><h2 id="pregame-result-title">Opciones para comparar</h2></div>
+          <strong id="pregame-result-status">—</strong>
+        </div>
+        <p id="pregame-result-reason"></p>
+        <dl class="pregame-provenance">
+          <div><dt>Perfil</dt><dd id="pregame-profile">—</dd></div>
+          <div><dt>Parche</dt><dd id="pregame-patch">—</dd></div>
+          <div><dt>Confianza</dt><dd id="pregame-confidence">—</dd></div>
+          <div><dt>Fuente</dt><dd id="pregame-source">—</dd></div>
+        </dl>
+        <section aria-labelledby="pregame-items-title"><h3 id="pregame-items-title">Opciones de objetos</h3><ol id="pregame-ranked-options" class="ranked-choice-list"></ol></section>
+        <section aria-labelledby="pregame-warnings-title"><h3 id="pregame-warnings-title">Supuestos y advertencias</h3><ul id="pregame-warnings"></ul></section>
+        <div class="pregame-copy-grid">
+          <section aria-labelledby="pregame-runes-title"><h3 id="pregame-runes-title">Runas</h3><div id="pregame-runes"></div></section>
+          <section aria-labelledby="pregame-summoners-title"><h3 id="pregame-summoners-title">Hechizos</h3><div id="pregame-summoners"></div></section>
+          <section aria-labelledby="pregame-initial-title"><h3 id="pregame-initial-title">Plan inicial</h3><div id="pregame-initial-plan"></div></section>
+        </div>
+      </section>
+    </section>
+
+    <section id="history-view" class="history-view view-panel" aria-labelledby="history-title" hidden>
+      <header class="panel history-intro">
+        <p class="eyebrow">HISTORIAL LOCAL</p>
+        <h1 id="history-title">Partidas, decisiones y privacidad</h1>
+        <p>Estos resúmenes se reconstruyen únicamente con observaciones locales. <strong>Resultado no disponible: la victoria o derrota nunca se infiere.</strong></p>
+        <p>Los cambios de inventario son observados; las compras y los regresos a base se marcan por separado cuando son inferidos.</p>
+        <p id="history-status" role="status" aria-live="polite" tabindex="-1">Abre esta vista para cargar el historial local.</p>
+      </header>
+
+      <div class="history-layout">
+        <section class="panel history-list-panel" aria-labelledby="history-list-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">PARTIDAS FINALIZADAS</p><h2 id="history-list-title">Resúmenes locales</h2></div>
+          </div>
+          <ol id="history-list" class="history-list" aria-label="Partidas guardadas"></ol>
+          <button id="history-load-more" class="recalculate-button history-load-more" type="button" hidden>Cargar más partidas</button>
+        </section>
+
+        <section id="history-detail" class="panel history-detail" aria-labelledby="history-detail-title" tabindex="-1" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">DETALLE RECONSTRUIDO</p><h2 id="history-detail-title">Selecciona una partida</h2></div>
+            <button id="history-delete-match" class="history-danger-button" type="button">Eliminar esta partida</button>
+          </div>
+          <p id="history-detail-meta" class="history-detail-meta"></p>
+          <section aria-labelledby="history-stats-title"><h3 id="history-stats-title">Último estado del jugador</h3><ul id="history-detail-stats" class="history-detail-list"></ul></section>
+          <section aria-labelledby="history-timeline-title"><h3 id="history-timeline-title">Inventario, compras y base</h3><ol id="history-detail-timeline" class="history-timeline"></ol></section>
+          <section aria-labelledby="history-choices-title"><h3 id="history-choices-title">Opciones finales</h3><ol id="history-detail-choices" class="history-detail-list"></ol><p id="history-detail-rules"></p></section>
+          <section aria-labelledby="history-caveats-title"><h3 id="history-caveats-title">Limitaciones y calidad</h3><ul id="history-detail-caveats" class="history-detail-list"></ul></section>
+        </section>
+      </div>
+
+      <section class="panel riot-history" aria-labelledby="riot-history-title">
+        <div class="panel-heading"><div><p class="eyebrow">ENRIQUECIMIENTO OPCIONAL</p><h2 id="riot-history-title">Cuenta Riot y estadísticas históricas</h2></div></div>
+        <p>Desactivado por defecto. La aplicación local sigue funcionando sin cuenta, clave ni red. La clave de desarrollo solo se configura fuera del navegador.</p>
+        <p id="riot-history-status" role="status" aria-live="polite">Comprobando configuración opcional…</p>
+        <form id="riot-link-form" class="riot-link-form" hidden>
+          <label for="riot-game-name">Nombre de juego<input id="riot-game-name" maxlength="100" autocomplete="off" required></label>
+          <label for="riot-tag-line">Etiqueta<input id="riot-tag-line" maxlength="30" autocomplete="off" required></label>
+          <label for="riot-platform">Plataforma<select id="riot-platform" required><option value="">Selecciona</option><option>BR1</option><option>EUN1</option><option>EUW1</option><option>JP1</option><option>KR</option><option>LA1</option><option>LA2</option><option>ME1</option><option>NA1</option><option>OC1</option><option>TR1</option><option>RU</option><option>PH2</option><option>SG2</option><option>TH2</option><option>TW2</option><option>VN2</option></select></label>
+          <label class="riot-consent"><input id="riot-consent" type="checkbox" required> <span>Acepto vincular mi cuenta y guardar localmente solo los datos normalizados necesarios. No se guardan identificadores de oponentes ni respuestas sin procesar.</span></label>
+          <button class="recalculate-button" type="submit">Vincular cuenta</button>
+        </form>
+        <ul id="riot-account-list" class="history-detail-list" aria-label="Cuentas vinculadas"></ul>
+        <form id="riot-statistics-form" class="riot-statistics-form" hidden>
+          <label for="riot-stats-patch">Parche exacto<input id="riot-stats-patch" placeholder="16.18" pattern="[0-9]+\.[0-9]+"></label>
+          <label for="riot-stats-champion">Campeón<input id="riot-stats-champion" maxlength="100" placeholder="Garen"></label>
+          <label for="riot-stats-role">Rol<select id="riot-stats-role"><option value="">Todos</option><option value="top">Superior</option><option value="jungle">Jungla</option><option value="middle">Central</option><option value="bottom">Inferior</option><option value="support">Soporte</option></select></label>
+          <button class="recalculate-button" type="submit">Ver estadísticas observadas</button>
+        </form>
+        <p id="riot-statistics-notice" class="control-hint"></p>
+        <ol id="riot-statistics-results" class="history-list" aria-label="Estadísticas históricas observadas"></ol>
+      </section>
+
+      <section class="panel history-privacy" aria-labelledby="history-privacy-title">
+        <div class="panel-heading"><div><p class="eyebrow">PRIVACIDAD LOCAL</p><h2 id="history-privacy-title">Retención, exportación y borrado</h2></div></div>
+        <p>La retención automática está desactivada hasta que elijas un límite. Los resúmenes y exportaciones no incluyen Riot ID, nombres de jugadores, oponentes ni huellas internas.</p>
+        <form id="history-retention-form" class="history-retention-form">
+          <label for="history-retention-days"><span>Eliminar partidas con más de</span><input id="history-retention-days" type="number" min="1" max="3650" placeholder="Desactivado" inputmode="numeric"><span>días</span></label>
+          <label for="history-retention-maximum"><span>Conservar como máximo</span><input id="history-retention-maximum" type="number" min="1" max="10000" placeholder="Sin límite" inputmode="numeric"><span>partidas</span></label>
+          <button class="recalculate-button" type="submit">Guardar retención</button>
+        </form>
+        <p id="history-privacy-status" role="status" aria-live="polite"></p>
+        <div class="history-privacy-actions">
+          <a class="recalculate-button" href="/api/history/export?scope=summaries" download>Exportar resúmenes JSON</a>
+          <a class="recalculate-button" href="/api/history/export?scope=full" download>Exportar detalle JSON</a>
+          <button id="history-clear-all" class="history-danger-button" type="button">Eliminar historial finalizado</button>
+        </div>
+        <p class="control-hint">El borrado elimina las filas locales y trunca el WAL cuando es posible. No puede borrar copias de seguridad o instantáneas creadas por el sistema operativo.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Solo lectura · Sin automatización del juego</span>
+    <span>Datos: Live Client + Data Dragon · Análisis local</span>
+  </footer>
+</body>
+</html>

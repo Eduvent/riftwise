@@ -1,0 +1,314 @@
+{
+  "status": "ready",
+  "generated_at": "2026-09-19T12:00:00Z",
+  "source_game_revision": 7,
+  "patch": "16.18.1",
+  "player_state": "behind",
+  "damage_mix": {
+    "physical": 0.2145,
+    "magic": 0.6625,
+    "true": 0.123
+  },
+  "main_threat": {
+    "riot_id": "Ahri#LAS",
+    "champion_name": "Ahri",
+    "score": 4,
+    "level": 13,
+    "kills": 0,
+    "deaths": 0,
+    "assists": 0,
+    "creep_score": 130,
+    "inventory_value": 0
+  },
+  "next_component": {
+    "id": 1037,
+    "name": "Picacha",
+    "cost": 875,
+    "image": {
+      "full": "1037.png",
+      "sprite": "item0.png",
+      "group": "item",
+      "x": 144,
+      "y": 48,
+      "w": 48,
+      "h": 48
+    }
+  },
+  "target_item": {
+    "id": 3053,
+    "name": "Guantelete de Sterak",
+    "cost": 3200,
+    "image": {
+      "full": "3053.png",
+      "sprite": "item3.png",
+      "group": "item",
+      "x": 240,
+      "y": 192,
+      "w": 48,
+      "h": 48
+    }
+  },
+  "alternative": {
+    "id": 2504,
+    "name": "Rukerno Kaénico",
+    "cost": 2900,
+    "image": {
+      "full": "2504.png",
+      "sprite": "item3.png",
+      "group": "item",
+      "x": 144,
+      "y": 0,
+      "w": 48,
+      "h": 48
+    }
+  },
+  "alternatives": [
+    {
+      "item": {
+        "id": 2504,
+        "name": "Rukerno Kaénico",
+        "cost": 2900,
+        "image": {
+          "full": "2504.png",
+          "sprite": "item3.png",
+          "group": "item",
+          "x": 144,
+          "y": 0,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 1170,
+      "category": "situational",
+      "covered_needs": [
+        "magic",
+        "burst"
+      ],
+      "reason_codes": [
+        "kaenic_vs_magic_burst",
+        "magic_resistance_needed",
+        "magic_burst_shield"
+      ],
+      "critical": true
+    },
+    {
+      "item": {
+        "id": 3111,
+        "name": "Botas de Mercurio",
+        "cost": 1250,
+        "image": {
+          "full": "3111.png",
+          "sprite": "item3.png",
+          "group": "item",
+          "x": 336,
+          "y": 336,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 1090,
+      "category": "boots",
+      "covered_needs": [
+        "magic",
+        "crowd_control",
+        "slows"
+      ],
+      "reason_codes": [
+        "mercs_vs_magic_cc",
+        "magic_lane_pressure",
+        "hard_cc_requires_tenacity"
+      ]
+    },
+    {
+      "item": {
+        "id": 4401,
+        "name": "Fuerza de la Naturaleza",
+        "cost": 2800,
+        "image": {
+          "full": "4401.png",
+          "sprite": "item5.png",
+          "group": "item",
+          "x": 0,
+          "y": 48,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 970,
+      "category": "situational",
+      "covered_needs": [
+        "magic",
+        "sustained"
+      ],
+      "reason_codes": [
+        "force_of_nature_vs_magic_sustained",
+        "heavy_magic_pressure"
+      ]
+    }
+  ],
+  "ranked_options": [
+    {
+      "item": {
+        "id": 3053,
+        "name": "Guantelete de Sterak",
+        "cost": 3200,
+        "image": {
+          "full": "3053.png",
+          "sprite": "item3.png",
+          "group": "item",
+          "x": 240,
+          "y": 192,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 1240,
+      "category": "situational",
+      "covered_needs": [
+        "burst",
+        "crowd_control"
+      ],
+      "reason_codes": [
+        "steraks_vs_burst",
+        "survive_enemy_burst",
+        "tenacity_teamfight_value"
+      ],
+      "critical": true
+    },
+    {
+      "item": {
+        "id": 2504,
+        "name": "Rukerno Kaénico",
+        "cost": 2900,
+        "image": {
+          "full": "2504.png",
+          "sprite": "item3.png",
+          "group": "item",
+          "x": 144,
+          "y": 0,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 1170,
+      "category": "situational",
+      "covered_needs": [
+        "magic",
+        "burst"
+      ],
+      "reason_codes": [
+        "kaenic_vs_magic_burst",
+        "magic_resistance_needed",
+        "magic_burst_shield"
+      ],
+      "critical": true
+    },
+    {
+      "item": {
+        "id": 3111,
+        "name": "Botas de Mercurio",
+        "cost": 1250,
+        "image": {
+          "full": "3111.png",
+          "sprite": "item3.png",
+          "group": "item",
+          "x": 336,
+          "y": 336,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 1090,
+      "category": "boots",
+      "covered_needs": [
+        "magic",
+        "crowd_control",
+        "slows"
+      ],
+      "reason_codes": [
+        "mercs_vs_magic_cc",
+        "magic_lane_pressure",
+        "hard_cc_requires_tenacity"
+      ]
+    },
+    {
+      "item": {
+        "id": 4401,
+        "name": "Fuerza de la Naturaleza",
+        "cost": 2800,
+        "image": {
+          "full": "4401.png",
+          "sprite": "item5.png",
+          "group": "item",
+          "x": 0,
+          "y": 48,
+          "w": 48,
+          "h": 48
+        }
+      },
+      "score": 970,
+      "category": "situational",
+      "covered_needs": [
+        "magic",
+        "sustained"
+      ],
+      "reason_codes": [
+        "force_of_nature_vs_magic_sustained",
+        "heavy_magic_pressure"
+      ]
+    }
+  ],
+  "phase": "mid",
+  "strategy": "balanced",
+  "lane_opponent": {
+    "riot_id": "Ahri#LAS",
+    "champion_name": "Ahri",
+    "score": 4,
+    "level": 13,
+    "kills": 0,
+    "deaths": 0,
+    "assists": 0,
+    "creep_score": 130,
+    "inventory_value": 0
+  },
+  "trait_confidence": 1,
+  "needs": {
+    "armor": 0,
+    "behind": 1000,
+    "burst": 850,
+    "crowd_control": 700,
+    "healing": 150,
+    "lane_pressure": 1000,
+    "magic": 663,
+    "physical": 215,
+    "shielding": 0,
+    "slows": 0,
+    "sustained": 450
+  },
+  "reason_codes": [
+    "steraks_vs_burst",
+    "survive_enemy_burst",
+    "tenacity_teamfight_value"
+  ],
+  "covered_needs": [
+    "burst",
+    "crowd_control"
+  ],
+  "rules": {
+    "ready": true,
+    "version": "garen-v2.16.18.1.1",
+    "patch": "16.18.1",
+    "source": "external_exact",
+    "fallback": false,
+    "legacy": false
+  },
+  "reason": "Las reglas Garen v2 priorizan supervivencia ante ráfaga, tenacidad contra control en la fase mid.",
+  "confidence": 0.9,
+  "gold_needed": 0,
+  "sources": [
+    "Live Client Data",
+    "Heurística determinista local",
+    "Data Dragon 16.18.1",
+    "Reglas garen-v2.16.18.1.1"
+  ]
+}

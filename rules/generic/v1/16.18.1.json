@@ -1,0 +1,2694 @@
+{
+  "schema_version": 2,
+  "ruleset_version": "generic-v1.16.18.1.3",
+  "patch": "16.18.1",
+  "tag_priority": [
+    "Marksman",
+    "Mage",
+    "Tank",
+    "Fighter"
+  ],
+  "alternative_count": 2,
+  "phases": {
+    "early_end_seconds": 840,
+    "mid_end_seconds": 1500
+  },
+  "context": {
+    "lane_weight_by_phase": {
+      "early": 700,
+      "mid": 400,
+      "late": 150
+    },
+    "missing_trait_penalty": 450,
+    "armor_full_scale": 160,
+    "magic_resist_full_scale": 160
+  },
+  "stability": {
+    "switch_margin": 150,
+    "confirmation_seconds": 12,
+    "minimum_hold_seconds": 20,
+    "critical_threshold": 800
+  },
+  "champion_traits": {
+    "Garen": {
+      "healing": 250,
+      "crowd_control": 150,
+      "slows": 250,
+      "burst": 500,
+      "sustained": 700
+    },
+    "Amumu": {
+      "crowd_control": 900,
+      "slows": 500,
+      "burst": 500,
+      "sustained": 650
+    },
+    "Ahri": {
+      "healing": 150,
+      "crowd_control": 700,
+      "burst": 850,
+      "sustained": 450
+    },
+    "Jinx": {
+      "slows": 500,
+      "crowd_control": 250,
+      "burst": 450,
+      "sustained": 900
+    },
+    "Leona": {
+      "shielding": 250,
+      "crowd_control": 950,
+      "burst": 450,
+      "sustained": 650
+    }
+  },
+  "item_traits": {},
+  "families": {
+    "fighter": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "fighter_steelcaps",
+            "item_id": 3047,
+            "category": "boots",
+            "base_score": 220,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 420,
+                "reason_code": "physical_pressure"
+              },
+              {
+                "signal": "sustained",
+                "minimum": 650,
+                "add": 140,
+                "reason_code": "sustained_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 215,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 250,
+                "reason_code": "magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "crowd_control_pressure",
+                "critical": true
+              },
+              {
+                "signal": "slows",
+                "minimum": 700,
+                "add": 130,
+                "reason_code": "slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 120,
+            "covers": [
+              "slows",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 380,
+                "reason_code": "repeated_slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_stridebreaker",
+            "item_id": 6631,
+            "category": "core",
+            "base_score": 500,
+            "covers": [
+              "lane_pressure",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "lane_pressure",
+                "minimum": 500,
+                "add": 180,
+                "reason_code": "target_access"
+              },
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 100,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_steraks",
+            "item_id": 3053,
+            "category": "situational",
+            "base_score": 340,
+            "covers": [
+              "burst",
+              "crowd_control"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "survive_burst",
+                "critical": true
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 550,
+                "add": 160,
+                "reason_code": "crowd_control_durability"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_jaksho",
+            "item_id": 6665,
+            "category": "situational",
+            "base_score": 280,
+            "covers": [
+              "physical",
+              "magic",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 600,
+                "add": 430,
+                "reason_code": "extended_fight_durability"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_force_nature",
+            "item_id": 4401,
+            "category": "situational",
+            "base_score": 250,
+            "covers": [
+              "magic",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 550,
+                "add": 480,
+                "reason_code": "heavy_magic_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "fighter_randuins",
+            "item_id": 3143,
+            "category": "situational",
+            "base_score": 245,
+            "covers": [
+              "physical",
+              "burst"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 340,
+                "reason_code": "heavy_physical_pressure"
+              },
+              {
+                "signal": "burst",
+                "minimum": 650,
+                "add": 330,
+                "reason_code": "physical_burst_response"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tank": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "tank_steelcaps",
+            "item_id": 3047,
+            "category": "boots",
+            "base_score": 220,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 420,
+                "reason_code": "physical_pressure"
+              },
+              {
+                "signal": "sustained",
+                "minimum": 650,
+                "add": 140,
+                "reason_code": "sustained_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 215,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 250,
+                "reason_code": "magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "crowd_control_pressure",
+                "critical": true
+              },
+              {
+                "signal": "slows",
+                "minimum": 700,
+                "add": 130,
+                "reason_code": "slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 120,
+            "covers": [
+              "slows",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 380,
+                "reason_code": "repeated_slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_sunfire",
+            "item_id": 3068,
+            "category": "core",
+            "base_score": 460,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 220,
+                "reason_code": "physical_frontline_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_jaksho",
+            "item_id": 6665,
+            "category": "situational",
+            "base_score": 360,
+            "covers": [
+              "physical",
+              "magic",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 550,
+                "add": 400,
+                "reason_code": "extended_frontline_fight"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_unending_despair",
+            "item_id": 2502,
+            "category": "situational",
+            "base_score": 300,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 520,
+                "add": 250,
+                "reason_code": "physical_frontline_pressure"
+              },
+              {
+                "signal": "sustained",
+                "minimum": 600,
+                "add": 220,
+                "reason_code": "sustained_frontline_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_randuins",
+            "item_id": 3143,
+            "category": "situational",
+            "base_score": 260,
+            "covers": [
+              "physical",
+              "burst"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 380,
+                "reason_code": "heavy_physical_pressure"
+              },
+              {
+                "signal": "burst",
+                "minimum": 650,
+                "add": 300,
+                "reason_code": "physical_burst_response"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "tank_force_nature",
+            "item_id": 4401,
+            "category": "situational",
+            "base_score": 250,
+            "covers": [
+              "magic",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 550,
+                "add": 500,
+                "reason_code": "heavy_magic_pressure"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "mage": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "mage_sorcerers",
+            "item_id": 3020,
+            "category": "boots",
+            "base_score": 240,
+            "covers": [
+              "magic",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 120,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 215,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 250,
+                "reason_code": "magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "crowd_control_pressure",
+                "critical": true
+              },
+              {
+                "signal": "slows",
+                "minimum": 700,
+                "add": 130,
+                "reason_code": "slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 120,
+            "covers": [
+              "slows",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 380,
+                "reason_code": "repeated_slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_liandry",
+            "item_id": 6653,
+            "category": "core",
+            "base_score": 470,
+            "covers": [
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 550,
+                "add": 260,
+                "reason_code": "sustained_damage_window"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_rabadon",
+            "item_id": 3089,
+            "category": "core",
+            "base_score": 350,
+            "covers": [
+              "ahead"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 300,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_zhonya",
+            "item_id": 3157,
+            "category": "situational",
+            "base_score": 300,
+            "covers": [
+              "physical",
+              "burst"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 600,
+                "add": 470,
+                "reason_code": "survive_burst",
+                "critical": true
+              },
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 180,
+                "reason_code": "physical_threat_response"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_void_staff",
+            "item_id": 3135,
+            "category": "situational",
+            "base_score": 250,
+            "covers": [
+              "magic_resist"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "magic_resist",
+                "minimum": 550,
+                "add": 520,
+                "reason_code": "enemy_magic_resist_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_morello",
+            "item_id": 3165,
+            "category": "situational",
+            "base_score": 220,
+            "covers": [
+              "healing"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "healing",
+                "minimum": 600,
+                "add": 620,
+                "reason_code": "anti_heal_needed",
+                "critical": true
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_banshee",
+            "item_id": 3102,
+            "category": "situational",
+            "base_score": 260,
+            "covers": [
+              "magic",
+              "burst",
+              "crowd_control"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 550,
+                "add": 280,
+                "reason_code": "magic_threat_response"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 650,
+                "add": 300,
+                "reason_code": "spell_shield_value"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "marksman": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "marksman_berserkers",
+            "item_id": 3006,
+            "category": "boots",
+            "base_score": 250,
+            "covers": [
+              "sustained",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 100,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 215,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 250,
+                "reason_code": "magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "crowd_control_pressure",
+                "critical": true
+              },
+              {
+                "signal": "slows",
+                "minimum": 700,
+                "add": 130,
+                "reason_code": "slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 120,
+            "covers": [
+              "slows",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 380,
+                "reason_code": "repeated_slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_kraken",
+            "item_id": 6672,
+            "category": "core",
+            "base_score": 480,
+            "covers": [
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 550,
+                "add": 240,
+                "reason_code": "sustained_damage_window"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_infinity_edge",
+            "item_id": 3031,
+            "category": "core",
+            "base_score": 360,
+            "covers": [
+              "ahead",
+              "burst"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 220,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_phantom_dancer",
+            "item_id": 3046,
+            "category": "situational",
+            "base_score": 290,
+            "covers": [
+              "sustained",
+              "slows"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 600,
+                "add": 220,
+                "reason_code": "extended_damage_window"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_lord_dominiks",
+            "item_id": 3036,
+            "category": "situational",
+            "base_score": 250,
+            "covers": [
+              "armor"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "armor",
+                "minimum": 500,
+                "add": 560,
+                "reason_code": "enemy_armor_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_bloodthirster",
+            "item_id": 3072,
+            "category": "situational",
+            "base_score": 280,
+            "covers": [
+              "burst",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 650,
+                "add": 340,
+                "reason_code": "survive_burst"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "marksman_mortal_reminder",
+            "item_id": 3033,
+            "category": "situational",
+            "base_score": 220,
+            "covers": [
+              "healing",
+              "armor"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "healing",
+                "minimum": 600,
+                "add": 540,
+                "reason_code": "anti_heal_needed",
+                "critical": true
+              },
+              {
+                "signal": "armor",
+                "minimum": 500,
+                "add": 260,
+                "reason_code": "enemy_armor_pressure"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "support": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "support_steelcaps",
+            "item_id": 3047,
+            "category": "boots",
+            "base_score": 220,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 420,
+                "reason_code": "physical_pressure"
+              },
+              {
+                "signal": "sustained",
+                "minimum": 650,
+                "add": 140,
+                "reason_code": "sustained_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 215,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 250,
+                "reason_code": "magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 480,
+                "reason_code": "crowd_control_pressure",
+                "critical": true
+              },
+              {
+                "signal": "slows",
+                "minimum": 700,
+                "add": 130,
+                "reason_code": "slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 120,
+            "covers": [
+              "slows",
+              "lane_pressure"
+            ],
+            "mutual_exclusion_group": "boots",
+            "phase_scores": {
+              "early": 220,
+              "mid": 70
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 140,
+              "teamfight": 30
+            },
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 380,
+                "reason_code": "repeated_slow_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_locket",
+            "item_id": 3190,
+            "category": "core",
+            "base_score": 480,
+            "covers": [
+              "burst",
+              "shielding"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 550,
+                "add": 350,
+                "reason_code": "protect_against_burst",
+                "critical": true
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_knights_vow",
+            "item_id": 3109,
+            "category": "situational",
+            "base_score": 330,
+            "covers": [
+              "burst",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 600,
+                "add": 300,
+                "reason_code": "ally_protection_needed"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_zekes",
+            "item_id": 3050,
+            "category": "situational",
+            "base_score": 280,
+            "covers": [
+              "crowd_control",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "crowd_control",
+                "minimum": 550,
+                "add": 260,
+                "reason_code": "crowd_control_followup"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_frozen_heart",
+            "item_id": 3110,
+            "category": "situational",
+            "base_score": 260,
+            "covers": [
+              "physical",
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 420,
+                "reason_code": "heavy_physical_pressure"
+              },
+              {
+                "signal": "sustained",
+                "minimum": 650,
+                "add": 220,
+                "reason_code": "attack_speed_pressure"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "support_thornmail",
+            "item_id": 3075,
+            "category": "situational",
+            "base_score": 230,
+            "covers": [
+              "physical",
+              "healing"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "healing",
+                "minimum": 600,
+                "add": 560,
+                "reason_code": "anti_heal_needed",
+                "critical": true
+              },
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 180,
+                "reason_code": "physical_pressure"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "neutral": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "neutral_steelcaps",
+            "item_id": 3047,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "physical"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 500,
+                "reason_code": "explicit_physical_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "physical",
+              "minimum": 500
+            },
+            {
+              "signal": "burst",
+              "minimum": 700
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 500,
+                "reason_code": "explicit_magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 450,
+                "reason_code": "explicit_crowd_control"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "magic",
+              "minimum": 500
+            },
+            {
+              "signal": "crowd_control",
+              "minimum": 600
+            },
+            {
+              "signal": "slows",
+              "minimum": 650
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 600,
+                "add": 430,
+                "reason_code": "explicit_slow_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "crowd_control",
+              "minimum": 600
+            },
+            {
+              "signal": "slows",
+              "minimum": 600
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_jaksho",
+            "item_id": 6665,
+            "category": "situational",
+            "base_score": 0,
+            "covers": [
+              "physical",
+              "magic",
+              "burst"
+            ],
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 380,
+                "reason_code": "explicit_physical_pressure"
+              },
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 380,
+                "reason_code": "explicit_magic_pressure"
+              },
+              {
+                "signal": "burst",
+                "minimum": 700,
+                "add": 300,
+                "reason_code": "explicit_burst_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "physical",
+              "minimum": 500
+            },
+            {
+              "signal": "magic",
+              "minimum": 500
+            },
+            {
+              "signal": "crowd_control",
+              "minimum": 600
+            },
+            {
+              "signal": "burst",
+              "minimum": 700
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_randuins",
+            "item_id": 3143,
+            "category": "situational",
+            "base_score": 0,
+            "covers": [
+              "physical",
+              "burst"
+            ],
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 420,
+                "reason_code": "explicit_physical_pressure"
+              },
+              {
+                "signal": "burst",
+                "minimum": 700,
+                "add": 320,
+                "reason_code": "explicit_burst_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "physical",
+              "minimum": 500
+            },
+            {
+              "signal": "burst",
+              "minimum": 700
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_force_nature",
+            "item_id": 4401,
+            "category": "situational",
+            "base_score": 0,
+            "covers": [
+              "magic",
+              "slows"
+            ],
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 420,
+                "reason_code": "explicit_magic_pressure"
+              },
+              {
+                "signal": "slows",
+                "minimum": 650,
+                "add": 260,
+                "reason_code": "explicit_slow_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "magic",
+              "minimum": 500
+            },
+            {
+              "signal": "slows",
+              "minimum": 650
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "profiles": [
+    {
+      "id": "garen_top",
+      "kind": "champion_role",
+      "families": [
+        "fighter"
+      ],
+      "runes": {
+        "summary": "Plan de runas estructural para intercambios sostenidos.",
+        "options": [
+          {
+            "id": "durability",
+            "label": "Durabilidad",
+            "when": "Si esperas intercambios largos.",
+            "tradeoff": "Reduce presión ofensiva inmediata."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Destello y una herramienta de mapa o duelo ofrecen enfoques comparables.",
+        "options": [
+          {
+            "id": "map",
+            "label": "Presión de mapa",
+            "when": "Si priorizas rotaciones.",
+            "tradeoff": "Cede fuerza directa en el duelo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Garen",
+      "role": "top",
+      "initial_plan": {
+        "summary": "Plan inicial estructural: Oleada y regreso.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "lane_recall",
+            "label": "Oleada y regreso",
+            "when": "Si quieres coordinar recursos con el primer regreso.",
+            "tradeoff": "Cede presión inmediata para conservar una salida segura."
+          }
+        ]
+      }
+    },
+    {
+      "id": "amumu_jungle",
+      "kind": "champion_role",
+      "families": [
+        "tank"
+      ],
+      "runes": {
+        "summary": "Plan de runas estructural para iniciación y aguante.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciación",
+            "when": "Si tu equipo necesita empezar peleas.",
+            "tradeoff": "Aporta menos daño sostenido."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Un hechizo para asegurar objetivos y otro para acceso forman un plan orientado a recursos neutrales.",
+        "options": [
+          {
+            "id": "objectives",
+            "label": "Objetivos",
+            "when": "Si disputas recursos neutrales.",
+            "tradeoff": "Limita herramientas defensivas personales."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Amumu",
+      "role": "jungle",
+      "initial_plan": {
+        "summary": "Plan inicial estructural: Ruta y objetivos.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "route_objectives",
+            "label": "Ruta y objetivos",
+            "when": "Si quieres ordenar el primer recorrido y la disputa neutral.",
+            "tradeoff": "Reduce flexibilidad para cambiar el recorrido sobre la marcha."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ahri_middle",
+      "kind": "champion_role",
+      "families": [
+        "mage"
+      ],
+      "runes": {
+        "summary": "Plan de runas estructural para daño y movilidad.",
+        "options": [
+          {
+            "id": "tempo",
+            "label": "Tempo",
+            "when": "Si puedes jugar por oleadas y rotaciones.",
+            "tradeoff": "Ofrece menos margen defensivo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Movilidad y una respuesta defensiva ofrecen opciones según la amenaza.",
+        "options": [
+          {
+            "id": "safety",
+            "label": "Seguridad",
+            "when": "Si enfrentas control o ráfaga.",
+            "tradeoff": "Reduce presión ofensiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Ahri",
+      "role": "middle",
+      "initial_plan": {
+        "summary": "Plan inicial estructural: Oleada y tempo.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wave_tempo",
+            "label": "Oleada y tempo",
+            "when": "Si quieres preparar el primer regreso alrededor de la oleada.",
+            "tradeoff": "Cede margen para responder a una pelea imprevista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "jinx_bottom",
+      "kind": "champion_role",
+      "families": [
+        "marksman"
+      ],
+      "runes": {
+        "summary": "Plan de runas estructural para daño sostenido.",
+        "options": [
+          {
+            "id": "scaling",
+            "label": "Escalado",
+            "when": "Si puedes golpear desde una posición segura.",
+            "tradeoff": "Tarda más en alcanzar su valor."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Destello puede acompañarse de una herramienta de protección coordinada.",
+        "options": [
+          {
+            "id": "protection",
+            "label": "Protección",
+            "when": "Si la amenaza puede alcanzarte.",
+            "tradeoff": "Pierdes una opción agresiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Jinx",
+      "role": "bottom",
+      "initial_plan": {
+        "summary": "Plan inicial estructural: Recursos seguros.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "safe_resources",
+            "label": "Recursos seguros",
+            "when": "Si priorizas oro estable antes del primer regreso.",
+            "tradeoff": "Ofrece menos presión temprana sobre la línea."
+          }
+        ]
+      }
+    },
+    {
+      "id": "leona_support",
+      "kind": "champion_role",
+      "families": [
+        "support"
+      ],
+      "runes": {
+        "summary": "Plan de runas estructural para control y protección.",
+        "options": [
+          {
+            "id": "frontline",
+            "label": "Primera línea",
+            "when": "Si debes absorber la iniciación rival.",
+            "tradeoff": "Aporta menos presión de daño."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Destello puede acompañarse de una herramienta para iniciar o proteger.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciar",
+            "when": "Si tu equipo puede seguir la jugada.",
+            "tradeoff": "Deja menos margen para retirarse."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Leona",
+      "role": "support",
+      "initial_plan": {
+        "summary": "Plan inicial estructural: Acceso y visión.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "access_vision",
+            "label": "Acceso y visión",
+            "when": "Si quieres preparar una ventana de control con información.",
+            "tradeoff": "Aporta menos protección reactiva durante ese intervalo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "garen_default",
+      "kind": "champion_default",
+      "families": [
+        "fighter"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para intercambios sostenidos.",
+        "options": [
+          {
+            "id": "durability",
+            "label": "Durabilidad",
+            "when": "Si esperas intercambios largos.",
+            "tradeoff": "Reduce presión ofensiva inmediata."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello y una herramienta de mapa o duelo ofrecen enfoques comparables.",
+        "options": [
+          {
+            "id": "map",
+            "label": "Presión de mapa",
+            "when": "Si priorizas rotaciones.",
+            "tradeoff": "Cede fuerza directa en el duelo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Garen",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y regreso.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "lane_recall",
+            "label": "Oleada y regreso",
+            "when": "Si quieres coordinar recursos con el primer regreso.",
+            "tradeoff": "Cede presión inmediata para conservar una salida segura."
+          }
+        ]
+      }
+    },
+    {
+      "id": "amumu_default",
+      "kind": "champion_default",
+      "families": [
+        "tank"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para iniciación y aguante.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciación",
+            "when": "Si tu equipo necesita empezar peleas.",
+            "tradeoff": "Aporta menos daño sostenido."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Un hechizo para asegurar objetivos y otro para acceso forman un plan orientado a recursos neutrales.",
+        "options": [
+          {
+            "id": "objectives",
+            "label": "Objetivos",
+            "when": "Si disputas recursos neutrales.",
+            "tradeoff": "Limita herramientas defensivas personales."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Amumu",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Ruta y objetivos.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "route_objectives",
+            "label": "Ruta y objetivos",
+            "when": "Si quieres ordenar el primer recorrido y la disputa neutral.",
+            "tradeoff": "Reduce flexibilidad para cambiar el recorrido sobre la marcha."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ahri_default",
+      "kind": "champion_default",
+      "families": [
+        "mage"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño y movilidad.",
+        "options": [
+          {
+            "id": "tempo",
+            "label": "Tempo",
+            "when": "Si puedes jugar por oleadas y rotaciones.",
+            "tradeoff": "Ofrece menos margen defensivo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Movilidad y una respuesta defensiva ofrecen opciones según la amenaza.",
+        "options": [
+          {
+            "id": "safety",
+            "label": "Seguridad",
+            "when": "Si enfrentas control o ráfaga.",
+            "tradeoff": "Reduce presión ofensiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Ahri",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y tempo.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wave_tempo",
+            "label": "Oleada y tempo",
+            "when": "Si quieres preparar el primer regreso alrededor de la oleada.",
+            "tradeoff": "Cede margen para responder a una pelea imprevista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "jinx_default",
+      "kind": "champion_default",
+      "families": [
+        "marksman"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño sostenido.",
+        "options": [
+          {
+            "id": "scaling",
+            "label": "Escalado",
+            "when": "Si puedes golpear desde una posición segura.",
+            "tradeoff": "Tarda más en alcanzar su valor."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello puede acompañarse de una herramienta de protección coordinada.",
+        "options": [
+          {
+            "id": "protection",
+            "label": "Protección",
+            "when": "Si la amenaza puede alcanzarte.",
+            "tradeoff": "Pierdes una opción agresiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Jinx",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Recursos seguros.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "safe_resources",
+            "label": "Recursos seguros",
+            "when": "Si priorizas oro estable antes del primer regreso.",
+            "tradeoff": "Ofrece menos presión temprana sobre la línea."
+          }
+        ]
+      }
+    },
+    {
+      "id": "leona_default",
+      "kind": "champion_default",
+      "families": [
+        "support"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para control y protección.",
+        "options": [
+          {
+            "id": "frontline",
+            "label": "Primera línea",
+            "when": "Si debes absorber la iniciación rival.",
+            "tradeoff": "Aporta menos presión de daño."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello puede acompañarse de una herramienta para iniciar o proteger.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciar",
+            "when": "Si tu equipo puede seguir la jugada.",
+            "tradeoff": "Deja menos margen para retirarse."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Leona",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Acceso y visión.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "access_vision",
+            "label": "Acceso y visión",
+            "when": "Si quieres preparar una ventana de control con información.",
+            "tradeoff": "Aporta menos protección reactiva durante ese intervalo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "top_archetype",
+      "kind": "role_archetype",
+      "families": [
+        "fighter"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para intercambios sostenidos.",
+        "options": [
+          {
+            "id": "durability",
+            "label": "Durabilidad",
+            "when": "Si esperas intercambios largos.",
+            "tradeoff": "Reduce presión ofensiva inmediata."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello y una herramienta de mapa o duelo ofrecen enfoques comparables.",
+        "options": [
+          {
+            "id": "map",
+            "label": "Presión de mapa",
+            "when": "Si priorizas rotaciones.",
+            "tradeoff": "Cede fuerza directa en el duelo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "role": "top",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Mage",
+        "Marksman",
+        "Support"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y regreso.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "lane_recall",
+            "label": "Oleada y regreso",
+            "when": "Si quieres coordinar recursos con el primer regreso.",
+            "tradeoff": "Cede presión inmediata para conservar una salida segura."
+          }
+        ]
+      }
+    },
+    {
+      "id": "jungle_archetype",
+      "kind": "role_archetype",
+      "families": [
+        "tank"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para iniciación y aguante.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciación",
+            "when": "Si tu equipo necesita empezar peleas.",
+            "tradeoff": "Aporta menos daño sostenido."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Un hechizo para asegurar objetivos y otro para acceso forman un plan orientado a recursos neutrales.",
+        "options": [
+          {
+            "id": "objectives",
+            "label": "Objetivos",
+            "when": "Si disputas recursos neutrales.",
+            "tradeoff": "Limita herramientas defensivas personales."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "role": "jungle",
+      "tags": [
+        "Tank"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Mage",
+        "Marksman"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Ruta y objetivos.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "route_objectives",
+            "label": "Ruta y objetivos",
+            "when": "Si quieres ordenar el primer recorrido y la disputa neutral.",
+            "tradeoff": "Reduce flexibilidad para cambiar el recorrido sobre la marcha."
+          }
+        ]
+      }
+    },
+    {
+      "id": "middle_archetype",
+      "kind": "role_archetype",
+      "families": [
+        "mage"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño y movilidad.",
+        "options": [
+          {
+            "id": "tempo",
+            "label": "Tempo",
+            "when": "Si puedes jugar por oleadas y rotaciones.",
+            "tradeoff": "Ofrece menos margen defensivo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Movilidad y una respuesta defensiva ofrecen opciones según la amenaza.",
+        "options": [
+          {
+            "id": "safety",
+            "label": "Seguridad",
+            "when": "Si enfrentas control o ráfaga.",
+            "tradeoff": "Reduce presión ofensiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "role": "middle",
+      "tags": [
+        "Mage"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Fighter",
+        "Marksman",
+        "Support",
+        "Tank"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y tempo.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wave_tempo",
+            "label": "Oleada y tempo",
+            "when": "Si quieres preparar el primer regreso alrededor de la oleada.",
+            "tradeoff": "Cede margen para responder a una pelea imprevista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "bottom_archetype",
+      "kind": "role_archetype",
+      "families": [
+        "marksman"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño sostenido.",
+        "options": [
+          {
+            "id": "scaling",
+            "label": "Escalado",
+            "when": "Si puedes golpear desde una posición segura.",
+            "tradeoff": "Tarda más en alcanzar su valor."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello puede acompañarse de una herramienta de protección coordinada.",
+        "options": [
+          {
+            "id": "protection",
+            "label": "Protección",
+            "when": "Si la amenaza puede alcanzarte.",
+            "tradeoff": "Pierdes una opción agresiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "role": "bottom",
+      "tags": [
+        "Marksman"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Fighter",
+        "Mage",
+        "Support",
+        "Tank"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Recursos seguros.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "safe_resources",
+            "label": "Recursos seguros",
+            "when": "Si priorizas oro estable antes del primer regreso.",
+            "tradeoff": "Ofrece menos presión temprana sobre la línea."
+          }
+        ]
+      }
+    },
+    {
+      "id": "support_archetype",
+      "kind": "role_archetype",
+      "families": [
+        "support"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para control y protección.",
+        "options": [
+          {
+            "id": "frontline",
+            "label": "Primera línea",
+            "when": "Si debes absorber la iniciación rival.",
+            "tradeoff": "Aporta menos presión de daño."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello puede acompañarse de una herramienta para iniciar o proteger.",
+        "options": [
+          {
+            "id": "engage",
+            "label": "Iniciar",
+            "when": "Si tu equipo puede seguir la jugada.",
+            "tradeoff": "Deja menos margen para retirarse."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "role": "support",
+      "tags": [
+        "Tank"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Mage",
+        "Marksman"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Acceso y visión.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "access_vision",
+            "label": "Acceso y visión",
+            "when": "Si quieres preparar una ventana de control con información.",
+            "tradeoff": "Aporta menos protección reactiva durante ese intervalo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "marksman_tag",
+      "kind": "champion_tag_archetype",
+      "families": [
+        "marksman"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño sostenido.",
+        "options": [
+          {
+            "id": "scaling",
+            "label": "Escalado",
+            "when": "Si puedes golpear desde una posición segura.",
+            "tradeoff": "Tarda más en alcanzar su valor."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello puede acompañarse de una herramienta de protección coordinada.",
+        "options": [
+          {
+            "id": "protection",
+            "label": "Protección",
+            "when": "Si la amenaza puede alcanzarte.",
+            "tradeoff": "Pierdes una opción agresiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "tags": [
+        "Marksman"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Fighter",
+        "Mage",
+        "Support",
+        "Tank"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Recursos seguros.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "safe_resources",
+            "label": "Recursos seguros",
+            "when": "Si priorizas oro estable antes del primer regreso.",
+            "tradeoff": "Ofrece menos presión temprana sobre la línea."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mage_tag",
+      "kind": "champion_tag_archetype",
+      "families": [
+        "mage"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño y movilidad.",
+        "options": [
+          {
+            "id": "tempo",
+            "label": "Tempo",
+            "when": "Si puedes jugar por oleadas y rotaciones.",
+            "tradeoff": "Ofrece menos margen defensivo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Movilidad y una respuesta defensiva ofrecen opciones según la amenaza.",
+        "options": [
+          {
+            "id": "safety",
+            "label": "Seguridad",
+            "when": "Si enfrentas control o ráfaga.",
+            "tradeoff": "Reduce presión ofensiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "tags": [
+        "Mage"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Fighter",
+        "Marksman",
+        "Support",
+        "Tank"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y tempo.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wave_tempo",
+            "label": "Oleada y tempo",
+            "when": "Si quieres preparar el primer regreso alrededor de la oleada.",
+            "tradeoff": "Cede margen para responder a una pelea imprevista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "tank_tag",
+      "kind": "champion_tag_archetype",
+      "families": [
+        "tank"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para intercambios sostenidos.",
+        "options": [
+          {
+            "id": "durability",
+            "label": "Durabilidad",
+            "when": "Si esperas intercambios largos.",
+            "tradeoff": "Reduce presión ofensiva inmediata."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello y una herramienta de mapa o duelo ofrecen enfoques comparables.",
+        "options": [
+          {
+            "id": "map",
+            "label": "Presión de mapa",
+            "when": "Si priorizas rotaciones.",
+            "tradeoff": "Cede fuerza directa en el duelo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "tags": [
+        "Tank"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Mage",
+        "Marksman"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Ruta y objetivos.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "route_objectives",
+            "label": "Ruta y objetivos",
+            "when": "Si quieres ordenar el primer recorrido y la disputa neutral.",
+            "tradeoff": "Reduce flexibilidad para cambiar el recorrido sobre la marcha."
+          }
+        ]
+      }
+    },
+    {
+      "id": "fighter_tag",
+      "kind": "champion_tag_archetype",
+      "families": [
+        "fighter"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para intercambios sostenidos.",
+        "options": [
+          {
+            "id": "durability",
+            "label": "Durabilidad",
+            "when": "Si esperas intercambios largos.",
+            "tradeoff": "Reduce presión ofensiva inmediata."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Destello y una herramienta de mapa o duelo ofrecen enfoques comparables.",
+        "options": [
+          {
+            "id": "map",
+            "label": "Presión de mapa",
+            "when": "Si priorizas rotaciones.",
+            "tradeoff": "Cede fuerza directa en el duelo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "tags": [
+        "Fighter"
+      ],
+      "excluded_tags": [
+        "Assassin",
+        "Mage",
+        "Marksman",
+        "Support"
+      ],
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y regreso.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "lane_recall",
+            "label": "Oleada y regreso",
+            "when": "Si quieres coordinar recursos con el primer regreso.",
+            "tradeoff": "Cede presión inmediata para conservar una salida segura."
+          }
+        ]
+      }
+    },
+    {
+      "id": "neutral",
+      "kind": "neutral",
+      "families": [
+        "neutral"
+      ],
+      "runes": {
+        "summary": "No se asume una página óptima sin campeón y rol compatibles.",
+        "options": [
+          {
+            "id": "wait",
+            "label": "Esperar contexto",
+            "when": "Si faltan campeón o rol.",
+            "tradeoff": "Evita fabricar una recomendación específica."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "No se asume un plan de hechizos sin campeón y rol compatibles.",
+        "options": [
+          {
+            "id": "wait",
+            "label": "Esperar contexto",
+            "when": "Si faltan campeón o rol.",
+            "tradeoff": "Evita fabricar una recomendación específica."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Contexto pendiente.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wait_context",
+            "label": "Esperar contexto",
+            "when": "Si el perfil compatible todavía no está definido.",
+            "tradeoff": "Evita asumir una apertura específica."
+          }
+        ]
+      }
+    }
+  ],
+  "neutral_profile": "neutral"
+}

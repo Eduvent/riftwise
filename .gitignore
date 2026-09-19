@@ -1,0 +1,18 @@
+# Go build and test artifacts
+/bin/
+/dist/
+*.test
+*.out
+coverage.txt
+
+# Local runtime data and logs
+/data/
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/

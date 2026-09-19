@@ -1,0 +1,258 @@
+{
+  "schema_version": 2,
+  "ruleset_version": "garen-v2.16.18.1.1",
+  "champion": "Garen",
+  "patch": "16.18.1",
+  "alternative_count": 3,
+  "phases": {
+    "early_end_seconds": 840,
+    "mid_end_seconds": 1500
+  },
+  "context": {
+    "lane_weight_by_phase": {
+      "early": 700,
+      "mid": 400,
+      "late": 150
+    },
+    "missing_trait_penalty": 450,
+    "armor_full_scale": 160
+  },
+  "stability": {
+    "switch_margin": 150,
+    "confirmation_seconds": 12,
+    "minimum_hold_seconds": 20,
+    "critical_threshold": 800
+  },
+  "champion_traits": {
+    "Aatrox": {"healing": 900, "crowd_control": 500, "slows": 350, "burst": 550, "sustained": 850},
+    "Ahri": {"healing": 150, "crowd_control": 700, "burst": 850, "sustained": 450},
+    "Camille": {"shielding": 500, "crowd_control": 450, "slows": 300, "burst": 800, "sustained": 650},
+    "Darius": {"healing": 650, "crowd_control": 450, "slows": 400, "burst": 500, "sustained": 850},
+    "DrMundo": {"healing": 1000, "slows": 500, "burst": 250, "sustained": 900},
+    "Fiora": {"healing": 650, "slows": 250, "burst": 650, "sustained": 900},
+    "Gwen": {"healing": 550, "shielding": 150, "slows": 500, "burst": 650, "sustained": 900},
+    "Illaoi": {"healing": 850, "slows": 300, "burst": 700, "sustained": 850},
+    "Jax": {"crowd_control": 600, "burst": 700, "sustained": 900},
+    "KSante": {"shielding": 450, "crowd_control": 900, "slows": 650, "burst": 550, "sustained": 700},
+    "Malphite": {"shielding": 600, "crowd_control": 850, "slows": 700, "burst": 800, "sustained": 350},
+    "Mordekaiser": {"healing": 400, "shielding": 650, "crowd_control": 450, "slows": 500, "burst": 600, "sustained": 850},
+    "Nasus": {"healing": 500, "slows": 950, "burst": 550, "sustained": 900},
+    "Ornn": {"shielding": 250, "crowd_control": 950, "slows": 850, "burst": 600, "sustained": 650},
+    "Renekton": {"healing": 500, "crowd_control": 650, "burst": 850, "sustained": 600},
+    "Rumble": {"shielding": 350, "slows": 700, "burst": 700, "sustained": 800},
+    "Sett": {"healing": 350, "shielding": 900, "crowd_control": 700, "slows": 350, "burst": 900, "sustained": 650},
+    "Shen": {"shielding": 900, "crowd_control": 650, "burst": 400, "sustained": 600},
+    "TahmKench": {"healing": 500, "shielding": 900, "crowd_control": 800, "slows": 700, "burst": 450, "sustained": 700},
+    "Teemo": {"slows": 700, "burst": 450, "sustained": 750},
+    "Trundle": {"healing": 600, "slows": 850, "burst": 400, "sustained": 950},
+    "Tryndamere": {"healing": 500, "slows": 350, "burst": 650, "sustained": 950},
+    "Volibear": {"healing": 650, "shielding": 550, "crowd_control": 600, "slows": 500, "burst": 750, "sustained": 800}
+  },
+  "item_traits": {
+    "3053": {"shielding": 500, "burst": 150},
+    "3072": {"healing": 300, "shielding": 250, "sustained": 200},
+    "3153": {"healing": 300, "slows": 150, "sustained": 300},
+    "6673": {"shielding": 450, "burst": 100}
+  },
+  "candidates": [
+    {
+      "id": "steelcaps_vs_physical_sustained",
+      "item_id": 3047,
+      "category": "boots",
+      "mutual_exclusion_group": "boots",
+      "base_score": 260,
+      "covers": ["physical", "sustained"],
+      "phase_scores": {"early": 220, "mid": 60},
+      "strategy_scores": {"balanced": 30, "split_push": 50, "teamfight": 20},
+      "adjustments": [
+        {"signal": "physical", "minimum": 550, "add": 480, "reason_code": "physical_auto_attack_pressure"},
+        {"signal": "sustained", "minimum": 650, "add": 180, "reason_code": "sustained_duel_pressure"}
+      ]
+    },
+    {
+      "id": "mercs_vs_magic_cc",
+      "item_id": 3111,
+      "category": "boots",
+      "mutual_exclusion_group": "boots",
+      "base_score": 250,
+      "covers": ["magic", "crowd_control", "slows"],
+      "phase_scores": {"early": 210, "mid": 70},
+      "strategy_scores": {"balanced": 30, "split_push": 20, "teamfight": 80},
+      "adjustments": [
+        {"signal": "magic", "minimum": 500, "add": 220, "reason_code": "magic_lane_pressure"},
+        {"signal": "crowd_control", "minimum": 600, "add": 520, "reason_code": "hard_cc_requires_tenacity", "critical": true},
+        {"signal": "slows", "minimum": 700, "add": 130, "reason_code": "slow_resistance_value"}
+      ]
+    },
+    {
+      "id": "swifties_vs_slows",
+      "item_id": 3009,
+      "category": "boots",
+      "mutual_exclusion_group": "boots",
+      "base_score": 160,
+      "covers": ["slows", "lane_pressure"],
+      "phase_scores": {"early": 140, "mid": 40},
+      "strategy_scores": {"balanced": 10, "split_push": 100, "teamfight": 20},
+      "adjustments": [
+        {"signal": "slows", "minimum": 650, "add": 400, "reason_code": "repeated_slow_pressure"}
+      ]
+    },
+    {
+      "id": "stridebreaker_core",
+      "item_id": 6631,
+      "category": "core",
+      "base_score": 480,
+      "covers": ["lane_pressure", "sustained"],
+      "phase_scores": {"early": 120, "mid": 100, "late": 20},
+      "strategy_scores": {"balanced": 100, "split_push": 170, "teamfight": 70},
+      "adjustments": [
+        {"signal": "lane_pressure", "minimum": 500, "add": 180, "reason_code": "lane_target_access"},
+        {"signal": "ahead", "minimum": 1000, "add": 100, "reason_code": "convert_lane_lead"}
+      ]
+    },
+    {
+      "id": "dead_mans_split_pressure",
+      "item_id": 3742,
+      "category": "situational",
+      "base_score": 300,
+      "covers": ["physical", "lane_pressure"],
+      "min_phase": "mid",
+      "phase_scores": {"mid": 120, "late": 80},
+      "strategy_scores": {"balanced": 40, "split_push": 240, "teamfight": 20},
+      "adjustments": [
+        {"signal": "physical", "minimum": 520, "add": 260, "reason_code": "physical_side_lane_pressure"}
+      ]
+    },
+    {
+      "id": "steraks_vs_burst",
+      "item_id": 3053,
+      "category": "situational",
+      "base_score": 350,
+      "covers": ["burst", "crowd_control"],
+      "min_phase": "mid",
+      "phase_scores": {"mid": 130, "late": 130},
+      "strategy_scores": {"balanced": 80, "split_push": 60, "teamfight": 170},
+      "adjustments": [
+        {"signal": "burst", "minimum": 600, "add": 500, "reason_code": "survive_enemy_burst", "critical": true},
+        {"signal": "crowd_control", "minimum": 550, "add": 180, "reason_code": "tenacity_teamfight_value"}
+      ]
+    },
+    {
+      "id": "jaksho_vs_sustained_teamfight",
+      "item_id": 6665,
+      "category": "situational",
+      "base_score": 300,
+      "covers": ["physical", "magic", "sustained"],
+      "min_phase": "mid",
+      "phase_scores": {"mid": 100, "late": 180},
+      "strategy_scores": {"balanced": 80, "split_push": 20, "teamfight": 240},
+      "adjustments": [
+        {"signal": "sustained", "minimum": 600, "add": 450, "reason_code": "extended_teamfight_durability"}
+      ]
+    },
+    {
+      "id": "force_of_nature_vs_magic_sustained",
+      "item_id": 4401,
+      "category": "situational",
+      "base_score": 280,
+      "covers": ["magic", "sustained"],
+      "phase_scores": {"early": 20, "mid": 120, "late": 150},
+      "strategy_scores": {"balanced": 70, "split_push": 100, "teamfight": 100},
+      "adjustments": [
+        {"signal": "magic", "minimum": 550, "add": 500, "reason_code": "heavy_magic_pressure"},
+        {"signal": "sustained", "minimum": 600, "add": 220, "reason_code": "repeated_magic_damage"}
+      ]
+    },
+    {
+      "id": "kaenic_vs_magic_burst",
+      "item_id": 2504,
+      "category": "situational",
+      "base_score": 250,
+      "covers": ["magic", "burst"],
+      "min_phase": "mid",
+      "phase_scores": {"mid": 100, "late": 150},
+      "strategy_scores": {"balanced": 70, "split_push": 120, "teamfight": 80},
+      "adjustments": [
+        {"signal": "magic", "minimum": 520, "add": 300, "reason_code": "magic_resistance_needed"},
+        {"signal": "burst", "minimum": 650, "add": 450, "reason_code": "magic_burst_shield", "critical": true}
+      ]
+    },
+    {
+      "id": "randuins_vs_physical_burst",
+      "item_id": 3143,
+      "category": "situational",
+      "base_score": 260,
+      "covers": ["physical", "burst"],
+      "phase_scores": {"early": 10, "mid": 100, "late": 150},
+      "strategy_scores": {"balanced": 70, "split_push": 50, "teamfight": 160},
+      "adjustments": [
+        {"signal": "physical", "minimum": 550, "add": 350, "reason_code": "heavy_physical_pressure"},
+        {"signal": "burst", "minimum": 650, "add": 380, "reason_code": "physical_burst_reduction"}
+      ]
+    },
+    {
+      "id": "thornmail_anti_heal_tank",
+      "item_id": 3075,
+      "category": "situational",
+      "base_score": 180,
+      "covers": ["healing", "physical", "sustained"],
+      "phase_scores": {"early": 20, "mid": 80, "late": 100},
+      "strategy_scores": {"balanced": 40, "split_push": 20, "teamfight": 150},
+      "adjustments": [
+        {"signal": "healing", "minimum": 600, "add": 650, "reason_code": "critical_anti_heal", "critical": true},
+        {"signal": "physical", "minimum": 500, "add": 200, "reason_code": "armor_with_anti_heal"}
+      ]
+    },
+    {
+      "id": "chempunk_anti_heal_damage",
+      "item_id": 6609,
+      "category": "situational",
+      "base_score": 190,
+      "covers": ["healing", "sustained"],
+      "phase_scores": {"early": 30, "mid": 90, "late": 70},
+      "strategy_scores": {"balanced": 50, "split_push": 140, "teamfight": 40},
+      "adjustments": [
+        {"signal": "healing", "minimum": 600, "add": 700, "reason_code": "critical_anti_heal", "critical": true},
+        {"signal": "ahead", "minimum": 1000, "add": 100, "reason_code": "offensive_anti_heal"}
+      ]
+    },
+    {
+      "id": "serpents_fang_anti_shield",
+      "item_id": 6695,
+      "category": "situational",
+      "base_score": 170,
+      "covers": ["shielding"],
+      "phase_scores": {"early": 10, "mid": 90, "late": 100},
+      "strategy_scores": {"balanced": 50, "split_push": 110, "teamfight": 80},
+      "adjustments": [
+        {"signal": "shielding", "minimum": 600, "add": 800, "reason_code": "critical_anti_shield", "critical": true}
+      ]
+    },
+    {
+      "id": "black_cleaver_vs_armor",
+      "item_id": 3071,
+      "category": "situational",
+      "base_score": 300,
+      "covers": ["armor", "sustained"],
+      "phase_scores": {"early": 40, "mid": 120, "late": 150},
+      "strategy_scores": {"balanced": 90, "split_push": 150, "teamfight": 130},
+      "adjustments": [
+        {"signal": "armor", "minimum": 550, "add": 620, "reason_code": "armor_shred_needed", "critical": true},
+        {"signal": "sustained", "minimum": 600, "add": 150, "reason_code": "extended_armor_shred"}
+      ]
+    },
+    {
+      "id": "seryldas_vs_extreme_armor",
+      "item_id": 6694,
+      "category": "situational",
+      "base_score": 180,
+      "covers": ["armor", "slows"],
+      "min_phase": "mid",
+      "phase_scores": {"mid": 80, "late": 140},
+      "strategy_scores": {"balanced": 30, "split_push": 130, "teamfight": 50},
+      "adjustments": [
+        {"signal": "armor", "minimum": 750, "add": 700, "reason_code": "extreme_armor_penetration", "critical": true}
+      ]
+    }
+  ]
+}
