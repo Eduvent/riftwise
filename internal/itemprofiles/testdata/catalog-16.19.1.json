@@ -1,0 +1,4203 @@
+{
+  "champions": {
+    "Aatrox": {
+      "id": "Aatrox",
+      "key": "266",
+      "name": "Aatrox",
+      "passive": {
+        "description": "Periodically, Aatrox's next basic attack deals bonus <magicDamage>magic damage</magicDamage> and heals him, based on the target's max health. ",
+        "name": "Deathbringer Stance"
+      },
+      "spells": [
+        {
+          "description": "Aatrox slams his greatsword down, dealing physical damage. He can swing three times, each with a different area of effect.",
+          "name": "The Darkin Blade",
+          "tooltip": "Aatrox slams his greatsword, dealing <physicalDamage>{{ qdamage }} physical damage</physicalDamage>. If they are hit on the edge, they are briefly <status>Knocked Up</status> and they take <physicalDamage>{{ qedgedamage }}</physicalDamage> instead. This Ability can be <recast>Recast</recast> twice, each one changing shape and dealing 25% more damage than the previous one.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Aatrox smashes the ground, dealing damage to the first enemy hit. Champions and large monsters have to leave the impact area quickly or they will be dragged to the center and take the damage again.",
+          "name": "Infernal Chains",
+          "tooltip": "Aatrox fires a chain, <status>Slowing</status> the first enemy hit by {{ wslowpercentage*-100 }}% for {{ wslowduration }} seconds and dealing <physicalDamage>{{ wdamage }} physical damage</physicalDamage>. Champions and large jungle monsters have {{ wslowduration }} seconds to leave the impact area or be <status>Pulled</status> back to the center and damaged again for the same amount.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Passively, Aatrox heals when damaging enemy champions. On activation, he dashes in a direction.",
+          "name": "Umbral Dash",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Aatrox heals for <lifeSteal>{{ totalevamp }}</lifeSteal> of the damage he deals to Champions.<br /><br /><spellActive>Active:</spellActive> Aatrox dashes. He can use this Ability while winding up his other Abilities.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Aatrox unleashes his demonic form, fearing nearby enemy minions and gaining attack damage, increased healing, and Move Speed. If he gets a takedown, this effect is extended.",
+          "name": "World Ender",
+          "tooltip": "Aatrox reveals his true demonic form, <status>Fearing</status> nearby minions for {{ rminionfearduration }} seconds and gaining <speed>{{ rmovementspeedbonus*100 }}% Move Speed</speed> decaying over {{ rduration }} seconds. He also gains <scaleAD>{{ rtotaladamp*100 }}% Attack Damage</scaleAD> and increases <healing>self-healing by {{ rhealingamp*100 }}%</healing> for the duration.<br /><br />Champion takedowns extend the duration of this effect by {{ rextension }} seconds and refresh the <speed>Move Speed</speed> effect.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter"
+      ]
+    },
+    "Ahri": {
+      "id": "Ahri",
+      "key": "103",
+      "name": "Ahri",
+      "passive": {
+        "description": "After killing 9 minions or monsters, Ahri heals.<br>After taking down an enemy champion, Ahri heals for a greater amount.",
+        "name": "Essence Theft"
+      },
+      "spells": [
+        {
+          "description": "Ahri sends out and pulls back her orb, dealing magic damage on the way out and true damage on the way back. ",
+          "name": "Orb of Deception",
+          "tooltip": "Ahri throws then pulls back her orb, dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage> on the way out and <trueDamage>{{ totaldamage }} true damage</trueDamage> on the way back.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ahri gains a brief burst of Move Speed and releases three fox-fires, that lock onto and attack nearby enemies.",
+          "name": "Fox-Fire",
+          "tooltip": "Ahri releases 3 fox-fires that seek nearby enemies and deal <magicDamage>{{ singlefiredamage }} magic damage</magicDamage>, reduced to <magicDamage>{{ multifiredamage }} damage</magicDamage> beyond the first. She also gains <speed>{{ movementspeed*100 }}% Move Speed</speed> decaying over {{ movementspeedduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ahri blows a kiss that damages and charms an enemy it encounters, instantly stopping movement abilities and causing them to walk harmlessly towards her.",
+          "name": "Charm",
+          "tooltip": "Ahri blows a kiss that <status>Charms</status> the first enemy hit for {{ charmduration }} seconds and deals <magicDamage>{{ totaldamage }} magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ahri dashes forward and fires essence bolts, damaging nearby enemies. Spirit Rush can be cast up to three times before going on cooldown, and gains additional recasts when taking down enemy champions.",
+          "name": "Spirit Rush",
+          "tooltip": "Ahri nimbly dashes, firing {{ rmaxtargetspercast }} essence bolts at nearby enemies, prioritizing champions. These bolts deal <magicDamage>{{ rcalculateddamage }} magic damage</magicDamage> each. <spellName>Spirit Rush</spellName> can be <recast>Recast</recast> up to 2 more times within {{ rrecastwindow }} seconds.<br /><br />Consuming a champion's Essence with <spellName>Essence Theft</spellName> during this period extends the recast window by up to {{ pdurationextension }} seconds and grants an additional recast of <spellName>Spirit Rush</spellName> (up to {{ rmaxcasts }} stored).{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Mage",
+        "Assassin"
+      ]
+    },
+    "Amumu": {
+      "id": "Amumu",
+      "key": "32",
+      "name": "Amumu",
+      "passive": {
+        "description": "Amumu's basic attacks <font color='#9b0f5f'>Curse</font> his enemies, causing them to take bonus true damage from incoming magic damage.",
+        "name": "Cursed Touch"
+      },
+      "spells": [
+        {
+          "description": "Amumu tosses a sticky bandage at a target, stunning and damaging the target while he pulls himself to them.",
+          "name": "Bandage Toss",
+          "tooltip": "Amumu launches a bandage, pulling himself to the first enemy hit, <status>Stunning</status> them for {{ stunduration }} second, and dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage>.<br /><br />This Ability has 2 charges.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Overcome by anguish, nearby enemies lose a percentage of their maximum Health each second and have their <font color='#9b0f5f'>Curses</font> refreshed.",
+          "name": "Despair",
+          "tooltip": "<toggle>Toggle:</toggle> Amumu begins crying, dealing <magicDamage>{{ basedamage }} plus {{ totalhealthdamage }}% max Health magic damage</magicDamage> to nearby enemies every second and refreshing <keywordMajor>Curse</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Permanently reduces the physical damage Amumu would take. Amumu can unleash his rage, dealing damage to surrounding enemies. Each time Amumu is hit, the cooldown on Tantrum is reduced.",
+          "name": "Tantrum",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Amumu takes {{ damagereduction }} reduced physical damage. Additionally, when Amumu is hit by an Attack, this Ability's Cooldown is reduced by {{ cdronhit }} seconds.<br /><br /><spellActive>Active:</spellActive> Amumu throws a tantrum, dealing <magicDamage>{{ tantrumdamage }} magic damage</magicDamage> to nearby enemies.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Amumu entangles surrounding enemy units in bandages, applying his <keywordMajor>Curse</keywordMajor>, damaging and stunning them.",
+          "name": "Curse of the Sad Mummy",
+          "tooltip": "Amumu flares out his bandages, <status>Stunning</status> for {{ rduration }} seconds, dealing <magicDamage>{{ rcalculateddamage }} magic damage</magicDamage> and applying <keywordMajor>Curse</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Support"
+      ]
+    },
+    "Camille": {
+      "id": "Camille",
+      "key": "164",
+      "name": "Camille",
+      "passive": {
+        "description": "Basic attacks on champions grant a shield equal to a percentage of Camille's maximum health against their damage type (Physical or Magic) for a brief duration.",
+        "name": "Adaptive Defenses"
+      },
+      "spells": [
+        {
+          "description": "Camille's next attack deals bonus damage and grants bonus Move Speed. This spell can be recast for a short period of time, doing significantly increased bonus damage if Camille delays a period of time between the two attacks.",
+          "name": "Precision Protocol",
+          "tooltip": "Camille's next Attack deals an additional <physicalDamage>{{ bonusdamage }} physical damage</physicalDamage> and grants her <speed>{{ msbonus*100 }}% Move Speed</speed> for {{ msduration }} second. This ability can be <recast>Recast</recast> in the next {{ qtotalrecasttime }} seconds.<br /><br />If the <recast>Recast</recast> Attack hits at least {{ qrampuptime }} seconds after the first, the bonus damage is increased to <physicalDamage>{{ empoweredbonusdamage }}</physicalDamage> and {{ damageconversionpercentage }} of the Attack's damage is converted into <trueDamage>true damage</trueDamage>.<br /><br /><rules>This Ability triggers spell effects upon dealing damage.</rules>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Camille blasts in a cone after a delay, dealing damage. Enemies in the outer half are slowed and take extra damage, while also healing Camille.",
+          "name": "Tactical Sweep",
+          "tooltip": "Camille winds up and slices, dealing <physicalDamage>{{ basedamagetotal }} physical damage</physicalDamage>.<br /><br />Enemies hit by the outer half are <status>Slowed</status> by {{ slowpercentage }}% decaying over {{ slowduration }} seconds, and they take an additional <physicalDamage>{{ outeredgetooltip }} max Health physical damage</physicalDamage>. Camille restores <healing>{{ outerconehealingratio }}% of the bonus damage dealt to champions as Health</healing>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Camille pulls herself to a wall, leaping off and knocking up enemy champions upon landing.",
+          "name": "Hookshot",
+          "tooltip": "Camille fires a hookshot that attaches to terrain, pulling her to it for 1 second and allowing this Ability to be <recast>Recast</recast>.<br /><br /><recast>Recast:</recast> Camille dashes from the wall, colliding with the first enemy champion hit. Upon landing, she gains <attackSpeed>{{ asbuff*100 }}% Attack Speed</attackSpeed> for {{ asduration }} seconds, deals <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> to nearby enemies, and <status>Stuns</status> enemy champions for {{ knockupduration }} seconds. Dashes towards enemy champions travel twice as far.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Camille dashes to target champion, anchoring them to the area. She also deals bonus magic damage to the target with her basic attacks.",
+          "name": "The Hextech Ultimatum",
+          "tooltip": "Camille briefly becomes Untargetable and leaps onto an enemy champion, interrupting channels and locking them into an area they cannot escape by any means for {{ rduration }} seconds. Other nearby enemies are <status>Knocked Away</status>. Her Attacks against the trapped enemy deal an additional <magicDamage>{{ rpercentcurrenthpdamage }}% current Health magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    "Darius": {
+      "id": "Darius",
+      "key": "122",
+      "name": "Darius",
+      "passive": {
+        "description": "Darius' attacks and damaging abilities cause enemies to bleed for physical damage over 5 seconds, stacking up to 5 times. Darius enrages and gains massive Attack Damage when his target reaches max stacks.",
+        "name": "Hemorrhage"
+      },
+      "spells": [
+        {
+          "description": "Darius winds up and swings his axe in a wide circle. Enemies struck by the blade take more damage than those struck by the handle. Darius heals based on enemy champions and large monsters hit by the blade.",
+          "name": "Decimate",
+          "tooltip": "Darius hefts his axe then swings it around, dealing <physicalDamage>{{ bladedamage }} physical damage</physicalDamage> with the edge and <physicalDamage>{{ handledamage }} damage</physicalDamage> with the handle. Enemies hit with the handle do not take a <keywordMajor>Hemorrhage</keywordMajor> stack.<br /><br />Darius restores <healing>{{ missinghealthheal }}% missing Health</healing> per enemy champion and large jungle monster hit with the edge, up to a max of <healing>{{ missinghealpercent }}%</healing>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Darius's next attack strikes an enemy's crucial artery. As they bleed out, their Move Speed is slowed.",
+          "name": "Crippling Strike",
+          "tooltip": "Darius' next Attack deals <physicalDamage>{{ empoweredattackdamage }} physical damage</physicalDamage> and <status>Slows</status> by {{ slowpercent }}% for {{ slowduration }} second.<br /><br />This Ability refunds its Mana cost and reduces its Cooldown by {{ percentcdrefund }}% if it kills the target.<br /><br /><rules>This Ability triggers spell effects upon dealing damage.</rules>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Darius hones his axe, passively causing his physical damage to ignore a percentage of his target's Armor. When activated, Darius sweeps up his enemies with his axe's hook and pulls them to him.",
+          "name": "Apprehend",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Darius gains {{ passivepercentarmorpen }}% Armor Penetration.<br /><br /><spellActive>Active:</spellActive> Darius hooks with his axe, <status>Pulling</status>, and <status>Knocking Up</status> and <status>Slowing</status> by {{ slowpercent }}% for {{ slowduration }} second.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Darius leaps to an enemy champion and strikes a lethal blow, dealing true damage. This damage is increased for each stack of Hemorrhage on the target. If Noxian Guillotine is a killing blow, its cooldown is refreshed for a brief duration.",
+          "name": "Noxian Guillotine",
+          "tooltip": "Darius leaps to an enemy and strikes a lethal blow, dealing <trueDamage>{{ damage }} true damage</trueDamage>. For each <keywordMajor>Hemorrhage</keywordMajor> on the target, this Ability deals an additional {{ rdamagepercentperhemostack*100 }}% damage, up to a max of <trueDamage>{{ maximumdamage }} damage</trueDamage>.<br /><br />If this kills the target, Darius may <recast>Recast</recast> this Ability once within {{ rrecastduration }} seconds. At rank 3, this Ability has no Mana cost and kills refresh the Cooldown completely.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "DrMundo": {
+      "id": "DrMundo",
+      "key": "36",
+      "name": "Dr. Mundo",
+      "passive": {
+        "description": "Dr. Mundo resists the first Immobilizing effect that hits him, instead losing Health and dropping a chemical cannister nearby. Dr. Mundo can pick it up by walking over it, restoring Health and reducing this Ability's Cooldown.<br><br>Dr. Mundo also has significantly increased Health regeneration.<br>",
+        "name": "Goes Where He Pleases"
+      },
+      "spells": [
+        {
+          "description": "Dr. Mundo throws an infected bonesaw, dealing damage to the first enemy hit based on their current health and slowing them.",
+          "name": "Infected Bonesaw",
+          "tooltip": "Dr. Mundo hurls his bonesaw, dealing <magicDamage>{{ currenthealthdamage*100 }}% current Health magic damage</magicDamage> to the first enemy hit and <status>Slowing</status> them by {{ slowamount*100 }}% for {{ slowduration }} seconds.<br /><br />If the bonesaw hits a champion or monster, Dr. Mundo restores <healing>{{ healthrestoreonhitchampionmonster }} Health</healing>. If it hits a non-champion or non-monster, Dr. Mundo instead restores <healing>{{ healthrestoreonhitminion }} Health</healing>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Dr. Mundo electrocutes himself, dealing persistent damage to nearby enemies and storing a portion of damage he takes. At the end of the duration or on Recast, Dr. Mundo deals a burst of damage to nearby enemies. If the burst hit an enemy, he heals a percentage of the stored damage.",
+          "name": "Heart Zapper",
+          "tooltip": "Dr. Mundo charges up a defibrilator, dealing <magicDamage>{{ damagepertick*4 }} magic damage</magicDamage> each second for up to {{ duration }} seconds to nearby enemies. Additionally he stores {{ grayhealthstorageinitial }} of damage taken for the first {{ grayhealthinitialduration }} seconds and {{ grayhealthstorage*100 }}% for the remaining duration as gray health and can <recast>Recast</recast>.<br /><br /><recast>Recast:</recast> Detonate the defibrilator, dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage> to nearby enemies. If this hits at least one champion, Dr. Mundo restores <healing>{{ grayhealthbigmod*100 }}% of gray health</healing>, otherwise he instead restores <healing>{{ grayhealthsmallmod*100 }}% of gray health</healing>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Passive - Dr. Mundo gains bonus Attack Damage, increasing based on his max Health.<br><br>Active - Dr. Mundo slams his “medical” bag into an enemy, dealing additional damage based on his missing Health. If the enemy dies they are swatted away, dealing damage to enemies they pass through.",
+          "name": "Blunt Force Trauma",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Dr Mundo gains <physicalDamage>{{ passivebonusad }} Attack Damage</physicalDamage>.<br /><br /><spellActive>Active:</spellActive> Dr Mundo violently swings his \"medical\" bag, causing his next Attack to deal an additional <physicalDamage>{{ additionaldamage }} physical damage</physicalDamage>, increased by up to {{ maxdamageamptooltip }} based on his missing Health. If the enemy is killed, Mundo swats them away, dealing <physicalDamage>{{ additionaldamage }} physical damage</physicalDamage> to enemies they pass through.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Dr. Mundo pumps himself with chemicals, instantly healing a percent of his missing Health. He then gains Move Speed and regenerates a portion of his maximum Health over a long duration.",
+          "name": "Maximum Dosage",
+          "tooltip": "Dr. Mundo pumps himself with chemicals, gaining <healing>{{ missinghealthheal*100 }}% of his missing Health as max Health</healing>, <speed>{{ speedboostamount*100 }}% Move Speed</speed>, and regenerating <healing>{{ maxhealthhot*100 }}% max Health</healing> over {{ duration }} seconds.<br /><br />At Rank 3, both healing effects are increased by an additional {{ bonuspernearbychampion*100 }}% per nearby enemy champion.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    "Fiora": {
+      "id": "Fiora",
+      "key": "114",
+      "name": "Fiora",
+      "passive": {
+        "description": "Fiora has revealed a <keywordMajor>Vital</keywordMajor> on this Champion. If she hits the <keywordMajor>Vital</keywordMajor>, she <healing>restores Health</healing> and gains <speed>Move Speed</speed>.",
+        "name": "Duelist's Dance"
+      },
+      "spells": [
+        {
+          "description": "Fiora lunges in a direction and stabs a nearby enemy, dealing physical damage and applying on-hit effects.",
+          "name": "Lunge",
+          "tooltip": "Fiora lunges in a direction and stabs the closest enemy, ward, or structure, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage>. The strike will prioritize <keywordMajor>Vitals</keywordMajor> and enemies it will kill.<br /><br />If Fiora strikes an enemy, this Ability's Cooldown is reduced by {{ cdrefundpercent*100 }}%.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Fiora parries all incoming damage and disables for a short time, then stabs in a direction. This stab slows the first enemy champion hit, or stuns them if Fiora blocked an immobilizing effect with this ability.",
+          "name": "Riposte",
+          "tooltip": "Fiora parries all incoming damage, disables, and negative effects for {{ parryduration }} seconds, then stabs. The stab deals <magicDamage>{{ stabdamage }} magic damage</magicDamage> to the first champion hit and <status>Slows</status> <speed>Move Speed</speed> by {{ msslowpercent*-100 }}%<attackSpeed> and Attack Speed by {{ attackslowpercent*-100 }}% </attackSpeed> for {{ ccduration }} seconds. If Fiora parries an <status>Immobilizing</status> effect, the stabbed enemy is <status>Stunned</status> rather than <status>Slowed</status>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Fiora has increased attack speed for the next two attacks. The first attack slows the target, and the second attack will critically strike.",
+          "name": "Bladework",
+          "tooltip": "Fiora gains <attackSpeed>{{ aspercent*100 }}% Attack Speed</attackSpeed> for her next two Attacks. The first Attack <status>Slows</status> by {{ slowpercent*-100 }}% for {{ slowduration }} second. The second Attack always critically strikes for <physicalDamage>{{ attacktwopercenttad*100 }}% damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Fiora reveals all four Vitals on an enemy champion and gains Move Speed while near them. If Fiora hits all four Vitals or if the target dies after she has hit at least one, Fiora and her allies in the area are healed over the next few seconds.",
+          "name": "Grand Challenge",
+          "tooltip": "<spellPassive>Passive:</spellPassive> <spellName>Duelist's Dance</spellName> <speed>Move Speed</speed> bonus is increased to {{ percentms*100 }}%.<br /><br /><spellActive>Active:</spellActive> Fiora reveals all four <keywordMajor>Vitals</keywordMajor> on a champion for a max of <trueDamage>{{ spell.fiorapassive:rdamagetotal }} max Health true damage</trueDamage> and gains <spellName>Duelist's Dance's</spellName> <speed>Move Speed</speed> bonus while near the target.<br /><br />If Fiora strikes all four <keywordMajor>Vitals</keywordMajor> within {{ markduration }} seconds or if the target dies after she has hit at least one, Fiora restores <healing>{{ healpersecondcalc }} Health per second</healing> to surrounding allied champions for {{ healduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    "Garen": {
+      "id": "Garen",
+      "key": "86",
+      "name": "Garen",
+      "passive": {
+        "description": "If Garen has not recently been struck by damage or enemy abilities, he regenerates a percentage of his total health each second.",
+        "name": "Perseverance"
+      },
+      "spells": [
+        {
+          "description": "Garen gains a burst of Move Speed, breaking free of all slows affecting him. His next attack strikes a vital area of his foe, dealing bonus damage and silencing them.",
+          "name": "Decisive Strike",
+          "tooltip": "Garen removes all <status>Slowing</status> effects on him and gains <speed>{{ movementspeedamount*100 }}% Move Speed</speed> for {{ movementspeedduration }} second(s).<br /><br />His next Attack <status>Silences</status> for {{ silenceduration }} seconds and does <physicalDamage>{{ totaldamage }} physical damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Garen passively increases his Armor and Magic Resist by killing enemies. He may also activate this ability to give him a shield and tenacity for a brief moment followed by a lesser amount of damage reduction for a longer duration.",
+          "name": "Courage",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Garen has <scaleArmor>{{ resistsfortooltip }} bonus Armor</scaleArmor> and <scaleMR>{{ resistsfortooltip }} bonus Magic Resist</scaleMR>. Killing units permanently grants <attention>{{ resistgainonkilltooltip }} resists</attention>, up to a max of <attention>{{ resistmax }}</attention>.<br /><br /><spellActive>Active:</spellActive> Garen steels his courage for {{ drduration }} seconds, reducing incoming damage by {{ drpercent*100 }}%. He also gains <shield>{{ totalshield }} Shield</shield> and <slow>{{ upfronttenacity*100 }}% Tenacity</slow> for {{ upfrontduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Garen rapidly spins his sword around his body, dealing physical damage to nearby enemies.",
+          "name": "Judgment",
+          "tooltip": "Garen rapidly spins his sword for {{ duration }} seconds, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> {{ f1 }} times over the duration. The nearest enemy takes <physicalDamage>{{ nearestenemybonus*100 }}% increased damage</physicalDamage>. Champions hit by {{ stackstoshred }} strikes lose <scaleArmor>{{ shredamount*100 }}% Armor</scaleArmor> for {{ shredduration }} seconds.<br /><br /><recast>Recast</recast>: Garen ends this Ability early.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Garen calls upon the might of Demacia to attempt to execute an enemy champion.",
+          "name": "Demacian Justice",
+          "tooltip": "Garen calls upon the might of Demacia to slay his enemy, dealing <trueDamage>{{ basedamage }} plus {{ executedamage*100 }}% missing Health true damage</trueDamage>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Gwen": {
+      "id": "Gwen",
+      "key": "887",
+      "name": "Gwen",
+      "passive": {
+        "description": "Gwen's attacks deal bonus magic damage based on the targets health. She heals for a portion of the damage dealt to champions by this effect. ",
+        "name": "A Thousand Cuts"
+      },
+      "spells": [
+        {
+          "description": "Gwen snips her scissors in a cone up to 6 times dealing magic damage. Gwen deals true damage to units in the center and applies her passive to them on each snip.",
+          "name": "Snip Snip!",
+          "tooltip": "<spellPassive>Passive</spellPassive>: Gwen gains 1 stack when she hits an enemy with an attack (max 4, lasts {{ buffduration }} seconds).<br /><br /><spellActive>Active</spellActive>: Consumes stacks. Gwen snips once for <magicDamage>{{ miniswipedamage }} magic damage</magicDamage>, snips again for each ammo consumed, and then snips a final time for <magicDamage>{{ finalswipedamage }} magic damage</magicDamage>. <br /><br />The center of each strikes converts {{ truedamageconversion*100 }}% of the damage into <trueDamage>true damage</trueDamage> instead and applies <spellName>A Thousand Cuts</spellName> to enemies hit.<br /><rules><br />Deals {{ minionmod*100 }}% damage to minions.<br />Minions below {{ executethreshold*100 }}% health take {{ executebonus }}% bonus damage instead of reduced damage.</rules>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Gwen summons mist that protects her from enemies outside of it. She can only be targeted by enemies who enter the mist.",
+          "name": "Hallowed Mist",
+          "tooltip": "Gwen summons the Hallowed Mist, making her Untargetable to all enemies (except towers) outside the zone for {{ zoneduration }} seconds or until she leaves it. While in the Mist, Gwen gains {{ totalresists }} <scaleArmor>Armor</scaleArmor> and <scaleMR>Magic Resist</scaleMR>.<br /><br />Gwen can <recast>Recast</recast> this Ability once to call the Mist to her. This will automatically <recast>Recast</recast> the first time Gwen attempts to leave the zone.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Gwen dashes a short distance then gains Attack Speed, attack range, and magic damage <OnHit>On-Hit</OnHit> for a few seconds. If she hits an enemy during that time, this Ability's cooldown is partially refunded. ",
+          "name": "Skip 'n Slash",
+          "tooltip": "Gwen dashes and empowers her Attacks for {{ buffduration }} seconds.<br /><br />Empowered Attacks gain <attackSpeed>{{ bonusattackspeed }} Attack Speed</attackSpeed>, <magicDamage>{{ onhitdamage }} magic damage</magicDamage> %i:OnHit% <OnHit>On-Hit</OnHit>, {{ bonusattackrange }} range, and the first one to hit an enemy refunds {{ cdrefund*100 }}% of this Ability's Cooldown.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Gwen hurls a needle that slows enemies hit, deals magic damage, and applies A Thousand Cuts to champions hit. <br><br>This ability can be cast up to two more times, with each cast throwing additional needles and dealing more damage. ",
+          "name": "Needlework",
+          "tooltip": "<spellActive>First Cast:</spellActive> Hurl a needle that deals <magicDamage>{{ totaldamage }} magic damage</magicDamage>, <status>Slows</status> by {{ initialslow*-100 }}% for {{ debuffduration }} seconds, and applies <spellName>A Thousand Cuts</spellName> to all enemies hit. Gwen can <recast>Recast</recast> this ability up to 2 additional times within 6 seconds ({{ lockouttime }}s cooldown between casts).<br /><br /><recast>Second Cast:</recast> Fire three needles to deal <magicDamage>{{ totaldamage3 }} magic damage</magicDamage><br /><recast>Third Cast:</recast> Fire five needles to deal <magicDamage>{{ totaldamage5 }} magic damage</magicDamage>{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter"
+      ]
+    },
+    "Illaoi": {
+      "id": "Illaoi",
+      "key": "420",
+      "name": "Illaoi",
+      "passive": {
+        "description": "Illaoi and the <font color='#669900'>Vessels</font> she creates spawn Tentacles on nearby impassible terrain. Tentacles swing at spirits, <font color='#669900'>Vessels</font>, and victims of Illaoi's Harsh lesson. Tentacles deal physical damage to enemies hit, and will heal Illaoi if they damage a champion.",
+        "name": "Prophet of an Elder God"
+      },
+      "spells": [
+        {
+          "description": "Increases the damage dealt by Tentacles. When activated, Illaoi smashes down a Tentacle that deals physical damage.",
+          "name": "Tentacle Smash",
+          "tooltip": "<passive>Passive:</passive> <keywordMajor>Slam</keywordMajor> damage is increased by <physicalDamage>{{ spell.illaoiq:tentacledamageamp*100 }}%</physicalDamage> (currently <physicalDamage>{{ spell.illaoiq:tentacledamagetotal }} physical damage</physicalDamage>).<br /><br /><active>Active:</active> Illaoi swings her idol, causing a Tentacle to <keywordMajor>Slam</keywordMajor> forward.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Illaoi leaps to her target, dealing physical damage and causing nearby Tentacles to also swing at the target.",
+          "name": "Harsh Lesson",
+          "tooltip": "Illaoi's next Attack causes her to leap at the target, dealing an additional <physicalDamage>{{ healthpercenttotal }} max Health physical damage</physicalDamage>. When she strikes, nearby Tentacles will <keywordMajor>Slam</keywordMajor> at the target.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Illaoi rips the spirit from a foe's body, forcing it to stand before her. Spirits echo a percentage of the damage they take to the original target. If killed, or if the target gets too far from the spirit, the target will become a <font color='#669900'>Vessel</font> and begin spawning Tentacles.",
+          "name": "Test of Spirit",
+          "tooltip": "Illaoi pulls the spirit from an enemy champion for {{ spiritduration }} seconds. The spirit can be damaged like a champion, with {{ echopercent }} of that damage echoing to its owner.<br /><br />If the spirit dies or the target leaves its range, the target becomes marked for {{ vesselduration }} seconds and is <status>Slowed</status> by {{ slowamount*100 }}% for {{ slowduration }} seconds. Marked enemies spawn Tentacles if possible.<br /><br />Tentacles will automatically <keywordMajor>Slam</keywordMajor> at spirits and marked enemies once every {{ timebetweenvesseltentacleslams }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Illaoi smashes her idol into the ground, dealing physical damage to nearby enemies. A Tentacle spawns for each enemy champion hit.",
+          "name": "Leap of Faith",
+          "tooltip": "Illaoi smashes her idol into the ground, dealing <physicalDamage>{{ damagecalc }} physical damage</physicalDamage> to nearby enemies and spawning a Tentacle for each enemy champion hit.<br /><br />For the next {{ duration }} seconds, Tentacles are untargetable and <keywordMajor>Slam</keywordMajor> 50% faster, and <spellName>Harsh Lesson</spellName> has a {{ spell.illaoiw:cooldownduringr }} second cooldown.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Jax": {
+      "id": "Jax",
+      "key": "24",
+      "name": "Jax",
+      "passive": {
+        "description": "Jax's consecutive basic attacks continuously increase his Attack Speed.",
+        "name": "Relentless Assault"
+      },
+      "spells": [
+        {
+          "description": "Jax leaps toward a unit. If they are an enemy, he strikes them with his weapon.",
+          "name": "Leap Strike",
+          "tooltip": "Jax leaps to a friendly or enemy unit or ward, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> if it is an enemy.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Jax charges his weapon with energy, causing his next attack to deal additional damage.",
+          "name": "Empower",
+          "tooltip": "Jax charges his weapon with energy, causing his next Attack or <spellName>Leap Strike</spellName> to deal an additional <magicDamage>{{ totaldamage }} magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Jax's combat prowess allows him to dodge all incoming attacks for a short duration and then quickly counterattack, stunning all surrounding enemies.",
+          "name": "Counter Strike",
+          "tooltip": "Jax enters a defensive stance for up to {{ dodgeduration }} seconds, dodging incoming Attacks and taking {{ aoedamagereduction }}% less damage from area of effect Abilities. After {{ dodgeduration }} seconds or <recast>Recasting</recast>, Jax deals <magicDamage>{{ totaldamage }} + {{ percenthealthdamage }}% max Health magic damage</magicDamage> and <status>Stuns</status> nearby enemies for {{ stunduration }} second. <br /><br />The damage is increased by {{ percentincreasedperdodge*100 }}% per Attack dodged, up to a maximum of <magicDamage>{{ maxdamage }} + {{ maxpercenthealthdamage }}% max Health</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Every third consecutive attack deals additional Magic Damage. Additionally, Jax can activate this ability to deal damage around himself and strengthen his resolve, increasing his Armor and Magic Resist for a short duration.",
+          "name": "Grandmaster-at-Arms",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Every third Attack within {{ passivefallofftime }} seconds deals an additional <magicDamage>{{ onhitdamage }} magic damage</magicDamage>.<br /><br /><spellActive>Active:</spellActive> Jax slams his lantern down, dealing <magicDamage>{{ swingdamagetotal }} magic damage</magicDamage> to nearby enemies. If he hits a champion he gains <scaleArmor>{{ basearmor }} Armor</scaleArmor> and <scaleMR>{{ basemr }} Magic Resist</scaleMR> plus <scaleArmor>{{ bonusarmor }} Armor</scaleArmor> and <scaleMR>{{ bonusmr }} Magic Resist</scaleMR> per additional champion hit for {{ duration }} seconds. During this time every second Attack deals additional <magicDamage>magic damage</magicDamage> instead of every third.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter"
+      ]
+    },
+    "Jinx": {
+      "id": "Jinx",
+      "key": "222",
+      "name": "Jinx",
+      "passive": {
+        "description": "Jinx receives massively increased Move Speed and Attack Speed whenever she helps kill or destroy an enemy champions epic jungle monster, or structure.",
+        "name": "Get Excited!"
+      },
+      "spells": [
+        {
+          "description": "Jinx modifies her basic attacks by swapping between Pow-Pow, her minigun and Fishbones, her rocket launcher. Attacks with Pow-Pow grant Attack Speed, while attacks with Fishbones deal area of effect damage, gain increased range, but drain Mana and attack slower.",
+          "name": "Switcheroo!",
+          "tooltip": "Jinx swaps weapons between Fishbones the rocket launcher and Pow-Pow the minigun.<br /><br />While using the rocket launcher, Jinx's Attacks deal <physicalDamage>{{ rocketdamage }} physical damage</physicalDamage> to the target and nearby enemies, gain {{ rocketbonusrange }} range, cost Mana, and scale {{ rocketaspdpenalty*100 }}% less with bonus Attack Speed.<br /><br />While using the minigun, Jinx's Attacks grant <attackSpeed>Attack Speed</attackSpeed> for {{ minigunattackspeedduration }} seconds, stacking up to {{ minigunattackspeedstacks }} times (<attackSpeed>+{{ minigunattackspeedmax }}% %i:scaleAS% max</attackSpeed>).{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Jinx uses Zapper, her shock pistol, to fire a blast that deals damage to the first enemy hit, slowing and revealing it.",
+          "name": "Zap!",
+          "tooltip": "Jinx fires a shock blast that deals <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> to the first enemy hit, <status>Slows</status> them by {{ slowpercent }}%, and reveals them for {{ slowduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Jinx throws out a line of snare grenades that explode after 5 seconds, lighting enemies on fire. Flame Chompers will bite enemy champions who walk over them, rooting them in place.",
+          "name": "Flame Chompers!",
+          "tooltip": "Jinx tosses out 3 chompers that last for {{ grenadeduration }} seconds. They explode on contact with enemy champions, <status>Rooting</status> them for {{ rootduration }} seconds and dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage> to nearby enemies.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Jinx fires a super rocket across the map that gains damage as it travels. The rocket will explode upon colliding with an enemy champion, dealing damage to it and surrounding enemies based on their missing Health.",
+          "name": "Super Mega Death Rocket!",
+          "tooltip": "Jinx fires a rocket that explodes on the first enemy champion hit, dealing <physicalDamage>{{ damagefloor }} to {{ damagemax }} + {{ percentdamage }}% missing Health physical damage</physicalDamage>, gaining damage over the first second of travel time. Nearby enemies take {{ aoedamagemult*100 }}% Damage.<br /><br /><rules>Missing Health damage cannot exceed {{ monsterexecutemax }} against Monsters.</rules>{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Marksman"
+      ]
+    },
+    "KSante": {
+      "id": "KSante",
+      "key": "897",
+      "name": "K'Sante",
+      "passive": {
+        "description": "K'Sante's Abilities mark targets to take more damage on his next Attack.<br><br>When All Out, K'Sante deals more damage with all Attacks and Abilities.",
+        "name": "Dauntless Instinct"
+      },
+      "spells": [
+        {
+          "description": "K'Sante strikes, damaging and slowing enemies in a short line.<br><br>On hit, grants a stack of Ntofo Strikes. At 2 stacks, K'Sante fires a shockwave that pulls enemies in.<br><br>When All Out, cooldown is reduced.",
+          "name": "Ntofo Strikes",
+          "tooltip": "K'Sante slams his weapon, dealing <physicalDamage>{{ basedamage }} physical damage</physicalDamage> and <status>Slowing</status> enemies by {{ slowpercent*100 }}% for {{ slowduration }}s. If he hits, he gains a stack of Ntofo Strikes for {{ recastwindow }} seconds. At 2 stacks, he instead fires a shockwave that <status>Stuns</status> and <status>Pulls</status> enemies for {{ stunduration }} second.<br /><br /><keywordMajor>All Out</keywordMajor>: Cooldown is reduced by {{ rcooldownreduction.0*100 }}%.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "K'Sante charges up, taking reduced damage, then dashes, knocking back and stunning enemies.<br><br>When All Out, deals increased damage and no longer knocks back or stuns.",
+          "name": "Path Maker",
+          "tooltip": "K'Sante raises his weapons defensively for {{ mindurationtooltip }}-{{ maxduration.1 }}s, becoming Unstoppable and reducing incoming damage by {{ damagereduction*100 }}%. Then, he rams forward, dealing <physicalDamage>{{ basedamage }} + {{ totalmaxhealthdamage }} max Health physical damage</physicalDamage>. Enemies hit are <status>Knocked Back</status> and <status>Stunned</status> for {{ minknockbackduration }}-{{ maxknockbackduration }}s (based on charge time).<br /><br /><keywordMajor>All Out:</keywordMajor> Cooldown is refreshed. Deals an additional {{ rdamageincreasemin*100 }}-{{ rdamageincreasemax*100 }}% damage as <trueDamage>true damage</trueDamage> (based on charge time), damage reduction is increased to {{ rdamagereduction*100 }}% and dash speed is increased, but no longer <status>Knocks Back</status> or <status>Stuns</status>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "K'Sante dashes and gains a shield. If targeting an ally, K'Sante dashes to the ally with increased range and both gain a shield.<br><br>When All Out, cooldown is reduced and speed is increased.",
+          "name": "Footwork",
+          "tooltip": "K'Sante dashes, gaining <shield>{{ totalshield }} Shield</shield> for {{ shieldduration }} seconds. If dashing to an ally, the distance of the dash is significantly increased and the ally is also <shield>Shielded</shield>.<br /><br /><keywordMajor>All Out</keywordMajor>: Cooldown is decreased by {{ cooldownmodao*100 }}% and dash speed is increased.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "K'Sante knocks an enemy back, launching them through any wall in their path. Then, K'Sante goes All Out and dashes after them, gaining increased damage, healing, and transformed abilities at the cost of reduced defenses.",
+          "name": "All Out",
+          "tooltip": "K'Sante shatters his ntofos to <status>Knock Back</status> an enemy champion, dealing <physicalDamage>{{ basedamage }} physical damage</physicalDamage>, then dashes behind them and goes <keywordMajor>All Out</keywordMajor> for {{ alloutduration }}s. If the enemy would hit a wall, they are <status>Knocked Back</status> through the wall and K'Sante strikes them again for <physicalDamage>{{ totaldamageslamdown }} physical damage</physicalDamage>.<br /><br />While <keywordMajor>All Out</keywordMajor>, K'Sante's Abilities are upgraded and he gains <attackSpeed>{{ attackspeed*100 }}% Attack Speed</attackSpeed>, {{ armorpenpercent*100 }}% Bonus Armor Penetration, and <omnivamp>{{ omnivamp*100 }}% Omnivamp</omnivamp>, but loses <healing>{{ healthlost*100 }}% max Health</healing>, <scaleArmor>{{ defenseslost*100 }}% Bonus Armor</scaleArmor>, and <scaleMR>{{ defenseslost*100 }}% Bonus Magic Resistance</scaleMR>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Fighter"
+      ]
+    },
+    "Leona": {
+      "id": "Leona",
+      "key": "89",
+      "name": "Leona",
+      "passive": {
+        "description": "Damaging spells afflict enemies with Sunlight for 1.5 seconds. When allied Champions deal damage to those targets, they consume the Sunlight to deal additional magic damage.",
+        "name": "Sunlight"
+      },
+      "spells": [
+        {
+          "description": "Leona uses her shield to perform her next basic attack, dealing bonus magic damage and stunning the target.",
+          "name": "Shield of Daybreak",
+          "tooltip": "Leona's next Attack <status>Stuns</status> for {{ stunduration }} seconds and deals an additional <magicDamage>{{ totaldamagetooltip }}</magicDamage> magic damage.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Leona raises her shield to gain Damage Reduction, Armor, and Magic Resist. When the duration first ends, if there are nearby enemies, she will deal magic damage to them and prolong the duration of the effect.",
+          "name": "Eclipse",
+          "tooltip": "Leona raises her shield, reducing incoming damage by {{ flatdamagereduction }} and gaining <scaleArmor>{{ bonusarmortooltip }} Armor</scaleArmor> and <scaleMR>{{ bonusmrtooltip }} Magic Resist</scaleMR> for {{ armormrduration }} seconds. Afterwards, her shield detonates, dealing <magicDamage>{{ totaldamagetooltip }} magic damage</magicDamage> to nearby enemies. If she hits at least one, she retains the <scaleArmor>Armor</scaleArmor> and <scaleMR>Magic Resist</scaleMR> bonuses for an additional {{ armormrduration }} seconds.<br />{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Leona projects a solar image of her sword, dealing magic damage to all enemies in a line. When the image fades, the last enemy champion struck will be briefly immobilized and Leona will dash to them.",
+          "name": "Zenith Blade",
+          "tooltip": "Leona thrusts with a sword of light, dealing <magicDamage>{{ totaldamagetooltip }} magic damage</magicDamage>. The last champion struck will be <status>Rooted</status> for {{ rootduration }} seconds and Leona will dash to them.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Leona calls down a beam of solar energy, dealing damage to enemies in an area. Enemies in the center of the area are stunned, while enemies on the outside are slowed.",
+          "name": "Solar Flare",
+          "tooltip": "Leona calls down a radiant beam of solar energy dealing <magicDamage>{{ explosioncalculateddamage }} magic damage</magicDamage> and <status>Slowing</status> by {{ slowpercent }}% for {{ ccduration }} seconds. Enemies in the center of the flare are <status>Stunned</status> instead of <status>Slowed</status>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Support"
+      ]
+    },
+    "Malphite": {
+      "id": "Malphite",
+      "key": "54",
+      "name": "Malphite",
+      "passive": {
+        "description": "Malphite is shielded by a layer of rock which absorbs damage up to 10% of his maximum Health. If Malphite has not been hit for a few seconds, this effect recharges.",
+        "name": "Granite Shield"
+      },
+      "spells": [
+        {
+          "description": "Malphite sends a shard of the earth through the ground at his foe, dealing damage upon impact and stealing Move Speed for 3 seconds.",
+          "name": "Seismic Shard",
+          "tooltip": "Malphite launches a shard of earth at an enemy, dealing <magicDamage>{{ qdamagecalc }} magic damage</magicDamage> and <status>Slowing</status> them by {{ speedsteal }}% for {{ slowduration }} seconds. Malphite also steals the amount <status>Slowed</status>, gaining it as <speed>Move Speed</speed> for {{ slowduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Malphite attacks with such force that it creates a sonic boom. For the next few seconds, his attacks create aftershocks in front of him.",
+          "name": "Thunderclap",
+          "tooltip": "<spellPassive>Passive: </spellPassive>Malphite gains <scaleArmor>{{ bonusarmorpassive*100 }}% Armor (%i:scaleArmor%{{ f1 }})</scaleArmor>. This effect is increased to <scaleArmor>{{ bonusarmorpassive*300 }}% (%i:scaleArmor%{{ f2 }})</scaleArmor> while <spellName>Granite Shield</spellName> is active.<br /><br /><spellPassive>Active: </spellPassive>Malphite's next Attack deals an additional <physicalDamage>{{ totalbonusdamage }} physical damage</physicalDamage> and creates an aftershock which deals <physicalDamage>{{ thunderclapsplash }} physical damage</physicalDamage> %i:OnHit% <OnHit>On-Hit</OnHit> in their direction. His Attacks continue to create aftershocks %i:OnHit% <OnHit>On-Hit</OnHit> for the next {{ thunderclapbuffduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Malphite slams the ground, sending out a shockwave that deals magic damage based on his Armor and reduces the Attack Speed of enemies for a short duration.",
+          "name": "Ground Slam",
+          "tooltip": "Malphite slams the ground, dealing <magicDamage>{{ edamagecalc }} magic damage</magicDamage> and reducing <attackSpeed>Attack Speed by {{ asreduction }}%</attackSpeed> for {{ duration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Malphite launches himself to a location at high speed, damaging enemies and knocking them into the air.",
+          "name": "Unstoppable Force",
+          "tooltip": "Malphite charges with the force of a landslide, dashing Unstoppably. At the end of the dash, Malphite <status>Knocks Up</status> for {{ knockupduration }} seconds and deals <magicDamage>{{ totaldamage }} magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Mage"
+      ]
+    },
+    "Mordekaiser": {
+      "id": "Mordekaiser",
+      "key": "82",
+      "name": "Mordekaiser",
+      "passive": {
+        "description": "Mordekaiser gains a powerful damage aura and Move Speed after landing 3 attacks or spells against champions or monsters.",
+        "name": "Darkness Rise"
+      },
+      "spells": [
+        {
+          "description": "Mordekaiser smashes the ground with his mace dealing damage to each enemy struck. Damage is increased when hitting a single enemy.",
+          "name": "Obliterate",
+          "tooltip": "Mordekaiser smashes the ground with Nightfall dealing <magicDamage>{{ qdamage }} magic damage</magicDamage>, increased to <magicDamage>{{ empowereddamagetooltip }}</magicDamage> if it hits only a single enemy.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Mordekaiser stores damage he deals and takes to create a shield. He may consume the shield to heal.",
+          "name": "Indestructible",
+          "tooltip": "<passive>Passive:</passive> Mordekaiser stores {{ damageconversion*100 }}% of the damage he deals and {{ damagetakenconversion*100 }}% of the damage he takes.<br /><br /><active>Active:</active> Mordekaiser gains the stored damage as <shield>Shield</shield>. He may <recast>Recast</recast> this Ability to restore <healing>{{ healingpercent*100 }}% of the remaining Shield as Health</healing>.<br /><br />Minimum Shield: <shield>{{ minhealthtooltip }}</shield><br />Maximum Shield: <shield>{{ maxhealthtooltip }}</shield>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Mordekaiser pulls all enemies in an area.",
+          "name": "Death's Grasp",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Mordekaiser gains <magicPen>{{ magicpen*100 }}% Magic Penetration</magicPen>.<br /><br /><spellActive>Active:</spellActive> Pulls enemies in his direction, dealing <magicDamage>{{ totaldamage }} magic damage.</magicDamage>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Mordekaiser drags his victim to a different dimension with him and steals a portion of their stats. If he kills them, he keeps the stats until the victim respawns.",
+          "name": "Realm of Death",
+          "tooltip": "Mordekaiser banishes a champion to the Death Realm with him for {{ spiritrealmduration }}s, stealing {{ statstealpercentscalar*100 }}% of their core stats for the duration.<br /><br />If Mordekaiser kills that enemy in the Death Realm he consumes their soul, keeping the stats he stole until the target respawns.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    "Nasus": {
+      "id": "Nasus",
+      "key": "75",
+      "name": "Nasus",
+      "passive": {
+        "description": "Nasus drains his foe's spiritual energy, giving him bonus Life Steal.",
+        "name": "Soul Eater"
+      },
+      "spells": [
+        {
+          "description": "Nasus strikes his foe, dealing damage and increasing the power of his future Siphoning Strikes if he slays his target.",
+          "name": "Siphoning Strike",
+          "tooltip": "Nasus' next Attack deals <physicalDamage>{{ totaldamage }} physical damage</physicalDamage>. Killing an enemy with this Attack permanently increases its damage by {{ basicstacks }}, increased to {{ bigstacks }} against champions, large minions and large jungle monsters.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Nasus ages an enemy champion, decelerating their Move Speed and Attack Speed over time.",
+          "name": "Wither",
+          "tooltip": "Nasus ages a champion, <status>Slowing</status> them by {{ slowbase }}%, increasing to {{ maxslowtooltiponly }}% over {{ duration }} seconds. Their <attackSpeed>Attack Speed</attackSpeed> is also reduced by {{ attackspeedslowmult*100 }}% of the <status>Slow</status>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Nasus unleashes a spirit flame at a location, dealing damage and reducing the Armor of enemies who stand on it.",
+          "name": "Spirit Fire",
+          "tooltip": "Nasus ignites a spirit flame, dealing <magicDamage>{{ initialdamage }} magic damage</magicDamage>. Enemies in the area lose <scaleArmor>{{ armorshredpercent*-100 }}% Armor</scaleArmor> and take <magicDamage>{{ totaldotdamage }} magic damage</magicDamage> over {{ duration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Nasus unleashes a mighty sandstorm that batters nearby enemies. While the storm rages, he gains increased Health, Attack Range, damages nearby enemies, has a reduced cooldown on Siphoning Strike, and gains bonus Armor and Magic Resistance.",
+          "name": "Fury of the Sands",
+          "tooltip": "Nasus becomes empowered in the sandstorm for 15 seconds, increasing his <healing>maximum Health by {{ bonushealth }}</healing> and <scaleArmor>Armor</scaleArmor> and <scaleMR>Magic Resistance</scaleMR> by {{ initialresistgain }}.<br /><br />While the storm rages, nearby enemies take <magicDamage>{{ damagecalc }} of their maximum Health as magic damage</magicDamage> each second and <spellName>Siphoning Strike</spellName> has a {{ qcdr*100 }}% reduced Cooldown.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Ornn": {
+      "id": "Ornn",
+      "key": "516",
+      "name": "Ornn",
+      "passive": {
+        "description": "Ornn gains an additional bonus Armor and Magic Resist from all sources.<br><br>Ornn can spend gold to forge non-consumable items anywhere.<br><br>Additionally, he can create masterwork items for himself and for his allies.",
+        "name": "Living Forge"
+      },
+      "spells": [
+        {
+          "description": "Ornn slams the ground, sending out a fissure dealing damage and slowing enemies hit. After a small delay, a magma pillar forms at the end location.",
+          "name": "Volcanic Rupture",
+          "tooltip": "Ornn slams the ground, creating a fissure dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> and <status>Slowing</status> by {{ slowamount }}% for {{ slowduration }} seconds. A pillar of rock forms at the fissure's end for {{ pillarduration }} seconds. {{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ornn advances, breathing fire. Enemies hit by the final gout of flame become Brittle.",
+          "name": "Bellows Breath",
+          "tooltip": "Ornn stomps forward Unstoppably while breathing fire, dealing <magicDamage>{{ maxpercenthpperticktooltip }}% max Health magic damage</magicDamage> over {{ breathduration }} seconds. Enemies hit by the final bout of flame become <keywordMajor>Brittle</keywordMajor> for {{ brittleduration }} seconds.<br /><br /><status>Immobilizing</status> effects on <keywordMajor>Brittle</keywordMajor> targets have their duration increased by 30% and deal an additional <magicDamage>{{ brittlepercentmaxhpcalc }} max Health magic damage</magicDamage>. Ornn's Attacks against <keywordMajor>Brittle</keywordMajor> targets <status>Knock</status> them <status>Back</status>, dealing the additional damage.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ornn charges, dealing damage to enemies he passes through. If Ornn collides with terrain while charging, the impact creates a shockwave around him which deals damage and knocks up enemies.",
+          "name": "Searing Charge",
+          "tooltip": "Ornn charges, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage>. If Ornn rams into terrain, he creates a shockwave that <status>Knocks Up</status> enemies for {{ knockupduration }} seconds and applies the same damage to those not hit by the charge.<br /><br />Ornn's charge destroys magma pillars and terrain created by enemies.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Ornn summons a massive elemental at a location which travels toward him with increasing speed. Enemies run over by the elemental take damage, are slowed and are made Brittle. Ornn can recast the ability to charge into the elemental, redirecting it in the direction he hits it, causing the elemental to affect any enemies it runs over to be knocked up, dealing the same damage and re-applying Brittle.",
+          "name": "Call of the Forge God",
+          "tooltip": "Ornn summons a massive lava elemental, which stampedes towards him, dealing <magicDamage>{{ rdamagecalc }} magic damage</magicDamage>, applying <keywordMajor>Brittle</keywordMajor> to, and <status>Slowing</status> enemies hit by {{ rslowpercentbasepremath }}% for {{ brittledurationtooltiponly }} seconds.<br /><br />Ornn can <recast>Recast</recast> to dash with a headbutt. If he dashes into the elemental, he redirects and empowers it, causing it to <status>Knock Up</status> the first champion for {{ rstunduration }} second and subsequent champions for {{ minstun }} seconds. The elemental also deals <magicDamage>{{ rdamagecalc }} magic damage</magicDamage> and reapplies <keywordMajor>Brittle</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank"
+      ]
+    },
+    "Renekton": {
+      "id": "Renekton",
+      "key": "58",
+      "name": "Renekton",
+      "passive": {
+        "description": "Renekton's attacks generate Fury, increased when he is low on life. This Fury can empower his abilities with bonus effects.",
+        "name": "Reign of Anger"
+      },
+      "spells": [
+        {
+          "description": "Renekton swings his blade, dealing moderate physical damage to all targets around him, and heals for a small portion of the damage dealt. If he has more than 50 Fury, his damage and heal are increased.",
+          "name": "Cull the Meek",
+          "tooltip": "Renekton swings his blade, dealing <physicalDamage>{{ basicdamage }} physical damage</physicalDamage> and restoring <healing>{{ nonchamphealing }} Health</healing> per non-champion and <healing>{{ champhealing }}</healing> per champion hit. He also generates <keywordMajor>{{ minionfurygain }} Fury</keywordMajor> per non-champion and <keywordMajor>{{ championfurygain }} Fury</keywordMajor> per champion.<br /><br /><keywordMajor>Fury Bonus</keywordMajor>: Damage is increased to <physicalDamage>{{ empdamage }} physical damage</physicalDamage> and healing is increased to <healing>{{ empnonchamphealing }} Health</healing> against non-champions and <healing>{{ empchamphealing }} Health</healing> against champions. Does not generate any <keywordMajor>Fury</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Renekton slashes his target twice, dealing moderate physical damage and stuns them for 0.75 seconds. If Renekton has more than 50 Fury, he slashes his target three times, destroying damage shields on the target, dealing high physical damage, and stunning them for 1.5 seconds.",
+          "name": "Ruthless Predator",
+          "tooltip": "Renekton's next Attack strikes twice, <status>Stunning</status> for {{ stunduration }} seconds and dealing a total of <physicalDamage>{{ basictotaldamage }} physical damage</physicalDamage>. Hitting a champion generates an additional <keywordMajor>{{ bonusfuryvschamps }} Fury</keywordMajor>.<br /><br /><keywordMajor>Fury Bonus</keywordMajor>: Renekton Attacks 3 times instead, destroying <shield>Shields</shield> before dealing <physicalDamage>{{ emptotaldamage }} physical damage</physicalDamage> and <status>Stunning</status> for {{ enragedstunduration }} seconds. Does not generate any <keywordMajor>Fury</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Renekton dashes, dealing damage to units along the way. Empowered, Renekton deals bonus damage and reduces the Armor of units hit.",
+          "name": "Slice and Dice",
+          "tooltip": "Renekton dashes, dealing <physicalDamage>{{ basicdamage }} physical damage</physicalDamage>. He generates <keywordMajor>{{ minionragegeneration }} Fury</keywordMajor> per non-champion and <keywordMajor>{{ championragegeneration }} Fury</keywordMajor> per champion hit. Hitting at least one enemy allows Renekton to <recast>Recast</recast> this Ability once for {{ dicetimer }} seconds. <br /><br /><keywordMajor>Fury Bonus</keywordMajor>: The <recast>Recast</recast> dash deals <physicalDamage>{{ empdamage }} physical damage</physicalDamage> instead and removes <scaleArmor>{{ enragedarmorshred }}% Armor</scaleArmor> for {{ shredtimer }} seconds. Does not generate <keywordMajor>Fury</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Renekton transforms into the Tyrant form, gaining bonus Health and dealing damage to enemies around him. While in this form, Renekton gains Fury periodically.",
+          "name": "Dominus",
+          "tooltip": "Renekton surrounds himself with dark energies for {{ buffduration }} seconds, gaining <healing>{{ healthgain }} max Health</healing> and <keywordMajor>{{ furyoncast }} Fury</keywordMajor>. While active, he deals <magicDamage>{{ totaldamagepersecond }} magic damage</magicDamage> and gains <keywordMajor>{{ furypersecond }} Fury</keywordMajor> per second.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Rumble": {
+      "id": "Rumble",
+      "key": "68",
+      "name": "Rumble",
+      "passive": {
+        "description": "Every spell Rumble casts gives him Heat. When he reaches 50% Heat he reaches Danger Zone, granting all his basic abilities bonus effects. When he reaches 100% Heat, he starts Overheating, gaining bonus Attack Speed and granting his basic attacks bonus damage, but making him unable to cast spells for a few seconds.",
+        "name": "Junkyard Titan"
+      },
+      "spells": [
+        {
+          "description": "Rumble torches opponents in front of him, dealing magic damage in a cone for 3 seconds. While in Danger Zone this damage is increased.",
+          "name": "Flamespitter",
+          "tooltip": "Rumble ignites his flamethrower, dealing <magicDamage>{{ flatdamage }} plus {{ healthdamage*100 }}% max Health magic damage</magicDamage> over {{ flamespitterduration }} seconds, reduced to <attention>{{ minionmod*100 }}%</attention> against minions.<br /><br /><keywordMajor>Danger Zone:</keywordMajor> Damage is increased to <magicDamage>{{ empowereddamage }} plus {{ empoweredhealth }} max Health</magicDamage>.<br /><br /><rules>Percent damage is limited to {{ monstercap }} damage on Monsters. </rules>{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Rumble pulls up a shield, protecting him from damage and granting him a quick burst of speed. While in Danger Zone, the shield strength and speed bonus is increased.",
+          "name": "Scrap Shield",
+          "tooltip": "Rumble tosses up a barrier, gaining <shield>{{ totalshield }} Shield</shield> for {{ shieldduration.1 }} seconds and <speed>{{ movespeed*100 }}% Move Speed</speed> for {{ movespeedduration }} second.<br /><br /><keywordMajor>Danger Zone:</keywordMajor> The barrier grants <shield>{{ empoweredshield }} Shield</shield> and <speed>{{ empoweredms }} Move Speed</speed> instead.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Rumble launches a harpoon, electrocuting his target with magic damage, slowing their Move Speed, and reducing their Magic Resist. Rumble can carry 2 harpoons at a time. While in Danger Zone the damage and slow percentage is increased.",
+          "name": "Electro Harpoon",
+          "tooltip": "Rumble launches an electrified harpoon, dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage>, <status>Slowing</status> by {{ baseslowamount }}% for {{ slowduration }} seconds, and reducing the enemy's <scaleMR>Magic Resist</scaleMR> by {{ percmagicpen*100 }}% for {{ shredduration }} seconds.<br /><br />Hitting an enemy who's already <status>Slowed</status> by this Ability increases the <status>Slow</status> to {{ empoweredslowamount }}% and reduces the enemy's <scaleMR>Magic Resist</scaleMR> by {{ enhancedmagicpen*100 }}%<br /><br /><keywordMajor>Danger Zone:</keywordMajor> The harpoon deals <magicDamage>{{ empdamage }} magic damage</magicDamage> instead and the <status>Slow</status> and reduced <scaleMR>Magic Resist</scaleMR> are increased by 50%.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Rumble fires off a group of rockets, creating a wall of flames that damages and slows enemies.",
+          "name": "The Equalizer",
+          "tooltip": "Rumble launches a line of rockets, creating a burning trail that lasts {{ trailduration }} seconds, <status>Slowing</status> by {{ slowamount }}% and dealing <magicDamage>{{ damagepersecond }} magic damage</magicDamage> per second.<br /><br />Rumble can control the direction of the trail by clicking and dragging while casting this Ability.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Mage"
+      ]
+    },
+    "Sett": {
+      "id": "Sett",
+      "key": "875",
+      "name": "Sett",
+      "passive": {
+        "description": "Sett's basic attacks alternate between left and right punch. Right punch is slightly stronger and faster. Sett also hates losing, gaining additional health regeneration based off of his missing health.",
+        "name": "Pit Grit"
+      },
+      "spells": [
+        {
+          "description": "Sett's next two attacks deal additional damage based off of the target's max health. Sett also gains Move Speed while moving towards enemy champions.",
+          "name": "Knuckle Down",
+          "tooltip": "Sett itches for a fight, gaining <speed>{{ msamount*100 }}% Move Speed</speed> towards enemy champions for {{ msduration }} seconds.<br /><br />Additionally Sett's next two Attacks deal an additional <physicalDamage>{{ basedamage }} plus {{ maxhealthdamagecalc }} max Health physical damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Sett passively stores damage he takes as Grit. On cast, Sett expends all stored Grit to gain a shield and punch an area, dealing true damage in the center and physical damage on the sides.",
+          "name": "Haymaker",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Sett stores {{ damagestored*100 }}% of damage taken as <keywordMajor>Grit</keywordMajor>, up to <keywordMajor>{{ maxgrit }}</keywordMajor>. <keywordMajor>Grit</keywordMajor> decays quickly {{ adrenalinestoragewindow }} seconds after the damage was taken.<br /><br /><spellActive>Active:</spellActive> Sett consumes all <keywordMajor>Grit</keywordMajor>, gaining a <shield>{{ shieldconversion*100 }}% Grit consumed Shield</shield> decaying over {{ shieldmaxduration }} seconds. Sett then delivers a massive punch, dealing <trueDamage>{{ damagecalc }} plus {{ damageconversion }} Grit consumed true damage</trueDamage> to enemies in the center (max <trueDamage>{{ f1 }} damage</trueDamage>). Enemies not in the center instead take <physicalDamage>physical damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Sett pulls in all enemies on opposite sides of him, dealing damage and stunning them. If enemies were only on one side, they are slowed instead of stunned.",
+          "name": "Facebreaker",
+          "tooltip": "Sett smashes enemies on either side of him into each other, dealing <physicalDamage>{{ damagecalc }} physical damage</physicalDamage> and <status>Slowing</status> them by {{ slowamount*100 }}% for {{ slowduration }} seconds. If Sett grabbed at least one enemy on each side, all enemies are <status>Stunned</status> for {{ stunduration }} second.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Sett carries an enemy champion through the air and slams them into the ground, dealing damage and slowing all enemies near where they land.",
+          "name": "The Show Stopper",
+          "tooltip": "Sett grabs an enemy champion and <status>Suppresses</status> them as he carries them forward, then slams them into the ground, dealing <physicalDamage>{{ damagecalc }} plus {{ maxhealthdamage*100 }}% of the grabbed enemy's bonus Health physical damage</physicalDamage> to surrounding enemies and <status>Slowing</status> them by {{ slowamount*100 }}% for {{ slowduration }} second. Enemies take less damage the further they are from where Sett lands.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Shen": {
+      "id": "Shen",
+      "key": "98",
+      "name": "Shen",
+      "passive": {
+        "description": "After casting a spell, Shen gets a shield. Affecting other champions reduces the cooldown of this effect.",
+        "name": "Ki Barrier"
+      },
+      "spells": [
+        {
+          "description": "Shen recalls his spirit blade to attack with it, dealing damage based on the target's max health. The attacks are greatly empowered if it collides with an enemy champion, and all collided enemies are slowed while running away from Shen.",
+          "name": "Twilight Assault",
+          "tooltip": "Shen recalls his <keywordMajor>Spirit Blade</keywordMajor>. Enemies hit by the pull are <status>Slowed</status> by {{ slowpercent }}% while moving away from Shen for the next {{ slowduration }} seconds.<br /><br />Additionally, Shen's next {{ numenhancedattacks }} Attacks deal an additional <magicDamage>{{ baseflatdamage }}</magicDamage> plus <magicDamage>{{ basepercenthealth }} max Health magic damage</magicDamage>. If Shen hit an enemy champion with the <keywordMajor>Spirit Blade</keywordMajor>, the damage is increased to <magicDamage>{{ baseflatdamage }}</magicDamage> plus <magicDamage>{{ emppercenthealth }} max Health magic damage</magicDamage> and he gains <attackSpeed>{{ steroidas }}% Attack Speed</attackSpeed> for those Attacks.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Attacks that would hit Shen or his allies near his spirit blade are blocked.",
+          "name": "Spirit's Refuge",
+          "tooltip": "Shen creates a defensive zone at his <keywordMajor>Spirit Blade</keywordMajor> for {{ zoneduration }} seconds. Attacks against allied champions in the zone are blocked. <br /><br />If there are no champions to protect in the zone when it starts, it will wait for up to {{ zonedelay }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Shen dashes in a direction, taunting enemies in his path.",
+          "name": "Shadow Dash",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Dealing damage with <spellName>Twilight Assault</spellName> or this Ability recovers <keywordMajor>{{ energyrefund }} Energy</keywordMajor>.<br /><br /><spellActive>Active:</spellActive> Shen dashes, <status>Taunting</status> champions and jungle monsters for {{ ccduration }} seconds and dealing <physicalDamage>{{ tauntdamage }} physical damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Shen shields target allied champion from incoming damage, and soon after teleports to their location.",
+          "name": "Stand United",
+          "tooltip": "Shen grants an allied champion anywhere on the map between <shield>{{ shield }}</shield> and <shield>{{ maxshield }} Shield</shield> based on their missing Health for {{ shieldduration }} seconds (max Shield at 60% missing Health). After channeling for {{ channelduration }} seconds, Shen teleports to his ally's location with his <keywordMajor>Spirit Blade</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank"
+      ]
+    },
+    "Soraka": {
+      "id": "Soraka",
+      "key": "16",
+      "name": "Soraka",
+      "passive": {
+        "description": "Soraka runs faster towards nearby low health allies.",
+        "name": "Salvation"
+      },
+      "spells": [
+        {
+          "description": "A star falls from the sky at the target location dealing magic damage and slowing enemies. If an enemy champion is hit by Starcall, Soraka recovers Health.",
+          "name": "Starcall",
+          "tooltip": "Soraka calls down a star, dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage> and <status>Slowing</status> by {{ movespeedslow*100 }}% for {{ slowduration }} seconds. <br /><br />Hitting an enemy champion grants Soraka <keywordMajor>Rejuvenation</keywordMajor>, which restores <healing>{{ totalhot }} Health</healing> over {{ hotduration }} seconds and grants <speed>{{ movespeedhaste*100 }}% Move Speed</speed> decaying over the same duration.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Soraka sacrifices a portion of her own health to heal another friendly champion.",
+          "name": "Astral Infusion",
+          "tooltip": "Soraka restores <healing>{{ totalheal }} Health</healing> to another allied champion.<br /><br />If Soraka is affected by <keywordMajor>Rejuvenation</keywordMajor>, the Health cost will be reduced by {{ percenthealthcostrefund*100 }}%, and the target will gain <keywordMajor>Rejuvenation</keywordMajor> for {{ spell.sorakaq:hotduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Creates a zone at a location that silences all enemies inside. When the zone expires, all enemies still inside are rooted.",
+          "name": "Equinox",
+          "tooltip": "Soraka creates a starfield that deals <magicDamage>{{ totaldamage }} magic damage</magicDamage> to champions. The field lingers for {{ rootdelay }} seconds, <status>Silencing</status> enemies inside. When the zone disappears, champions inside the zone are <status>Rooted</status> for {{ rootduration }} second(s) and take <magicDamage>{{ totaldamage }} magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Soraka fills her allies with hope, instantly restoring health to herself and all allied champions.",
+          "name": "Wish",
+          "tooltip": "Soraka calls upon divine powers, restoring <healing>{{ healingcalc }} Health</healing> to all allied champions, regardless of distance. Healing is increased to <healing>{{ ampedhealing }}</healing> on targets below 40% Health.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Support",
+        "Mage"
+      ]
+    },
+    "TahmKench": {
+      "id": "TahmKench",
+      "key": "223",
+      "name": "Tahm Kench",
+      "passive": {
+        "description": "Tahm Kench puts the heft of his immense body behind his attacks, gaining extra damage based on his total health. Damaging enemy champions builds stacks of <spellName>An Acquired Taste</spellName>. At three stacks, he can use <spellName>Devour</spellName> on an enemy champion.",
+        "name": "An Acquired Taste"
+      },
+      "spells": [
+        {
+          "description": "Tahm Kench lashes out with his tongue, damaging and slowing the first unit hit and healing himself if he strikes an enemy champion.<br><br>Applies a stack of  <spellName>An Acquired Taste</spellName> to enemy champions. If the champion already has 3 stacks of <spellName>An Acquired Taste</spellName>, they are stunned and the stacks are consumed.",
+          "name": "Tongue Lash",
+          "tooltip": "Deals <magicDamage>{{ totaldamage }} magic damage</magicDamage> to the first enemy hit and <status>Slows</status> them by {{ slowamount*100 }}% for {{ slowduration }} seconds. <br /><br />On champion hit, heals Tahm for <healing>{{ baseheal }} +{{ percenthealthhealing*100 }}% of his missing Health</healing> and applies a stack of <spellName>An Acquired Taste</spellName> dealing <magicDamage>{{ spell.tahmkenchpassive:totaldamage }} extra magic damage</magicDamage>. If that champion already had 3 stacks of <spellName>An Acquired Taste</spellName>, they will also be <status>Stunned</status> for {{ stunduration }} seconds, consuming the stacks.<br /><br />Activate <span class=\"color0bf7de\">Devour</span> while your tongue is in midair to devour enemy champions who already have 3 stacks of <spellName>An Acquired Taste</spellName> from a distance when you hit them.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Dive down and then re-appear at target location, damaging and knocking up all enemies in an area.",
+          "name": "Abyssal Dive",
+          "tooltip": "Dive down and then re-appear at target location, dealing <magicDamage>{{ totaldamage }} magic damage</magicDamage> and <status>Knock Up</status> all enemies in an area for {{ knockupduration }} second. Hitting at least one enemy champion refunds {{ champrefund*100 }}% of the Cooldown and <scaleMana>Mana</scaleMana> cost. <br /><br /><span class=\"color0bf7de\">Devoured</span> allies can be taken along for the ride (but can always hop out early).{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "<passive>Passive:</passive> Tahm Kench stores a percent of the damage he takes and heals based on it while out of combat.<br><br><active>Active:</active> Convert all stored damage into a temporary shield.",
+          "name": "Thick Skin",
+          "tooltip": "<passive>Passive:</passive> {{ greyhealthratio*100 }}% of damage Tahm Kench takes is stored by his <spellName>Thick Skin</spellName>, increased to {{ greyhealthratioenhanced*100 }}% if there are at least {{ enhancedthreshold }} nearby enemy champions. If Kench has not taken damage within {{ ooctimer }} seconds, <spellName>Thick Skin</spellName> will rapidly be consumed to heal Tahm for {{ greyhealthhealingratio }} of its value.<br /><br /><active>Active:</active> Convert all your stored <spellName>Thick Skin</spellName> into a <shield>Shield</shield>, lasting {{ shieldduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Tahm Kench devours a champion for a few seconds, dealing magic damage if they are an enemy, or shielding them if they are an ally.",
+          "name": "Devour",
+          "tooltip": "Tahm Kench devours a champion for a few seconds. He can <recast>Recast</recast> to spit them out.<br /><br /><specialRules>Enemy Champions:</specialRules> Require 3 stacks of <spellName>An Acquired Taste</spellName>. Are devoured for up to {{ enemyduration }} seconds and take <magicDamage>{{ basedamage }} (+{{ percenthpdamage }} of their Max Health) magic damage</magicDamage>. Tahm Kench is <status>Slowed</status> by {{ slowamount*100 }}% and <keywordName>Grounded</keywordName> during this effect.<br /><br /><specialRules>Ally Champions:</specialRules> Are devoured for up to {{ allyduration }} seconds and are granted <shield>{{ totalshield }} Shield</shield> which decays gradually after being spit out. Allies can also choose to exit early. Tahm Kench is <status>Grounded</status> during this effect, but can cast <keywordName>Abyssal Dive</keywordName> and gains <speed>{{ allyspeedamount*100 }}% Move Speed</speed> for {{ allyduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Tank",
+        "Support"
+      ]
+    },
+    "Teemo": {
+      "id": "Teemo",
+      "key": "17",
+      "name": "Teemo",
+      "passive": {
+        "description": "If Teemo stands still and takes no actions for a short duration, he becomes Invisible indefinitely. If he's in brush, Teemo can enter and maintain his Invisibility while moving. After leaving Invisibility, Teemo gains the Element of Surprise, increasing his Attack Speed for a few seconds.",
+        "name": "Guerrilla Warfare"
+      },
+      "spells": [
+        {
+          "description": "Obscures an enemy's vision with a powerful venom, dealing damage to the target unit and blinding it for the duration.",
+          "name": "Blinding Dart",
+          "tooltip": "Teemo fires a dart, <status>Blinding</status> the target for {{ blindduration }} seconds and dealing <magicDamage>{{ calculateddamage }} magic damage</magicDamage>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Teemo scampers around, passively increasing his Move Speed until he is struck by an enemy champion or turret. Teemo can sprint to gain bonus Move Speed that isn't stopped by being struck for a short time.",
+          "name": "Move Quick",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Teemo gains <speed>{{ passivemovespeedbonus*100 }}% Move Speed</speed> while he hasn't been damaged by a champion or turret in the last {{ passivecooldownondamagetaken }} seconds.<br /><br /><spellActive>Active:</spellActive> Teemo sprints, gaining <speed>{{ activemovespeedbonus*100 }}% Move Speed</speed> that is not lost when struck for {{ activemovespeedbuffduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Each of Teemo's attacks will poison the target %i:OnHit% <OnHit>On-Hit</OnHit>, dealing damage on impact and each second after for 4 seconds.",
+          "name": "Toxic Shot",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Teemo's Attacks apply poison %i:OnHit% <OnHit>On-Hit</OnHit>, dealing an additional <magicDamage>{{ impactcalculateddamage }} magic damage</magicDamage> plus <magicDamage>{{ totaldotdamage }} magic damage</magicDamage> over {{ poisonduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Teemo throws an explosive poisonous trap using one of the mushrooms stored in his pack. If an enemy steps on the trap, it will release a poisonous cloud, slowing enemies and damaging them over time. If Teemo throws a mushroom onto another mushroom it will bounce, gaining additional range.",
+          "name": "Noxious Trap",
+          "tooltip": "Teemo tosses a mushroom trap that detonates when stepped on. The traps <status>Slow</status> by {{ slowamount }}% and deal <magicDamage>{{ totaldamage }} magic damage</magicDamage> over {{ debuffduration }} seconds. Enemies are revealed for the same duration.<br /><br />Traps last {{ mushroomduration }} minutes and are stealthed. A mushroom tossed onto another mushroom bounces before landing at its position. This Ability has {{ maxammo }} charges ({{ ammorechargetime }} second refresh).<br />{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Marksman",
+        "Mage"
+      ]
+    },
+    "Trundle": {
+      "id": "Trundle",
+      "key": "48",
+      "name": "Trundle",
+      "passive": {
+        "description": "When an enemy unit dies near Trundle, he heals for a percent of its maximum Health.",
+        "name": "King's Tribute"
+      },
+      "spells": [
+        {
+          "description": "Trundle bites his opponent, dealing damage, briefly slowing and sapping some of their Attack Damage.",
+          "name": "Chomp",
+          "tooltip": "Trundle's next Attack deals <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> and briefly <status>Slows</status> by {{ slowamount*100 }}%, then Trundle gains <physicalDamage>{{ bonusad }} Attack Damage</physicalDamage> for {{ sapdebuffduration }} seconds and the enemy loses <physicalDamage>{{ sappedad*-1 }} Attack Damage</physicalDamage> for the same duration.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Trundle turns target location into his domain, gaining Attack Speed, Move Speed, and increased healing from all sources while on it.",
+          "name": "Frozen Domain",
+          "tooltip": "Trundle freezes an area for {{ duration }} seconds. While inside he gains <speed>{{ msbonus*100 }}% Move Speed</speed>, <attackSpeed>{{ asbonus*100 }}% Attack Speed</attackSpeed>, and {{ healingbonus*100 }}% increased healing.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Trundle creates an ice pillar at target location, becoming impassable terrain and slowing all nearby enemy units.",
+          "name": "Pillar of Ice",
+          "tooltip": "Trundle creates an icy pillar for {{ pillarduration }} seconds, briefly <status>Knocking Back</status> enemies directly over it and <status>Slowing</status> nearby enemies by {{ slowamount }}%.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Trundle immediately steals a percent of his target's Health, Armor and Magic Resistance. Over the next 4 seconds the amount of Health, Armor, and Magic Resistance stolen is doubled.",
+          "name": "Subjugate",
+          "tooltip": "Trundle drains the lifeforce of an enemy champion, dealing <magicDamage>{{ totalpercenthpdamage }} max Health magic damage</magicDamage> and stealing <scaleArmor>{{ armormrshred*100 }}% Armor</scaleArmor> and <scaleMR>Magic Resist</scaleMR> over {{ actualdurationofdrainbuff }} seconds.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Tryndamere": {
+      "id": "Tryndamere",
+      "key": "23",
+      "name": "Tryndamere",
+      "passive": {
+        "description": "Tryndamere gains Fury for each attack, critical strike, and killing blow he makes. Fury passively increases his Critical Strike Chance and can be consumed with his Bloodlust spell.",
+        "name": "Battle Fury"
+      },
+      "spells": [
+        {
+          "description": "Tryndamere thrives on the thrills of combat, increasing his Attack Damage as he is more and more wounded. He can cast Bloodlust to consume his Fury and heal himself.",
+          "name": "Bloodlust",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Tryndamere thirsts for blood, gaining up to <scaleAD>{{ maximumbonusad }} Attack Damage</scaleAD> based on his missing Health.<br /><br /><spellActive>Active:</spellActive> Tryndamere consumes his <keywordMajor>Fury</keywordMajor>, restoring <healing>{{ baseheal }} plus {{ healperfury }} Health per Fury (max: {{ maximumheal }})</healing>. {{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Tryndamere lets out an insulting cry, decreasing surrounding champions' Attack Damage. Enemies with their backs turned to Tryndamere also have their Move Speed reduced.",
+          "name": "Mocking Shout",
+          "tooltip": "Tryndamere hurls insults, reducing champions' Attack Damage by {{ adreduction*-1 }} for {{ reductionduration }} seconds and <status>Slowing</status> by {{ slowpotency*-100 }}% while cowering from him for {{ slowduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Tryndamere slices toward a target unit, dealing damage to enemies in his path.",
+          "name": "Spinning Slash",
+          "tooltip": "Tryndamere spins through his enemies, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> and generating <keywordMajor>{{ nonchampfurygain }} Fury</keywordMajor> per enemy hit, increased to <keywordMajor>{{ champfurygain }} Fury</keywordMajor> against enemy champions.<br /><br />This Ability's Cooldown is reduced by {{ nonchampcdrefund }} seconds when Tryndamere critically strikes, and reduced by {{ champcdrefund }} seconds when critically striking a champion.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Tryndamere's lust for battle becomes so strong that he is unable to die, no matter how wounded he becomes.",
+          "name": "Undying Rage",
+          "tooltip": "Tryndamere becomes completely immune to death for {{ tryndrduration }} seconds, refusing to be reduced below {{ tryndrminhealth }} Health, and instantly gains <keywordMajor>{{ tryndrfurygain }} Fury</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ]
+    },
+    "Volibear": {
+      "id": "Volibear",
+      "key": "106",
+      "name": "Volibear",
+      "passive": {
+        "description": "Volibear's Attacks and abilities grant Attack Speed, and eventually cause his Attacks to deal bonus magic damage to nearby enemies.",
+        "name": "The Relentless Storm"
+      },
+      "spells": [
+        {
+          "description": "Volibear gains speed towards enemies, <status>Stunning</status> and damaging the first one he Attacks.",
+          "name": "Thundering Smash",
+          "tooltip": "Volibear gains <speed>{{ minspeedcalc }} Move Speed</speed>, doubled to <speed>{{ maxspeedcalc }}</speed> towards enemy champions for the next {{ duration }} seconds. While active, Volibear's next Attack deals <physicalDamage>{{ calculateddamage }} physical damage</physicalDamage> and <status>Stuns</status> the target for {{ stunduration }} second.<br /><br />Volibear becomes enraged if an enemy <status>Immobilizes</status> him before he <status>Stuns</status> a target, ending the Ability early but refreshing its Cooldown.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Volibear damages an enemy, applying on-hit effects and marking them.  Casting this ability again on the same target deals bonus damage and Heals Volibear.",
+          "name": "Frenzied Maul",
+          "tooltip": "Volibear mauls an enemy, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> and marking them for {{ markduration }} seconds.<br /><br />If this Ability is used on a marked target, its damage is increased to <physicalDamage>{{ empowereddamage }}</physicalDamage> and Volibear restores <healing>{{ baseheal }} plus {{ percentmissinghealthhealingratio }} missing Health</healing>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Volibear summons a lightning bolt at a location, dealing damage and Slowing enemies while granting Volibear a Shield if he's inside the blast radius.",
+          "name": "Sky Splitter",
+          "tooltip": "Volibear summons a thundercloud that fires a lightning bolt, dealing <magicDamage>{{ totaldamagetooltip }} plus {{ percentdamage*100 }}% max Health magic damage</magicDamage> and <status>Slowing</status> by {{ slowamount*100 }}% for {{ slowduration }} seconds.<br /><br />If Volibear is inside the blast zone, he gains a <shield>{{ shieldapratiotooltip }} plus {{ shieldamount*100 }}% max Health Shield</shield> for {{ shieldduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Volibear leaps to a target location, Slowing and damaging enemies beneath him while gaining bonus Health.  Enemy towers near his landing location become temporarily disabled.",
+          "name": "Stormbringer",
+          "tooltip": "Volibear transforms and leaps, gaining <healing>{{ healthamount }} Health</healing> and {{ bonusattackrange }} Attack Range for the next {{ transformduration }} seconds.<br /><br />Upon landing, Volibear cracks the earth, <status>Disabling</status> nearby towers for {{ towerdisableduration }} seconds and dealing <physicalDamage>{{ towerdamagetooltip }} physical damage to them</physicalDamage>. Nearby enemies are <status>Slowed</status> by {{ slowamount*100 }}%, decaying over 1 second. Enemies directly underneath Volibear suffer <physicalDamage>{{ sweetspotdamagetooltip }} physical damage</physicalDamage>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Fighter",
+        "Tank"
+      ]
+    },
+    "Zed": {
+      "id": "Zed",
+      "key": "238",
+      "name": "Zed",
+      "passive": {
+        "description": "Zed's basic attacks against low health targets deals bonus Magic Damage. This effect can only occur once every few seconds against the same enemy champion.",
+        "name": "Contempt for the Weak"
+      },
+      "spells": [
+        {
+          "description": "Zed and his shadows throw their shurikens.<br><br>Each shuriken deals damage to every enemy hit.",
+          "name": "Razor Shuriken",
+          "tooltip": "Zed and his <keywordMajor>Shadows</keywordMajor> throw their shurikens, each dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> to the first enemy they pass through, and <physicalDamage>{{ passthroughdamage }} physical damage</physicalDamage> to each additional enemy.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "<font color='#FF9900'>Passive:</font> Zed gains energy whenever he and his shadows strike an enemy with the same ability. Energy can only be gained once per cast ability.<br><br><font color='#FF9900'>Active:</font> Zed's shadow dashes forward, remaining in place for a few seconds. Reactivating Living Shadow will cause Zed to switch positions with this shadow.",
+          "name": "Living Shadow",
+          "tooltip": "<spellPassive>Passive:</spellPassive> Zed gains <keywordMajor>{{ energyrestoredoublehit }} Energy</keywordMajor> whenever he and his <keywordMajor>Shadows</keywordMajor> strike an enemy with the same Ability.<br /><br /><spellActive>Active:</spellActive> Zed's <keywordMajor>Shadow</keywordMajor> dashes forward, remaining in place for {{ shadowdurationtooltip }} seconds. <recast>Recasting</recast> this Ability will cause Zed to switch positions with this <keywordMajor>Shadow</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Zed and his Shadows slash, dealing damage to nearby enemies. Enemies hit by a Shadow's slash are slowed.",
+          "name": "Shadow Slash",
+          "tooltip": "Zed and his <keywordMajor>Shadows</keywordMajor> slash, dealing <physicalDamage>{{ totaldamage }} physical damage</physicalDamage> to nearby enemies.<br /><br />Each enemy champion hit by Zed's slash reduces <spellName>Living Shadow</spellName>'s Cooldown by {{ shadowhitcdr }} seconds.<br /><br />Enemies hit by a <keywordMajor>Shadow</keywordMajor>'s slash are <status>Slowed</status> by {{ movespeedmod*-100 }}% for {{ slowduration }} seconds. Enemies hit by multiple slashes take no additional damage but are <status>Slowed</status> by {{ movespeedmodbonus*-100 }}% instead.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "description": "Zed becomes untargetable and dashes to an enemy champion, marking them. After 3 seconds the mark triggers, repeating a portion of all the damage Zed dealt to the target while they were marked.",
+          "name": "Death Mark",
+          "tooltip": "Zed becomes Untargetable and dashes to an enemy champion, marking them. After {{ rdeathmarkduration }} seconds, the mark triggers, dealing <physicalDamage>{{ rcalculateddamage }} physical damage</physicalDamage> and repeating {{ rdamageamp*100 }}% of all damage dealt to the target by Zed while the mark was active.<br /><br />The dash leaves a <keywordMajor>Shadow</keywordMajor> behind for {{ rshadowdurationdisplayed }} seconds. Zed can <recast>Recast</recast> this Ability to switch positions with this <keywordMajor>Shadow</keywordMajor>.{{ spellmodifierdescriptionappend }}"
+        }
+      ],
+      "tags": [
+        "Assassin"
+      ]
+    }
+  },
+  "items": {
+    "1001": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 210,
+        "total": 300
+      },
+      "id": 1001,
+      "image": {
+        "full": "1001.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 0,
+        "y": 0
+      },
+      "into": [
+        3047,
+        3006,
+        3009,
+        3020,
+        3111
+      ],
+      "name": "Botas",
+      "plaintext": "Aumenta ligeramente la Velocidad de Movimiento.",
+      "purchasable": true,
+      "stats": {
+        "FlatMovementSpeedMod": 25
+      },
+      "tags": [
+        "Boots"
+      ]
+    },
+    "1006": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>100%</attention> de Regen. de Vida Básica</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 120,
+        "total": 300
+      },
+      "id": 1006,
+      "image": {
+        "full": "1006.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 96,
+        "y": 0
+      },
+      "into": [
+        3109,
+        3211
+      ],
+      "name": "Perla de Rejuvenecimiento",
+      "plaintext": "Aumenta ligeramente la Regen. de Vida.",
+      "purchasable": true,
+      "stats": {},
+      "tags": [
+        "HealthRegen"
+      ]
+    },
+    "1011": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>350</attention> de Vida</stats><br><br></mainText>",
+      "from": [
+        1028
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 630,
+        "total": 900
+      },
+      "id": 1011,
+      "image": {
+        "full": "1011.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 144,
+        "y": 0
+      },
+      "into": [
+        3143,
+        6665,
+        6609
+      ],
+      "name": "Cinturón de Gigante",
+      "plaintext": "Aumenta en gran medida la Vida.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 350
+      },
+      "tags": [
+        "Health"
+      ]
+    },
+    "1018": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15%</attention> de Probabilidad de Golpe Crítico</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 600,
+        "purchasable": true,
+        "sell": 420,
+        "total": 600
+      },
+      "id": 1018,
+      "image": {
+        "full": "1018.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 192,
+        "y": 0
+      },
+      "into": [
+        3031,
+        3086,
+        6670,
+        3033
+      ],
+      "name": "Capa de Agilidad",
+      "plaintext": "Aumenta la probabilidad de golpe crítico.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.15
+      },
+      "tags": [
+        "CriticalStrike"
+      ]
+    },
+    "1026": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Poder de Habilidad</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 850,
+        "purchasable": true,
+        "sell": 595,
+        "total": 850
+      },
+      "id": 1026,
+      "image": {
+        "full": "1026.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 240,
+        "y": 0
+      },
+      "into": [
+        3135,
+        3165
+      ],
+      "name": "Varita Explosiva",
+      "plaintext": "Aumenta moderadamente el Poder de Habilidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 45
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "1027": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>300</attention> de Maná</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 210,
+        "total": 300
+      },
+      "id": 1027,
+      "image": {
+        "full": "1027.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 288,
+        "y": 0
+      },
+      "into": [
+        3024
+      ],
+      "name": "Cristal de Zafiro",
+      "plaintext": "Aumenta el Maná.",
+      "purchasable": true,
+      "stats": {
+        "FlatMPPoolMod": 300
+      },
+      "tags": [
+        "Mana"
+      ]
+    },
+    "1028": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>150</attention> de Vida</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 280,
+        "total": 400
+      },
+      "id": 1028,
+      "image": {
+        "full": "1028.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 336,
+        "y": 0
+      },
+      "into": [
+        3742,
+        1011,
+        3068,
+        2021,
+        3147,
+        3067,
+        3211,
+        2502,
+        3044,
+        3053,
+        3066,
+        3075,
+        3161,
+        4401,
+        6660
+      ],
+      "name": "Cristal de Rubí",
+      "plaintext": "Aumenta la Vida.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 150
+      },
+      "tags": [
+        "Health"
+      ]
+    },
+    "1029": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Armadura</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 210,
+        "total": 300
+      },
+      "id": 1029,
+      "image": {
+        "full": "1029.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 384,
+        "y": 0
+      },
+      "into": [
+        2420,
+        1031,
+        3047,
+        3024,
+        3050,
+        3076,
+        3082,
+        3190
+      ],
+      "name": "Armadura de Tela",
+      "plaintext": "Aumenta ligeramente la Armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 15
+      },
+      "tags": [
+        "Armor"
+      ]
+    },
+    "1031": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Armadura</stats><br><br></mainText>",
+      "from": [
+        1029
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 1031,
+      "image": {
+        "full": "1031.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 432,
+        "y": 0
+      },
+      "into": [
+        3742,
+        3068,
+        3109,
+        2502,
+        3075,
+        6665
+      ],
+      "name": "Cota de Malla",
+      "plaintext": "Aumenta en gran medida la Armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 40
+      },
+      "tags": [
+        "Armor"
+      ]
+    },
+    "1033": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Resistencia Mágica</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 280,
+        "total": 400
+      },
+      "id": 1033,
+      "image": {
+        "full": "1033.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 0,
+        "y": 48
+      },
+      "into": [
+        1057,
+        3050,
+        3211,
+        3111,
+        3190,
+        4632
+      ],
+      "name": "Manto Anulamagia",
+      "plaintext": "Aumenta ligeramente la Resistencia Mágica.",
+      "purchasable": true,
+      "stats": {
+        "FlatSpellBlockMod": 20
+      },
+      "tags": [
+        "SpellBlock"
+      ]
+    },
+    "1036": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>10</attention> de Daño de Ataque</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 350,
+        "purchasable": true,
+        "sell": 245,
+        "total": 350
+      },
+      "id": 1036,
+      "image": {
+        "full": "1036.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 96,
+        "y": 48
+      },
+      "into": [
+        1053,
+        2021,
+        3077,
+        6670,
+        3133,
+        3035,
+        3044,
+        3051,
+        6690,
+        3123,
+        3134
+      ],
+      "name": "Espada Larga",
+      "plaintext": "Aumenta ligeramente el daño de ataque.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 10
+      },
+      "tags": [
+        "Damage",
+        "Lane"
+      ]
+    },
+    "1037": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Daño de Ataque</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 875,
+        "purchasable": true,
+        "sell": 613,
+        "total": 875
+      },
+      "id": 1037,
+      "image": {
+        "full": "1037.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 144,
+        "y": 48
+      },
+      "into": [
+        3071,
+        3031,
+        3153,
+        6695,
+        3053,
+        3072,
+        3181,
+        3161,
+        6673
+      ],
+      "name": "Picacha",
+      "plaintext": "Aumenta moderadamente el Daño de Ataque.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 25
+      },
+      "tags": [
+        "Damage"
+      ]
+    },
+    "1038": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Daño de Ataque</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 1300,
+        "purchasable": true,
+        "sell": 910,
+        "total": 1300
+      },
+      "id": 1038,
+      "image": {
+        "full": "1038.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 192,
+        "y": 48
+      },
+      "into": [
+        3031,
+        3072
+      ],
+      "name": "Espadón",
+      "plaintext": "Aumenta en gran medida el daño de ataque.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 40
+      },
+      "tags": [
+        "Damage"
+      ]
+    },
+    "1042": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>10%</attention> de Velocidad de Ataque</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 250,
+        "purchasable": true,
+        "sell": 175,
+        "total": 250
+      },
+      "id": 1042,
+      "image": {
+        "full": "1042.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 336,
+        "y": 48
+      },
+      "into": [
+        1043,
+        3086,
+        3006,
+        3046,
+        3051,
+        6631
+      ],
+      "name": "Daga",
+      "plaintext": "Aumenta la velocidad de ataque ligeramente.",
+      "purchasable": true,
+      "stats": {
+        "PercentAttackSpeedMod": 0.1
+      },
+      "tags": [
+        "AttackSpeed"
+      ]
+    },
+    "1043": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15%</attention> de Velocidad de Ataque</stats><br><br><passive>Aguijón</passive><br>Los ataques infligen <physicalDamage>15 de daño físico adicional</physicalDamage> <OnHit>al impacto</OnHit>.</mainText>",
+      "from": [
+        1042
+      ],
+      "gold": {
+        "base": 450,
+        "purchasable": true,
+        "sell": 490,
+        "total": 700
+      },
+      "id": 1043,
+      "image": {
+        "full": "1043.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 384,
+        "y": 48
+      },
+      "into": [
+        3153,
+        6672
+      ],
+      "name": "Arco Recurvado",
+      "plaintext": "Aumenta la velocidad de ataque en gran medida.",
+      "purchasable": true,
+      "stats": {
+        "PercentAttackSpeedMod": 0.15
+      },
+      "tags": [
+        "AttackSpeed",
+        "OnHit"
+      ]
+    },
+    "1052": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Poder de Habilidad</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 280,
+        "total": 400
+      },
+      "id": 1052,
+      "image": {
+        "full": "1052.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 432,
+        "y": 48
+      },
+      "into": [
+        2420,
+        3916,
+        3147,
+        2508,
+        4630,
+        4632
+      ],
+      "name": "Libro Amplificador",
+      "plaintext": "Aumenta levemente el poder de habilidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 20
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "1053": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque<br><attention>7%</attention> de Robo de Vida</stats><br><br></mainText>",
+      "from": [
+        1036
+      ],
+      "gold": {
+        "base": 550,
+        "purchasable": true,
+        "sell": 630,
+        "total": 900
+      },
+      "id": 1053,
+      "image": {
+        "full": "1053.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 0,
+        "y": 96
+      },
+      "into": [
+        3153,
+        3072
+      ],
+      "name": "Cetro Vampírico",
+      "plaintext": "Los ataques básicos restauran vida.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 15,
+        "PercentLifeStealMod": 0.07
+      },
+      "tags": [
+        "Damage",
+        "LifeSteal"
+      ]
+    },
+    "1057": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Resistencia Mágica</stats><br><br></mainText>",
+      "from": [
+        1033
+      ],
+      "gold": {
+        "base": 450,
+        "purchasable": true,
+        "sell": 595,
+        "total": 850
+      },
+      "id": 1057,
+      "image": {
+        "full": "1057.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 192,
+        "y": 96
+      },
+      "into": [
+        2504,
+        6665,
+        4401
+      ],
+      "name": "Capa de Negatrones",
+      "plaintext": "Aumenta moderadamente la resistencia mágica.",
+      "purchasable": true,
+      "stats": {
+        "FlatSpellBlockMod": 45
+      },
+      "tags": [
+        "SpellBlock"
+      ]
+    },
+    "1058": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>65</attention> de Poder de Habilidad</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 1200,
+        "purchasable": true,
+        "sell": 840,
+        "total": 1200
+      },
+      "id": 1058,
+      "image": {
+        "full": "1058.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 240,
+        "y": 96
+      },
+      "into": [
+        3157,
+        3089,
+        3102
+      ],
+      "name": "Vara Innecesariamente Grande",
+      "plaintext": "Aumenta en gran medida el poder de habilidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 65
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "2021": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque<br><attention>250</attention> de Vida</stats><br><br></mainText>",
+      "from": [
+        1036,
+        1028
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 805,
+        "total": 1150
+      },
+      "id": 2021,
+      "image": {
+        "full": "2021.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 144,
+        "y": 432
+      },
+      "into": [
+        2501,
+        3053,
+        3181,
+        3161
+      ],
+      "name": "Excavador de Túneles",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 250,
+        "FlatPhysicalDamageMod": 15
+      },
+      "tags": [
+        "Health",
+        "Damage"
+      ]
+    },
+    "2022": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>5</attention> de Aceleración de Habilidad</stats><br><br></mainText>",
+      "from": [],
+      "gold": {
+        "base": 250,
+        "purchasable": true,
+        "sell": 175,
+        "total": 250
+      },
+      "id": 2022,
+      "image": {
+        "full": "2022.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item0.png",
+        "w": 48,
+        "x": 192,
+        "y": 432
+      },
+      "into": [
+        3024,
+        3133,
+        3067,
+        6660
+      ],
+      "name": "Mena Brillante",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {},
+      "tags": [
+        "CooldownReduction"
+      ]
+    },
+    "2420": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Poder de Habilidad<br><attention>25</attention> de Armadura</stats><br><br><active>Detener el Tiempo</active> (Un solo uso):<br>Entra en <keyword>Estasis</keyword> durante 2.5 seg.</mainText>",
+      "from": [
+        1052,
+        1029,
+        1052
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 640,
+        "total": 1600
+      },
+      "id": 2420,
+      "image": {
+        "full": "2420.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item2.png",
+        "w": 48,
+        "x": 336,
+        "y": 432
+      },
+      "into": [
+        3157
+      ],
+      "name": "Guardabrazo del Buscador",
+      "plaintext": "Actívalo para volverte invencible. No podrás realizar ninguna acción.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatMagicDamageMod": 40
+      },
+      "tags": [
+        "Armor",
+        "SpellDamage",
+        "Active"
+      ]
+    },
+    "2501": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>30</attention> de Daño de Ataque<br><attention>550</attention> de Vida</stats><br><br><passive>Tiranía</passive><br>Obtienes un 2.5% de tu <healing>Vida adicional</healing> como <scaleAD>Daño de Ataque</scaleAD>. <br><br><passive>Reprensión</passive><br>Obtienes hasta un 12% de <scaleAD>Daño de Ataque</scaleAD> aumentado según el porcentaje de tu vida faltante. </mainText>",
+      "from": [
+        2021,
+        2021
+      ],
+      "gold": {
+        "base": 1000,
+        "purchasable": true,
+        "sell": 2310,
+        "total": 3300
+      },
+      "id": 2501,
+      "image": {
+        "full": "2501.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 0,
+        "y": 0
+      },
+      "into": [],
+      "name": "Cota Sangrienta del Soberano",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 550,
+        "FlatPhysicalDamageMod": 30
+      },
+      "tags": [
+        "Health",
+        "Damage"
+      ]
+    },
+    "2502": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>400</attention> de Vida<br><attention>50</attention> de Armadura<br><attention>15</attention> de Aceleración de Habilidad</stats><br><br><passive>Angustia</passive><br>Cada 4 seg en combate contra campeones, infliges <magicDamage>daño mágico</magicDamage> a campeones enemigos cercanos y <healing>te curas por un 250%</healing> del daño infligido.</mainText>",
+      "from": [
+        1031,
+        3067,
+        1028
+      ],
+      "gold": {
+        "base": 800,
+        "purchasable": true,
+        "sell": 1960,
+        "total": 2800
+      },
+      "id": 2502,
+      "image": {
+        "full": "2502.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 48,
+        "y": 0
+      },
+      "into": [],
+      "name": "Desesperación Eterna",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 50,
+        "FlatHPPoolMod": 400
+      },
+      "tags": [
+        "Health",
+        "Armor",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "2504": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>400</attention> de Vida<br><attention>80</attention> de Resistencia Mágica<br><attention>100%</attention> de Regen. de Vida Básica</stats><br><br><passive>Ruina del Mago</passive><br>Si no recibes daño mágico durante 15 seg, obtienes un <shield>escudo mágico</shield>. </mainText>",
+      "from": [
+        3211,
+        1057
+      ],
+      "gold": {
+        "base": 800,
+        "purchasable": true,
+        "sell": 2030,
+        "total": 2900
+      },
+      "id": 2504,
+      "image": {
+        "full": "2504.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 144,
+        "y": 0
+      },
+      "into": [],
+      "name": "Rukerno Kaénico",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 400,
+        "FlatSpellBlockMod": 80
+      },
+      "tags": [
+        "Health",
+        "SpellBlock",
+        "HealthRegen"
+      ]
+    },
+    "2508": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>30</attention> de Poder de Habilidad</stats><br><br><passive>Enardecer</passive><br>Las habilidades de daño infligen <magicDamage>15 de daño mágico adicional</magicDamage> a lo largo de 3 seg.<br>Inflige <magicDamage>45 de daño mágico</magicDamage> adicional a monstruos.</mainText>",
+      "from": [
+        1052
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 630,
+        "total": 900
+      },
+      "id": 2508,
+      "image": {
+        "full": "2508.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 192,
+        "y": 0
+      },
+      "into": [
+        6653
+      ],
+      "name": "Cenizas Predestinadas",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 30
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "3006": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>30%</attention> de Velocidad de Ataque<br><attention>45</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [
+        1001,
+        1042,
+        1042
+      ],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 770,
+        "total": 1100
+      },
+      "id": 3006,
+      "image": {
+        "full": "3006.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 0,
+        "y": 96
+      },
+      "into": [],
+      "name": "Grebas del Berserker",
+      "plaintext": "Mejora la Velocidad de Movimiento y la Velocidad de Ataque.",
+      "purchasable": true,
+      "stats": {
+        "FlatMovementSpeedMod": 45,
+        "PercentAttackSpeedMod": 0.3
+      },
+      "tags": [
+        "AttackSpeed",
+        "Boots"
+      ]
+    },
+    "3009": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>55</attention> de Velocidad de Movimiento</stats><br><br><passive>Pies ligeros</passive><br>Reduce la eficacia de los efectos de <keyword>ralentización</keyword> en un 25%.</mainText>",
+      "from": [
+        1001
+      ],
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "sell": 700,
+        "total": 1000
+      },
+      "id": 3009,
+      "image": {
+        "full": "3009.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 96,
+        "y": 96
+      },
+      "into": [],
+      "name": "Botas de Rapidez",
+      "plaintext": "Mejora la Velocidad de Movimiento y reduce el efecto de las ralentizaciones.",
+      "purchasable": true,
+      "stats": {
+        "FlatMovementSpeedMod": 55
+      },
+      "tags": [
+        "Boots"
+      ]
+    },
+    "3020": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>12</attention> de Penetración de Magia<br><attention>45</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [
+        1001
+      ],
+      "gold": {
+        "base": 800,
+        "purchasable": true,
+        "sell": 770,
+        "total": 1100
+      },
+      "id": 3020,
+      "image": {
+        "full": "3020.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 336,
+        "y": 96
+      },
+      "into": [],
+      "name": "Botas del Hechicero",
+      "plaintext": "Mejora la Velocidad de Movimiento y el Daño Mágico.",
+      "purchasable": true,
+      "stats": {
+        "FlatMovementSpeedMod": 45
+      },
+      "tags": [
+        "Boots",
+        "MagicPenetration"
+      ]
+    },
+    "3024": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Armadura<br><attention>300</attention> de Maná<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br></mainText>",
+      "from": [
+        1029,
+        1027,
+        2022
+      ],
+      "gold": {
+        "base": 50,
+        "purchasable": true,
+        "sell": 630,
+        "total": 900
+      },
+      "id": 3024,
+      "image": {
+        "full": "3024.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 432,
+        "y": 96
+      },
+      "into": [
+        3110
+      ],
+      "name": "Escudo Glacial",
+      "plaintext": "Aumenta la Armadura y la Reducción de Enfriamiento.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatMPPoolMod": 300
+      },
+      "tags": [
+        "Armor",
+        "Mana",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3031": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>75</attention> de Daño de Ataque<br><attention>25%</attention> de Probabilidad de Golpe Crítico<br><attention>30%</attention> de Daño de Golpe Crítico</stats><br><br></mainText>",
+      "from": [
+        1038,
+        1037,
+        1018
+      ],
+      "gold": {
+        "base": 725,
+        "purchasable": true,
+        "sell": 2450,
+        "total": 3500
+      },
+      "id": 3031,
+      "image": {
+        "full": "3031.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 48,
+        "y": 144
+      },
+      "into": [],
+      "name": "Filo del Infinito",
+      "plaintext": "Mejora enormemente los golpes críticos.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.25,
+        "FlatPhysicalDamageMod": 75
+      },
+      "tags": [
+        "CriticalStrike",
+        "Damage"
+      ]
+    },
+    "3033": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>35</attention> de Daño de Ataque<br><attention>30%</attention> de Penetración de Armadura<br><attention>25%</attention> de Probabilidad de Golpe Crítico</stats><br><br><passive>Heridas Graves</passive><br>Infligir daño físico aplica un <keyword>40% de Heridas</keyword> a los campeones enemigos durante 3 seg.</mainText>",
+      "from": [
+        3123,
+        3035,
+        1018
+      ],
+      "gold": {
+        "base": 150,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 3033,
+      "image": {
+        "full": "3033.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 144,
+        "y": 144
+      },
+      "into": [],
+      "name": "Recordatorio Mortal",
+      "plaintext": "Derrota a enemigos con mucha recuperación de Vida y Armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.25,
+        "FlatPhysicalDamageMod": 35
+      },
+      "tags": [
+        "Damage",
+        "CriticalStrike",
+        "ArmorPenetration"
+      ]
+    },
+    "3035": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Daño de Ataque<br><attention>18%</attention> de Penetración de Armadura</stats><br><br></mainText>",
+      "from": [
+        1036,
+        1036
+      ],
+      "gold": {
+        "base": 750,
+        "purchasable": true,
+        "sell": 1015,
+        "total": 1450
+      },
+      "id": 3035,
+      "image": {
+        "full": "3035.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 192,
+        "y": 144
+      },
+      "into": [
+        3033,
+        3036,
+        6694
+      ],
+      "name": "Último Suspiro",
+      "plaintext": "Para contrarrestar a enemigos con mucha armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 20
+      },
+      "tags": [
+        "ArmorPenetration",
+        "Damage"
+      ]
+    },
+    "3036": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>35</attention> de Daño de Ataque<br><attention>35%</attention> de Penetración de Armadura<br><attention>25%</attention> de Probabilidad de Golpe Crítico</stats><br><br><passive>Verdugo de Gigantes</passive><br>Infliges hasta un 15% de daño adicional contra campeones según su vida adicional. Infliges el máximo de daño adicional cuando el enemigo tiene 1500 de Vida adicional.</mainText>",
+      "from": [
+        3035,
+        6670
+      ],
+      "gold": {
+        "base": 550,
+        "purchasable": true,
+        "sell": 2310,
+        "total": 3300
+      },
+      "id": 3036,
+      "image": {
+        "full": "3036.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 240,
+        "y": 144
+      },
+      "into": [],
+      "name": "Recuerdos de Lord Dominik",
+      "plaintext": "Derrota a enemigos con mucha Vida y Armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.25,
+        "FlatPhysicalDamageMod": 35
+      },
+      "tags": [
+        "Damage",
+        "CriticalStrike",
+        "ArmorPenetration"
+      ]
+    },
+    "3044": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque<br><attention>200</attention> de Vida</stats><br><br><passive>Rabia</passive><br>Los ataques te otorgan <speed>velocidad de movimiento</speed> durante 2 seg.</mainText>",
+      "from": [
+        1028,
+        1036
+      ],
+      "gold": {
+        "base": 350,
+        "purchasable": true,
+        "sell": 770,
+        "total": 1100
+      },
+      "id": 3044,
+      "image": {
+        "full": "3044.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 0,
+        "y": 192
+      },
+      "into": [
+        3071,
+        6631
+      ],
+      "name": "Bacteriófago",
+      "plaintext": "Los ataques y asesinatos otorgan una pequeña mejora de velocidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 200,
+        "FlatPhysicalDamageMod": 15
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "NonbootsMovement"
+      ]
+    },
+    "3046": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>65%</attention> de Velocidad de Ataque<br><attention>25%</attention> de Probabilidad de Golpe Crítico<br><attention>10%</attention> de Velocidad de Movimiento</stats><br><br><passive>Vals Espectral</passive><br>Te vuelves <keyword>Fantasma</keyword>.</mainText>",
+      "from": [
+        1042,
+        3086,
+        1042
+      ],
+      "gold": {
+        "base": 950,
+        "purchasable": true,
+        "sell": 1855,
+        "total": 2650
+      },
+      "id": 3046,
+      "image": {
+        "full": "3046.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 48,
+        "y": 192
+      },
+      "into": [],
+      "name": "Bailarín Espectral",
+      "plaintext": "Te mueves más rápido cuando atacas a tus enemigos y obtienes un escudo cuando tienes poca vida.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.25,
+        "PercentAttackSpeedMod": 0.65,
+        "PercentMovementSpeedMod": 0.1
+      },
+      "tags": [
+        "CriticalStrike",
+        "AttackSpeed",
+        "NonbootsMovement"
+      ]
+    },
+    "3047": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Armadura<br><attention>45</attention> de Velocidad de Movimiento</stats><br><br><passive>Revestimiento</passive><br>Reduce el daño recibido de los ataques en un 10%.</mainText>",
+      "from": [
+        1001,
+        1029
+      ],
+      "gold": {
+        "base": 600,
+        "purchasable": true,
+        "sell": 840,
+        "total": 1200
+      },
+      "id": 3047,
+      "image": {
+        "full": "3047.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 96,
+        "y": 192
+      },
+      "into": [],
+      "name": "Punteras de Acero Revestidas",
+      "plaintext": "Mejora la velocidad de movimiento y reduce el daño de ataque recibido.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatMovementSpeedMod": 45
+      },
+      "tags": [
+        "Armor",
+        "Boots"
+      ]
+    },
+    "3050": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>300</attention> de Vida<br><attention>25</attention> de Armadura<br><attention>25</attention> de Resistencia Mágica<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br><passive>Tempestad de Fuego Escarchado</passive><br>Al lanzar tu definitiva, invocas una tormenta a tu alrededor durante 5 seg. La tormenta inflige <magicDamage>30 de daño mágico</magicDamage> por seg a los campeones enemigos y los <keyword>ralentiza</keyword> en un 30%.</mainText>",
+      "from": [
+        3067,
+        1029,
+        1033
+      ],
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "sell": 1540,
+        "total": 2200
+      },
+      "id": 3050,
+      "image": {
+        "full": "3050.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 144,
+        "y": 192
+      },
+      "into": [],
+      "name": "Convergencia de Zeke",
+      "plaintext": "Un aliado y tú reciben bonificaciones al lanzar sus habilidades definitivas.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatHPPoolMod": 300,
+        "FlatSpellBlockMod": 25
+      },
+      "tags": [
+        "Health",
+        "SpellBlock",
+        "Armor",
+        "AbilityHaste"
+      ]
+    },
+    "3051": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Daño de Ataque<br><attention>20%</attention> de Velocidad de Ataque</stats><br><br></mainText>",
+      "from": [
+        1036,
+        1042,
+        1036
+      ],
+      "gold": {
+        "base": 250,
+        "purchasable": true,
+        "sell": 840,
+        "total": 1200
+      },
+      "id": 3051,
+      "image": {
+        "full": "3051.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 192,
+        "y": 192
+      },
+      "into": [
+        6672
+      ],
+      "name": "Hacha Hogareña",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 20,
+        "PercentAttackSpeedMod": 0.2
+      },
+      "tags": [
+        "Damage",
+        "AttackSpeed"
+      ]
+    },
+    "3053": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>400</attention> de Vida<br><attention>20%</attention> de Tenacidad</stats><br><br><passive>Garras que Atrapan</passive><br>Obtienes <scaleAD>daño de ataque adicional</scaleAD>.<br><br><passive>Salvavidas</passive><br>Al recibir daño que reduciría tu Vida por debajo de un 30%, obtienes un <shield>escudo que decae</shield> durante 4.5 seg.</mainText>",
+      "from": [
+        1037,
+        2021,
+        1028
+      ],
+      "gold": {
+        "base": 775,
+        "purchasable": true,
+        "sell": 2240,
+        "total": 3200
+      },
+      "id": 3053,
+      "image": {
+        "full": "3053.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 240,
+        "y": 192
+      },
+      "into": [],
+      "name": "Guantelete de Sterak",
+      "plaintext": "Protege frente a grandes descargas de daño.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 400
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "Tenacity"
+      ]
+    },
+    "3066": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>200</attention> de Vida<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [
+        1028
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 3066,
+      "image": {
+        "full": "3066.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 384,
+        "y": 192
+      },
+      "into": [
+        3742,
+        3181,
+        4401
+      ],
+      "name": "Placa Lunar Alada",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 200,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Health",
+        "NonbootsMovement"
+      ]
+    },
+    "3067": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>200</attention> de Vida<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br></mainText>",
+      "from": [
+        1028,
+        2022
+      ],
+      "gold": {
+        "base": 150,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 3067,
+      "image": {
+        "full": "3067.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 432,
+        "y": 192
+      },
+      "into": [
+        3071,
+        3165,
+        3050,
+        3109,
+        2502,
+        3190
+      ],
+      "name": "Gemaluz",
+      "plaintext": "Aumenta la vida y la reducción de enfriamiento.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 200
+      },
+      "tags": [
+        "Health",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3068": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>350</attention> de Vida<br><attention>50</attention> de Armadura<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br><passive>Inmolar</passive><br>Tras recibir o infligir daño, inflige <magicDamage>daño mágico</magicDamage> por seg a los enemigos cercanos durante 3 seg. </mainText>",
+      "from": [
+        6660,
+        1031,
+        1028
+      ],
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "sell": 1960,
+        "total": 2800
+      },
+      "id": 3068,
+      "image": {
+        "full": "3068.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 0,
+        "y": 240
+      },
+      "into": [],
+      "name": "Égida de Fuego Solar",
+      "plaintext": "Armadura alta. Inflige daño constante a los enemigos cercanos. Inmoviliza a los enemigos para lanzar una ola de fuego que inflige daño.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 50,
+        "FlatHPPoolMod": 350
+      },
+      "tags": [
+        "Health",
+        "Armor",
+        "Aura",
+        "AbilityHaste"
+      ]
+    },
+    "3071": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Daño de Ataque<br><attention>400</attention> de Vida<br><attention>20</attention> de Aceleración de Habilidad</stats><br><br><passive>Cortar</passive><br>Al infligir <physicalDamage>daño físico</physicalDamage> a campeones, reduces la <scaleArmor>Armadura del objetivo en un 6%</scaleArmor> durante 6 seg. El efecto puede acumularse hasta 5 veces.<br><br><passive>Fervor</passive><br>Al infligir <physicalDamage>daño físico</physicalDamage>, obtienes <speed>0 de Velocidad de Movimiento</speed> durante 2 seg.</mainText>",
+      "from": [
+        3044,
+        3067,
+        1037
+      ],
+      "gold": {
+        "base": 225,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 3071,
+      "image": {
+        "full": "3071.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 96,
+        "y": 240
+      },
+      "into": [],
+      "name": "Cuchilla Oscura",
+      "plaintext": "Al causar daño físico a campeones enemigos, reduces su armadura.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 400,
+        "FlatPhysicalDamageMod": 45
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "CooldownReduction",
+        "OnHit",
+        "NonbootsMovement",
+        "ArmorPenetration",
+        "AbilityHaste"
+      ]
+    },
+    "3072": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>80</attention> de Daño de Ataque<br><attention>15%</attention> de Robo de Vida</stats><br><br><passive>Escudo de Icor</passive><br>Convierte el exceso de curación recibida del robo de vida en un <shield>escudo</shield>.</mainText>",
+      "from": [
+        1038,
+        1037,
+        1053
+      ],
+      "gold": {
+        "base": 325,
+        "purchasable": true,
+        "sell": 2380,
+        "total": 3400
+      },
+      "id": 3072,
+      "image": {
+        "full": "3072.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 144,
+        "y": 240
+      },
+      "into": [],
+      "name": "La Sanguinaria",
+      "plaintext": "Otorga daño de ataque y robo de vida. Además, el robo de vida ahora sobrecura.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 80,
+        "PercentLifeStealMod": 0.15
+      },
+      "tags": [
+        "Damage",
+        "LifeSteal"
+      ]
+    },
+    "3075": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>150</attention> de Vida<br><attention>75</attention> de Armadura</stats><br><br><passive>Espinas</passive><br>Al recibir un ataque, inflige <magicDamage>daño mágico</magicDamage> al atacante. Si el atacante es un campeón, le aplica un 40% de <keyword>Heridas</keyword> durante 3 seg.</mainText>",
+      "from": [
+        3076,
+        1031,
+        1028
+      ],
+      "gold": {
+        "base": 450,
+        "purchasable": true,
+        "sell": 1715,
+        "total": 2450
+      },
+      "id": 3075,
+      "image": {
+        "full": "3075.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 288,
+        "y": 240
+      },
+      "into": [],
+      "name": "Cota de Espinas",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 75,
+        "FlatHPPoolMod": 150
+      },
+      "tags": [
+        "Health",
+        "Armor"
+      ]
+    },
+    "3076": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>30</attention> de Armadura</stats><br><br><passive>Espinas</passive><br>Al recibir un ataque, inflige <magicDamage>0 de daño mágico</magicDamage> al atacante y, si es un campeón, le aplica un <keyword>40% de Heridas Graves</keyword> durante 3 seg.</mainText>",
+      "from": [
+        1029,
+        1029
+      ],
+      "gold": {
+        "base": 200,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 3076,
+      "image": {
+        "full": "3076.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 336,
+        "y": 240
+      },
+      "into": [
+        3075
+      ],
+      "name": "Vesta Espinosa",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 30
+      },
+      "tags": [
+        "Armor"
+      ]
+    },
+    "3077": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Daño de Ataque</stats><br><br><passive>Hender</passive><br>Los ataques infligen <physicalDamage>daño físico</physicalDamage> a los enemigos cercanos.<br><active>Creciente</active><br>Inflige <physicalDamage>daño físico</physicalDamage> a los enemigos a tu alrededor.</mainText>",
+      "from": [
+        1036,
+        1036
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 840,
+        "total": 1200
+      },
+      "id": 3077,
+      "image": {
+        "full": "3077.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 384,
+        "y": 240
+      },
+      "into": [
+        6631
+      ],
+      "name": "Tiamat",
+      "plaintext": "Los ataques cuerpo a cuerpo golpean a los enemigos cercanos.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 25
+      },
+      "tags": [
+        "Damage",
+        "OnHit"
+      ]
+    },
+    "3082": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Armadura</stats><br><br><passive>Duro como piedra</passive><br>Reduce el daño proveniente de ataques.</mainText>",
+      "from": [
+        1029,
+        1029
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 700,
+        "total": 1000
+      },
+      "id": 3082,
+      "image": {
+        "full": "3082.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 0,
+        "y": 288
+      },
+      "into": [
+        3110,
+        3143
+      ],
+      "name": "Cota del Guardabosques",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 40
+      },
+      "tags": [
+        "Armor"
+      ]
+    },
+    "3086": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15%</attention> de Velocidad de Ataque<br><attention>15%</attention> de Probabilidad de Golpe Crítico<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [
+        1018,
+        1042
+      ],
+      "gold": {
+        "base": 350,
+        "purchasable": true,
+        "sell": 840,
+        "total": 1200
+      },
+      "id": 3086,
+      "image": {
+        "full": "3086.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 192,
+        "y": 288
+      },
+      "into": [
+        3046
+      ],
+      "name": "Fervor",
+      "plaintext": "Pequeña probabilidad de golpe crítico, de velocidad de movimiento y de velocidad de ataque.",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.15,
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "CriticalStrike",
+        "AttackSpeed",
+        "NonbootsMovement"
+      ]
+    },
+    "3089": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>130</attention> de Poder de Habilidad</stats><br><br><passive>Obra Mágica</passive><br>Aumenta tu <scaleAP>Poder de Habilidad total en un 30%</scaleAP>.</mainText>",
+      "from": [
+        1058,
+        1058
+      ],
+      "gold": {
+        "base": 1100,
+        "purchasable": true,
+        "sell": 2450,
+        "total": 3500
+      },
+      "id": 3089,
+      "image": {
+        "full": "3089.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 288,
+        "y": 288
+      },
+      "into": [],
+      "name": "Sombrero Mortífero de Rabadon",
+      "plaintext": "Aumenta enormemente el poder de habilidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 130
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "3102": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>105</attention> de Poder de Habilidad<br><attention>40</attention> de Resistencia Mágica</stats><br><br><passive>Anulación</passive><br>Otorga un escudo antihechizos que bloquea la siguiente habilidad de un enemigo.</mainText>",
+      "from": [
+        1058,
+        4632
+      ],
+      "gold": {
+        "base": 200,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 3102,
+      "image": {
+        "full": "3102.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 48,
+        "y": 336
+      },
+      "into": [],
+      "name": "Velo de la Banshee",
+      "plaintext": "Bloquea periódicamente las habilidades enemigas.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 105,
+        "FlatSpellBlockMod": 40
+      },
+      "tags": [
+        "SpellBlock",
+        "SpellDamage"
+      ]
+    },
+    "3109": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>200</attention> de Vida<br><attention>40</attention> de Armadura<br><attention>10</attention> de Aceleración de Habilidad<br><attention>100%</attention> de Regen. de Vida Básica</stats><br><br><passive>Sacrificio</passive><br>Al estar cerca de tu aliado <attention>digno</attention>, recibes un 14% del daño que reciba y te <healing>curas un 12%</healing> del daño que inflija a los campeones.<active>Juramento</active> (0 seg)<br>Designa a un aliado como <attention>digno</attention>.</mainText>",
+      "from": [
+        3067,
+        1031,
+        1006
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 1610,
+        "total": 2300
+      },
+      "id": 3109,
+      "image": {
+        "full": "3109.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 240,
+        "y": 336
+      },
+      "into": [],
+      "name": "Promesa del Caballero",
+      "plaintext": "Únete a un aliado para protegerse mutuamente.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 40,
+        "FlatHPPoolMod": 200
+      },
+      "tags": [
+        "Health",
+        "HealthRegen",
+        "Armor",
+        "Aura",
+        "Active",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3110": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>75</attention> de Armadura<br><attention>400</attention> de Maná<br><attention>20</attention> de Aceleración de Habilidad</stats><br><br><passive>Caricia Invernal</passive><br>Reduce la <attackSpeed>Velocidad de Ataque</attackSpeed> de los campeones cercanos en un <attackSpeed>20%</attackSpeed>.</mainText>",
+      "from": [
+        3082,
+        3024
+      ],
+      "gold": {
+        "base": 600,
+        "purchasable": true,
+        "sell": 1750,
+        "total": 2500
+      },
+      "id": 3110,
+      "image": {
+        "full": "3110.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 288,
+        "y": 336
+      },
+      "into": [],
+      "name": "Corazón de Hielo",
+      "plaintext": "Aumenta considerablemente la armadura y ralentiza los ataques básicos del enemigo.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 75,
+        "FlatMPPoolMod": 400
+      },
+      "tags": [
+        "Armor",
+        "Mana",
+        "Aura",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3111": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Resistencia Mágica<br><attention>45</attention> de Velocidad de Movimiento<br><attention>30%</attention> de Tenacidad</stats><br><br></mainText>",
+      "from": [
+        1001,
+        1033
+      ],
+      "gold": {
+        "base": 550,
+        "purchasable": true,
+        "sell": 875,
+        "total": 1250
+      },
+      "id": 3111,
+      "image": {
+        "full": "3111.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 336,
+        "y": 336
+      },
+      "into": [],
+      "name": "Botas de Mercurio",
+      "plaintext": "Aumenta la velocidad de movimiento y reduce la duración de efectos incapacitantes.",
+      "purchasable": true,
+      "stats": {
+        "FlatMovementSpeedMod": 45,
+        "FlatSpellBlockMod": 20
+      },
+      "tags": [
+        "Boots",
+        "SpellBlock",
+        "Tenacity"
+      ]
+    },
+    "3123": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque</stats><br><br><passive>Heridas Graves</passive><br>Infligir daño físico a campeones les aplica un <keyword>40% de Heridas Graves</keyword> durante 3 seg.</mainText>",
+      "from": [
+        1036
+      ],
+      "gold": {
+        "base": 450,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 3123,
+      "image": {
+        "full": "3123.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 336,
+        "y": 384
+      },
+      "into": [
+        3033,
+        6609
+      ],
+      "name": "El Llamado del Verdugo",
+      "plaintext": "Derrota a enemigos con mucha ganancia de Vida.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 15
+      },
+      "tags": [
+        "Damage"
+      ]
+    },
+    "3133": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Daño de Ataque<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br></mainText>",
+      "from": [
+        1036,
+        2022,
+        1036
+      ],
+      "gold": {
+        "base": 100,
+        "purchasable": true,
+        "sell": 735,
+        "total": 1050
+      },
+      "id": 3133,
+      "image": {
+        "full": "3133.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 48,
+        "y": 432
+      },
+      "into": [
+        6609,
+        6694
+      ],
+      "name": "Martillo de Guerra de Caulfield",
+      "plaintext": "Aumenta el daño de ataque y la reducción de enfriamiento.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 20
+      },
+      "tags": [
+        "Damage",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3134": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>20</attention> de Daño de Ataque<br><attention>10</attention> de Letalidad</stats><br><br></mainText>",
+      "from": [
+        1036,
+        1036
+      ],
+      "gold": {
+        "base": 300,
+        "purchasable": true,
+        "sell": 700,
+        "total": 1000
+      },
+      "id": 3134,
+      "image": {
+        "full": "3134.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 96,
+        "y": 432
+      },
+      "into": [
+        6695
+      ],
+      "name": "Puñal Serrado",
+      "plaintext": "Aumenta el Daño de Ataque y la Letalidad.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 20
+      },
+      "tags": [
+        "Damage",
+        "ArmorPenetration"
+      ]
+    },
+    "3135": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>95</attention> de Poder de Habilidad<br><attention>40%</attention> Penetración de Magia</stats><br><br></mainText>",
+      "from": [
+        4630,
+        1026
+      ],
+      "gold": {
+        "base": 1050,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 3135,
+      "image": {
+        "full": "3135.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 144,
+        "y": 432
+      },
+      "into": [],
+      "name": "Báculo del Vacío",
+      "plaintext": "Aumenta el Daño Mágico.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 95
+      },
+      "tags": [
+        "MagicPenetration",
+        "SpellDamage"
+      ]
+    },
+    "3143": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>350</attention> de Vida<br><attention>75</attention> de Armadura</stats><br><br><passive>Resiliencia</passive><br>Recibes un 30% menos de daño de los golpes críticos.<br><active>Humildad</active><br><keyword>Ralentiza</keyword> a los enemigos cercanos en un 70% durante 2 seg.</mainText>",
+      "from": [
+        3082,
+        1011
+      ],
+      "gold": {
+        "base": 800,
+        "purchasable": true,
+        "sell": 1890,
+        "total": 2700
+      },
+      "id": 3143,
+      "image": {
+        "full": "3143.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item3.png",
+        "w": 48,
+        "x": 384,
+        "y": 432
+      },
+      "into": [],
+      "name": "Presagio de Randuin",
+      "plaintext": "Aumenta notablemente las defensas y puede activarse para ralentizar a los enemigos cercanos.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 75,
+        "FlatHPPoolMod": 350
+      },
+      "tags": [
+        "Health",
+        "Armor",
+        "Active",
+        "Slow"
+      ]
+    },
+    "3147": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>30</attention> de Poder de Habilidad<br><attention>200</attention> de Vida</stats><br><br><passive>Locura</passive><br>Por cada seg en combate contra campeones enemigos, inflige un 2% de daño adicional, hasta un máximo del 6%. </mainText>",
+      "from": [
+        1052,
+        1028
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 910,
+        "total": 1300
+      },
+      "id": 3147,
+      "image": {
+        "full": "3147.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 96,
+        "y": 0
+      },
+      "into": [
+        6653
+      ],
+      "name": "Antifaz Embrujado",
+      "plaintext": "Inflige daño físico adicional al emboscar enemigos.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 200,
+        "FlatMagicDamageMod": 30
+      },
+      "tags": [
+        "Health",
+        "SpellDamage"
+      ]
+    },
+    "3153": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Daño de Ataque<br><attention>25%</attention> de Velocidad de Ataque<br><attention>10%</attention> de Robo de Vida</stats><br><br><passive>Filo Neblina</passive><br>Los ataques infligen <physicalDamage>un porcentaje</physicalDamage> de la vida actual del enemigo como <physicalDamage>daño físico adicional</physicalDamage> <OnHit>al impacto</OnHit>.<br><br><passive>Sombras Desgarradoras</passive><br>Atacar a un campeón tres veces lo <status>ralentiza</status> en un 30% durante 1 seg.</mainText>",
+      "from": [
+        1053,
+        1043,
+        1037
+      ],
+      "gold": {
+        "base": 725,
+        "purchasable": true,
+        "sell": 2240,
+        "total": 3200
+      },
+      "id": 3153,
+      "image": {
+        "full": "3153.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 192,
+        "y": 0
+      },
+      "into": [],
+      "name": "Espada del Rey Arruinado",
+      "plaintext": "Inflige daño según la vida del objetivo, puede robar velocidad de movimiento.",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 40,
+        "PercentAttackSpeedMod": 0.25,
+        "PercentLifeStealMod": 0.1
+      },
+      "tags": [
+        "Damage",
+        "AttackSpeed",
+        "LifeSteal",
+        "Slow",
+        "OnHit"
+      ]
+    },
+    "3157": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>105</attention> de Poder de Habilidad<br><attention>50</attention> de Armadura</stats><br><br><br><br><active>Detener el Tiempo</active><br>Entras en <keyword>Estasis</keyword> durante 2.5 seg.</mainText>",
+      "from": [
+        1058,
+        2420
+      ],
+      "gold": {
+        "base": 450,
+        "purchasable": true,
+        "sell": 2275,
+        "total": 3250
+      },
+      "id": 3157,
+      "image": {
+        "full": "3157.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 336,
+        "y": 0
+      },
+      "into": [],
+      "name": "Reloj de Arena de Zhonya",
+      "plaintext": "Actívalo para volverte invencible. No podrás realizar ninguna acción.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 50,
+        "FlatMagicDamageMod": 105
+      },
+      "tags": [
+        "Armor",
+        "SpellDamage",
+        "Active"
+      ]
+    },
+    "3161": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Daño de Ataque<br><attention>450</attention> de Vida</stats><br><br><passive>Fuerza del Dragón</passive> <br>Obtienes 25 de Aceleración de Habilidad para habilidades básicas.<br><br><passive>Voluntad Enfocada</passive> <br>Al infligir daño con habilidades, el daño de las habilidades y de la pasiva de tu campeón aumenta en un 3% durante 6 seg. (Se acumula 4 veces).</mainText>",
+      "from": [
+        1037,
+        2021,
+        1028
+      ],
+      "gold": {
+        "base": 675,
+        "purchasable": true,
+        "sell": 2170,
+        "total": 3100
+      },
+      "id": 3161,
+      "image": {
+        "full": "3161.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 432,
+        "y": 0
+      },
+      "into": [],
+      "name": "Lanza de Shojin",
+      "plaintext": "Reduce una cantidad fija del daño recibido de campeones. Atacar con varios campeones enemigos cercanos potencia este efecto durante un breve periodo.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 450,
+        "FlatPhysicalDamageMod": 45
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "AbilityHaste"
+      ]
+    },
+    "3165": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>75</attention> de Poder de Habilidad<br><attention>350</attention> de Vida<br><attention>15</attention> de Aceleración de Habilidad</stats><br><br><passive>Heridas Graves</passive><br>Infligir <magicDamage>daño mágico</magicDamage> a campeones les aplica un <keyword>40% de Heridas Graves</keyword> durante 3 seg.</mainText>",
+      "from": [
+        3916,
+        1026,
+        3067
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 1995,
+        "total": 2850
+      },
+      "id": 3165,
+      "image": {
+        "full": "3165.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 0,
+        "y": 48
+      },
+      "into": [],
+      "name": "Morellonomicón",
+      "plaintext": "Aumenta el daño mágico.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 350,
+        "FlatMagicDamageMod": 75
+      },
+      "tags": [
+        "Health",
+        "SpellDamage",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "3181": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Daño de Ataque<br><attention>500</attention> de Vida<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br><passive>Capitán</passive><br>Cada quinto ataque contra campeones y monstruos épicos inflige <physicalDamage>daño físico adicional</physicalDamage> (aumenta contra estructuras).<br><br><passive>Tripulación de Abordaje</passive><br>Los supersúbditos y los súbditos de asedio aliados cercanos obtienen <scaleArmor>armadura</scaleArmor> y <scaleMR>resistencia mágica</scaleMR>.</mainText>",
+      "from": [
+        2021,
+        3066,
+        1037
+      ],
+      "gold": {
+        "base": 175,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 3181,
+      "image": {
+        "full": "3181.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 48,
+        "y": 96
+      },
+      "into": [],
+      "name": "Rompecascos",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 500,
+        "FlatPhysicalDamageMod": 40,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "NonbootsMovement"
+      ]
+    },
+    "3190": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>200</attention> de Vida<br><attention>30</attention> de Armadura<br><attention>30</attention> de Resistencia Mágica<br><attention>10</attention> de Aceleración de Habilidad</stats><br><br><active>Devoción</active><br>Otorga a los aliados cercanos de <shield>290 a 360 de escudo</shield> que decae a lo largo de 2.5 seg.</mainText>",
+      "from": [
+        3067,
+        1029,
+        1033
+      ],
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "sell": 1540,
+        "total": 2200
+      },
+      "id": 3190,
+      "image": {
+        "full": "3190.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 144,
+        "y": 96
+      },
+      "into": [],
+      "name": "Relicario de los Solari de Hierro",
+      "plaintext": "Se activa para proteger a aliados cercanos del daño.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 30,
+        "FlatHPPoolMod": 200,
+        "FlatSpellBlockMod": 30
+      },
+      "tags": [
+        "Health",
+        "SpellBlock",
+        "Armor",
+        "Aura",
+        "Active",
+        "MagicResist",
+        "AbilityHaste"
+      ]
+    },
+    "3211": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>200</attention> de Vida<br><attention>35</attention> de Resistencia Mágica<br><attention>100%</attention> de Regen. de Vida Básica</stats><br><br></mainText>",
+      "from": [
+        1028,
+        1033,
+        1006
+      ],
+      "gold": {
+        "base": 150,
+        "purchasable": true,
+        "sell": 875,
+        "total": 1250
+      },
+      "id": 3211,
+      "image": {
+        "full": "3211.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 240,
+        "y": 96
+      },
+      "into": [
+        2504
+      ],
+      "name": "Hábito del Espectro",
+      "plaintext": "Mejora la defensa y otorga regeneración al recibir daño.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 200,
+        "FlatSpellBlockMod": 35
+      },
+      "tags": [
+        "Health",
+        "HealthRegen",
+        "SpellBlock"
+      ]
+    },
+    "3742": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>350</attention> de Vida<br><attention>55</attention> de Armadura<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br><passive>Hundebarcos</passive><br>Al desplazarte, acumulas hasta <speed>20 de Velocidad de Movimiento adicional</speed>. Tu próximo ataque descarga la velocidad de movimiento acumulada e inflige <physicalDamage>daño físico adicional</physicalDamage>.<br><br><passive>Inhundible</passive><br>Reduce la eficacia de las <keyword>ralentizaciones</keyword> en un 15%.</mainText>",
+      "from": [
+        3066,
+        1028,
+        1031
+      ],
+      "gold": {
+        "base": 900,
+        "purchasable": true,
+        "sell": 2030,
+        "total": 2900
+      },
+      "id": 3742,
+      "image": {
+        "full": "3742.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 432,
+        "y": 288
+      },
+      "into": [],
+      "name": "Placa del Hombre Muerto",
+      "plaintext": "Ganas impulso al moverte antes de embestir a tus enemigos.",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 55,
+        "FlatHPPoolMod": 350,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Health",
+        "Armor",
+        "Slow",
+        "NonbootsMovement"
+      ]
+    },
+    "3916": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Poder de Habilidad</stats><br><br><passive>Heridas Graves</passive><br>Infligir <magicDamage>daño mágico</magicDamage> a campeones les aplica un <keyword>40% de Heridas Graves</keyword> durante 3 seg.</mainText>",
+      "from": [
+        1052
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 560,
+        "total": 800
+      },
+      "id": 3916,
+      "image": {
+        "full": "3916.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item4.png",
+        "w": 48,
+        "x": 384,
+        "y": 432
+      },
+      "into": [
+        3165
+      ],
+      "name": "Orbe del Olvido",
+      "plaintext": "Aumenta el daño mágico.",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 25
+      },
+      "tags": [
+        "SpellDamage"
+      ]
+    },
+    "4401": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>400</attention> de Vida<br><attention>55</attention> de Resistencia Mágica<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br><passive>Firmeza</passive><br>Obtienes <scaleMR>70 de Resistencia Mágica</scaleMR> y un <speed>6% de Velocidad de Movimiento adicional</speed> tras recibir daño mágico de campeones 8 veces.</mainText>",
+      "from": [
+        1057,
+        1028,
+        3066
+      ],
+      "gold": {
+        "base": 750,
+        "purchasable": true,
+        "sell": 1960,
+        "total": 2800
+      },
+      "id": 4401,
+      "image": {
+        "full": "4401.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item5.png",
+        "w": 48,
+        "x": 0,
+        "y": 48
+      },
+      "into": [],
+      "name": "Fuerza de la Naturaleza",
+      "plaintext": "Velocidad de movimiento, resistencia mágica y regen. de vida máxima",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 400,
+        "FlatSpellBlockMod": 55,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Health",
+        "SpellBlock",
+        "NonbootsMovement"
+      ]
+    },
+    "4630": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>25</attention> de Poder de Habilidad<br><attention>13%</attention> Penetración de Magia</stats><br><br></mainText>",
+      "from": [
+        1052
+      ],
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "sell": 770,
+        "total": 1100
+      },
+      "id": 4630,
+      "image": {
+        "full": "4630.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item5.png",
+        "w": 48,
+        "x": 192,
+        "y": 288
+      },
+      "into": [
+        3135
+      ],
+      "name": "Joya Maldita",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 25
+      },
+      "tags": [
+        "MagicPenetration",
+        "SpellDamage"
+      ]
+    },
+    "4632": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Poder de Habilidad<br><attention>25</attention> de Resistencia Mágica</stats><br><br><passive>Anulación</passive><br>Otorga un escudo antihechizos que bloquea la siguiente habilidad de un enemigo.</mainText>",
+      "from": [
+        1052,
+        1033,
+        1052
+      ],
+      "gold": {
+        "base": 400,
+        "purchasable": true,
+        "sell": 1120,
+        "total": 1600
+      },
+      "id": 4632,
+      "image": {
+        "full": "4632.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item5.png",
+        "w": 48,
+        "x": 240,
+        "y": 288
+      },
+      "into": [
+        3102
+      ],
+      "name": "Barrera Esmeralda",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatMagicDamageMod": 40,
+        "FlatSpellBlockMod": 25
+      },
+      "tags": [
+        "SpellBlock",
+        "SpellDamage"
+      ]
+    },
+    "6609": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Daño de Ataque<br><attention>450</attention> de Vida<br><attention>15</attention> de Aceleración de Habilidad</stats><br><br><passive>Corte Mutilador</passive><br>Infligir daño físico aplica un <keyword>40% de Heridas</keyword> a los campeones enemigos durante 3 seg.</mainText>",
+      "from": [
+        3123,
+        1011,
+        3133
+      ],
+      "gold": {
+        "base": 250,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 6609,
+      "image": {
+        "full": "6609.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item5.png",
+        "w": 48,
+        "x": 384,
+        "y": 384
+      },
+      "into": [],
+      "name": "Sierraespada Quimpunk",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 450,
+        "FlatPhysicalDamageMod": 45
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "CooldownReduction",
+        "AbilityHaste"
+      ]
+    },
+    "6631": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>40</attention> de Daño de Ataque<br><attention>25%</attention> de Velocidad de Ataque<br><attention>450</attention> de Vida</stats><br><br><passive>Hender</passive><br>Los ataques infligen <physicalDamage>daño físico</physicalDamage> a los enemigos cercanos.<br><active>Onda Rompiente</active><br>Inflige <physicalDamage>daño físico</physicalDamage> y <status>ralentiza</status> a los enemigos cercanos en un 35%.<br>Por cada campeón impactado, obtienes un <speed>35% de Velocidad de Movimiento que decae</speed> durante 3 seg.</mainText>",
+      "from": [
+        3077,
+        3044,
+        1042
+      ],
+      "gold": {
+        "base": 750,
+        "purchasable": true,
+        "sell": 2310,
+        "total": 3300
+      },
+      "id": 6631,
+      "image": {
+        "full": "6631.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 48,
+        "y": 0
+      },
+      "into": [],
+      "name": "Rompeavances",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 450,
+        "FlatPhysicalDamageMod": 40,
+        "PercentAttackSpeedMod": 0.25
+      },
+      "tags": [
+        "Health",
+        "Damage",
+        "AttackSpeed",
+        "Slow"
+      ]
+    },
+    "6653": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>60</attention> de Poder de Habilidad<br><attention>300</attention> de Vida</stats><br><br><passive>Tormento</passive><br>Infligir daño con habilidades quema a los enemigos por un <magicDamage>2% de su Vida Máxima como daño mágico</magicDamage> por seg durante 3 seg.<br><br><passive>Sufrimiento</passive><br>Por cada seg en combate contra campeones enemigos, inflige un 2% de daño adicional, hasta un 6%.</mainText>",
+      "from": [
+        3147,
+        2508
+      ],
+      "gold": {
+        "base": 800,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 6653,
+      "image": {
+        "full": "6653.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 432,
+        "y": 0
+      },
+      "into": [],
+      "name": "El Tormento de Liandry",
+      "plaintext": "Cárgalo en combate para infligir una gran cantidad de daño prolongado, en especial contra enemigos resistentes.",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 300,
+        "FlatMagicDamageMod": 60
+      },
+      "tags": [
+        "Health",
+        "SpellDamage"
+      ]
+    },
+    "6660": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>150</attention> de Vida<br><attention>5</attention> de Aceleración de Habilidad</stats><br><br><passive>Inmolar</passive><br>Tras recibir o infligir daño, infliges <magicDamage>daño mágico</magicDamage> a los enemigos cercanos durante 3 seg.</mainText>",
+      "from": [
+        1028,
+        2022
+      ],
+      "gold": {
+        "base": 250,
+        "purchasable": true,
+        "sell": 630,
+        "total": 900
+      },
+      "id": 6660,
+      "image": {
+        "full": "6660.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 144,
+        "y": 48
+      },
+      "into": [
+        3068
+      ],
+      "name": "Ceniza de Bami",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatHPPoolMod": 150
+      },
+      "tags": [
+        "Health",
+        "AbilityHaste"
+      ]
+    },
+    "6665": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>350</attention> de Vida<br><attention>45</attention> de Armadura<br><attention>45</attention> de Resistencia Mágica</stats><br><br><passive>Resiliencia del Vacuonato</passive><br>Después de 5 seg de combate contra campeones, aumenta tu <scaleArmor>Armadura</scaleArmor> y <scaleMR>Resistencia Mágica</scaleMR> adicionales en un 30% hasta el final del combate.<br><br></mainText>",
+      "from": [
+        1011,
+        1031,
+        1057
+      ],
+      "gold": {
+        "base": 650,
+        "purchasable": true,
+        "sell": 2240,
+        "total": 3200
+      },
+      "id": 6665,
+      "image": {
+        "full": "6665.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 288,
+        "y": 48
+      },
+      "into": [],
+      "name": "Jak'Sho, el Proteico",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatArmorMod": 45,
+        "FlatHPPoolMod": 350,
+        "FlatSpellBlockMod": 45
+      },
+      "tags": [
+        "Health",
+        "SpellBlock",
+        "Armor",
+        "MagicResist"
+      ]
+    },
+    "6670": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque<br><attention>20%</attention> de Probabilidad de Golpe Crítico</stats><br><br></mainText>",
+      "from": [
+        1036,
+        1018
+      ],
+      "gold": {
+        "base": 350,
+        "purchasable": true,
+        "sell": 910,
+        "total": 1300
+      },
+      "id": 6670,
+      "image": {
+        "full": "6670.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 384,
+        "y": 48
+      },
+      "into": [
+        3036,
+        6673
+      ],
+      "name": "Carcaj de Mediodía",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.2,
+        "FlatPhysicalDamageMod": 15
+      },
+      "tags": [
+        "Damage",
+        "CriticalStrike"
+      ]
+    },
+    "6672": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Daño de Ataque<br><attention>40%</attention> de Velocidad de Ataque<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br><passive>Derríbalo</passive><br>Cada tercer ataque inflige <physicalDamage>daño físico adicional</physicalDamage> <OnHit>al impacto</OnHit>. Este daño aumenta según la vida faltante del objetivo.</mainText>",
+      "from": [
+        6690,
+        3051,
+        1043
+      ],
+      "gold": {
+        "base": 325,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 6672,
+      "image": {
+        "full": "6672.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 144,
+        "y": 96
+      },
+      "into": [],
+      "name": "Matakrakens",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 45,
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Damage",
+        "AttackSpeed",
+        "OnHit",
+        "NonbootsMovement"
+      ]
+    },
+    "6673": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>55</attention> de Daño de Ataque<br><attention>25%</attention> de Probabilidad de Golpe Crítico</stats><br><br><passive>Salvavidas</passive><br>Al recibir daño que reduciría tu Vida por debajo de un 30%, te otorga un <shield>escudo</shield> durante 3 seg.</mainText>",
+      "from": [
+        1037,
+        6670
+      ],
+      "gold": {
+        "base": 825,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 6673,
+      "image": {
+        "full": "6673.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 192,
+        "y": 96
+      },
+      "into": [],
+      "name": "Arcoescudo Inmortal",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatCritChanceMod": 0.25,
+        "FlatPhysicalDamageMod": 55
+      },
+      "tags": [
+        "Damage",
+        "CriticalStrike"
+      ]
+    },
+    "6690": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>15</attention> de Daño de Ataque<br><attention>4%</attention> de Velocidad de Movimiento</stats><br><br></mainText>",
+      "from": [
+        1036
+      ],
+      "gold": {
+        "base": 425,
+        "purchasable": true,
+        "sell": 543,
+        "total": 775
+      },
+      "id": 6690,
+      "image": {
+        "full": "6690.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 432,
+        "y": 96
+      },
+      "into": [
+        6672
+      ],
+      "name": "Rectriz",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 15,
+        "PercentMovementSpeedMod": 0.04
+      },
+      "tags": [
+        "Damage",
+        "NonbootsMovement"
+      ]
+    },
+    "6694": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>45</attention> de Daño de Ataque<br><attention>35%</attention> de Penetración de Armadura<br><attention>15</attention> de Aceleración de Habilidad</stats><br><br><passive>Frío Implacable</passive><br>Las habilidades de daño <status>ralentizan</status> a los enemigos con menos del 50% de Vida en un 30% durante 1 seg.</mainText>",
+      "from": [
+        3133,
+        3035
+      ],
+      "gold": {
+        "base": 500,
+        "purchasable": true,
+        "sell": 2100,
+        "total": 3000
+      },
+      "id": 6694,
+      "image": {
+        "full": "6694.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 144,
+        "y": 144
+      },
+      "into": [],
+      "name": "Rencor de Serylda",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 45
+      },
+      "tags": [
+        "Damage",
+        "CooldownReduction",
+        "ArmorPenetration",
+        "AbilityHaste"
+      ]
+    },
+    "6695": {
+      "available_map_11": true,
+      "description": "<mainText><stats><attention>55</attention> de Daño de Ataque<br><attention>15</attention> de Letalidad</stats><br><br><passive>Rompeescudos</passive><br>Infligir daño a un campeón enemigo reduce el escudo que obtenga en un 0% durante 3 seg. <br>Si no está bajo los efectos de <passive>Rompeescudos</passive>, reduce los escudos que tenga en un 0%.</mainText>",
+      "from": [
+        3134,
+        1037
+      ],
+      "gold": {
+        "base": 625,
+        "purchasable": true,
+        "sell": 1750,
+        "total": 2500
+      },
+      "id": 6695,
+      "image": {
+        "full": "6695.png",
+        "group": "item",
+        "h": 48,
+        "sprite": "item6.png",
+        "w": 48,
+        "x": 192,
+        "y": 144
+      },
+      "into": [],
+      "name": "Colmillo de Serpiente",
+      "plaintext": "",
+      "purchasable": true,
+      "stats": {
+        "FlatPhysicalDamageMod": 55
+      },
+      "tags": [
+        "Damage",
+        "ArmorPenetration"
+      ]
+    }
+  },
+  "locale": "es_MX",
+  "patch": "16.19.1",
+  "synced_at": "2026-09-24T03:45:25.280918Z"
+}

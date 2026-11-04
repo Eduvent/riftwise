@@ -77,6 +77,26 @@ func buildDecisionPlan(ranked RankedItem, input RankingInput, owned map[int]int,
 	}
 	gold := max(input.Gold, 0)
 	plan.InventorySlotsUsed = inventorySlotsUsed(domainInventory(input.Inventory), knowledge)
+	// Jak'Sho is a mixed-defense target: build the resistance matching the
+	// larger estimated damage pressure before its neutral health component.
+	if ranked.Item.ID == itemJakSho {
+		physical := input.Needs[itemrules.SignalPhysical]
+		magic := input.Needs[itemrules.SignalMagic]
+		defense := make([]purchaseOption, 0, len(options))
+		for _, option := range options {
+			if physical >= magic+50 && option.item.Stats["FlatArmorMod"] > 0 && option.item.Stats["FlatSpellBlockMod"] == 0 ||
+				magic >= physical+50 && option.item.Stats["FlatSpellBlockMod"] > 0 && option.item.Stats["FlatArmorMod"] == 0 {
+				defense = append(defense, option)
+			}
+		}
+		// A full inventory can still buy a combining component from owned
+		// parts; never hide that path behind an unbuyable leaf.
+		if len(defense) > 0 &&
+			(plan.InventorySlotsUsed < 6 || hasCombiningOption(defense)) &&
+			(hasAffordableActionable(defense, gold, plan.InventorySlotsUsed) || !hasAffordableActionable(options, gold, plan.InventorySlotsUsed)) {
+			options = defense
+		}
+	}
 	selected, affordable, slotBlocked := selectComponent(options, gold, plan.InventorySlotsUsed)
 	plan.NextComponent = itemReference(selected.item, selected.cost)
 	if slotBlocked {
@@ -93,6 +113,24 @@ func buildDecisionPlan(ranked RankedItem, input RankingInput, owned map[int]int,
 	plan.Status = StatusSaveForComponent
 	plan.GoldNeeded = max(selected.cost-gold, 0)
 	return plan, nil
+}
+
+func hasCombiningOption(options []purchaseOption) bool {
+	for _, option := range options {
+		if option.consumedSlots > 0 {
+			return true
+		}
+	}
+	return false
+}
+
+func hasAffordableActionable(options []purchaseOption, gold, slotsUsed int) bool {
+	for _, option := range options {
+		if option.cost <= gold && (slotsUsed < 6 || option.consumedSlots > 0) {
+			return true
+		}
+	}
+	return false
 }
 
 // SelectTarget applies a precomputed target plan without recalculating its recipe.
