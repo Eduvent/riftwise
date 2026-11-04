@@ -139,6 +139,7 @@
   let renderedDashboard = false;
   let connectionGeneration = 0;
   let streamOpen = false;
+  let dashboardResyncRequired = false;
   let activeDashboardRequest = null;
   let currentTrackerStatus = "waiting_for_game";
   let currentSessionID = "";
@@ -1447,7 +1448,7 @@
     if (elements.dashboard.hidden) {
       return;
     }
-    const adviceIsCurrent = DEMO_MODE || streamOpen;
+    const adviceIsCurrent = DEMO_MODE || (streamOpen && !dashboardResyncRequired);
     elements.dashboard.classList.toggle("is-suspended", !adviceIsCurrent);
     setText(elements.adviceFreshness, DEMO_MODE ? "Muestra fija" : (adviceIsCurrent ? "En vivo" : "Pausado"));
   }
@@ -1462,6 +1463,9 @@
   function advanceConnectionGeneration(isOpen) {
     connectionGeneration += 1;
     streamOpen = isOpen;
+    if (!isOpen) {
+      dashboardResyncRequired = true;
+    }
     abortDashboardRequest();
     return connectionGeneration;
   }
@@ -1507,6 +1511,11 @@
       if (!renderDashboard(snapshot)) {
         return null;
       }
+      if (requireOpen && dashboardResyncRequired) {
+        dashboardResyncRequired = false;
+        setConnection("live");
+        loadDecisionHistory(currentSessionID, true);
+      }
       synchronizeAdviceAvailability();
       return snapshot;
     } catch (error) {
@@ -1521,6 +1530,23 @@
     }
   }
 
+  function resynchronizeDashboard(generation, retrySuperseded = true) {
+    loadDashboard({ generation, requireOpen: true })
+      .then((snapshot) => {
+        // SSE may advance the revision while REST is in flight. Retry once;
+        // further hints can retry again, without spinning on stale responses.
+        if (!snapshot && retrySuperseded && isCurrentOpenConnection(generation) &&
+            dashboardResyncRequired && !activeDashboardRequest) {
+          resynchronizeDashboard(generation, false);
+        }
+      })
+      .catch(() => {
+        if (isCurrentOpenConnection(generation) && dashboardResyncRequired) {
+          suspendAdvice("Se recuperó el canal, pero la resincronización todavía no responde.");
+        }
+      });
+  }
+
   function connectEvents() {
     eventSource = new EventSource("/api/events");
     eventSource.addEventListener("open", () => {
@@ -1530,19 +1556,8 @@
       if (isReconnect) {
         setConnection("reconnecting");
         suspendAdvice("Canal restablecido; validando una instantánea vigente del servidor.");
-        loadDashboard({ generation, requireOpen: true })
-          .then((snapshot) => {
-            if (snapshot && isCurrentOpenConnection(generation)) {
-              setConnection("live");
-              synchronizeAdviceAvailability();
-              loadDecisionHistory(currentSessionID, true);
-            }
-          })
-          .catch(() => {
-            if (isCurrentOpenConnection(generation)) {
-              suspendAdvice("Se recuperó el canal, pero la resincronización todavía no responde.");
-            }
-          });
+        dashboardResyncRequired = true;
+        resynchronizeDashboard(generation);
       } else {
         setConnection("live");
         synchronizeAdviceAvailability();
@@ -1557,14 +1572,19 @@
         const snapshot = JSON.parse(event.data);
         if (renderDashboard(snapshot)) {
           synchronizeAdviceAvailability();
-          setConnection("live");
+          if (!dashboardResyncRequired) {
+            setConnection("live");
+          }
+        }
+        if (dashboardResyncRequired && !activeDashboardRequest) {
+          resynchronizeDashboard(connectionGeneration);
         }
       } catch {
         suspendAdvice("Se recibió una actualización inválida; se conserva la recomendación en pausa.");
       }
     });
     eventSource.addEventListener("decision_notification", (event) => {
-      if (!streamOpen) {
+      if (!streamOpen || dashboardResyncRequired) {
         return;
       }
       try {
