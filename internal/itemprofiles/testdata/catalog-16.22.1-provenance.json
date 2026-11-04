@@ -1,0 +1,69 @@
+{
+  "patch": "16.22.1",
+  "sources": {
+    "item.json": {
+      "url": "https://ddragon.leagueoflegends.com/cdn/16.22.1/data/es_MX/item.json",
+      "sha256": "146250c0810e6d5722fd8e829e66b2ac8d9fbb50d9ba8c6664f42b529e34ed30",
+      "version": "16.22.1",
+      "bytes": 736992
+    },
+    "championFull.json": {
+      "url": "https://ddragon.leagueoflegends.com/cdn/16.22.1/data/en_US/championFull.json",
+      "sha256": "c3a07eeae57e583263bcfd2c597e0b3a5cb735f6d5818865d58cd50d7cdaa282",
+      "version": "16.22.1",
+      "bytes": 2239228
+    }
+  },
+  "fixture": {
+    "path": "catalog-16.22.1.json",
+    "sha256": "3e5a6e0e31e2cb35db1908ef450d7b95e9f07a819bd957e74b2f0ad7a852cb02",
+    "bytes": 18865,
+    "item_count": 15,
+    "champion_ids": [
+      "Ahri"
+    ],
+    "candidate_item_ids": [
+      6653,
+      3089,
+      3157,
+      3047,
+      3111,
+      3009
+    ],
+    "recipe_closure_item_ids": [
+      1001,
+      1028,
+      1029,
+      1033,
+      1052,
+      1058,
+      2420,
+      2508,
+      3009,
+      3047,
+      3089,
+      3111,
+      3147,
+      3157,
+      6653
+    ]
+  },
+  "derivation": [
+    "Verified source byte lengths, SHA-256 hashes and document versions against the parent-downloaded official sources; no network is used by committed tests.",
+    "Normalized both complete official documents with internal/ddragon.Client.FetchCatalog for patch 16.22.1 and locale es_MX, using a local-only HTTP RoundTripper reading the downloaded files. This reuses the production normalizer, placeholder filtering and catalog validation.",
+    "Retained the six candidate IDs and their recursive From recipe closure. Preserved every normalized field and From edge; filtered Into edges only to retained IDs so the reduced fixture remains recipe-closed under catalog.Validate.",
+    "Retained only the normalized Ahri champion record, including official tags, passive and spell text. Set synced_at to the zero time for deterministic fixture bytes.",
+    "Serialized catalog.Catalog with Go json.MarshalIndent using two-space indentation and a trailing newline. The one-off local generator is not part of committed tests."
+  ],
+  "registry_scope": {
+    "profiles": [
+      "ahri_default",
+      "neutral"
+    ],
+    "curation_source": "Selected existing mage Liandry/Rabadon/Zhonya and neutral Steelcaps/Mercury/Swiftness candidates, plan copy, Ahri-only traits and policy tuning from rules/generic/v1/16.19.1.json. Candidate scoring and copy are conservative structural examples, not patch meta evidence.",
+    "validation": "All six selected candidates and all recursive recipe components are named, positively priced, purchasable and map-11 eligible in official 16.22.1 data; no candidate or recipe incompatibility was observed. The confirmed availability defect was the missing compatible registry document, not removed items.",
+    "roles": "Ahri NONE resolves to champion_default with empty canonical role and role_unavailable; no role is inferred. Neutral is schema-required, reactive-only and contains no unconditional core choice.",
+    "limits": "No other champion profiles, archetypes or champion traits are added. Catalog version does not establish installed game version when Live Client omits it. Offline tests do not establish live browser correctness or strategic efficacy."
+  },
+  "observed_recipe_or_price_differences_from_1619_fixture": []
+}

@@ -258,6 +258,8 @@ When an active game's `major.minor` matches a listed Data Dragon version, that p
 
 Cache lookup is locale-specific and prefers an exact game version, then the newest cached `major.minor` match, then the latest complete catalog as an explicit fallback. This local selection also runs when `LOL_ENGINE_DDRAGON_SYNC=false`. Remote or cache catalogs are accepted only when item map keys match their IDs and every retained recipe edge resolves.
 
+Generic profile availability is patch-specific. The `16.22.1` registry adds only Ahri's explicit champion default, plus the schema-required reactive neutral profile; it does not expand the other champion/role examples to this patch. Ahri with Live Client position `NONE` keeps an empty canonical role and the `role_unavailable` advisory rather than assuming middle. This default uses three existing curated structural candidates validated against official `16.22.1` items and their recipes, not evidence of strategic efficacy. Missing champion profiles can still return `insufficient_context`; an unknown or incompatible registry patch remains unavailable, with no cross-minor fallback. The selected catalog patch is **not** proof of the installed game patch when Live Client omits its version. Official fixture sources, hashes, and derivation are recorded in `internal/itemprofiles/testdata/catalog-16.22.1-provenance.json`.
+
 ## How the heuristic works
 
 Data Dragon does **not** provide an authoritative physical/magic/true damage split. The MVP therefore uses a transparent approximation:

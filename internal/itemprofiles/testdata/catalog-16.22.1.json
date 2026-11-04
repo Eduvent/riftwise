@@ -1,0 +1,574 @@
+{
+  "patch": "16.22.1",
+  "locale": "es_MX",
+  "synced_at": "0001-01-01T00:00:00Z",
+  "items": {
+    "1001": {
+      "id": 1001,
+      "name": "Botas",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e25\u003c/attention\u003e de Velocidad de Movimiento\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta ligeramente la Velocidad de Movimiento.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 300,
+        "total": 300,
+        "sell": 210,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        3047,
+        3009,
+        3111
+      ],
+      "tags": [
+        "Boots"
+      ],
+      "stats": {
+        "FlatMovementSpeedMod": 25
+      },
+      "image": {
+        "full": "1001.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "1028": {
+      "id": 1028,
+      "name": "Cristal de Rubí",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e150\u003c/attention\u003e de Vida\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta la Vida.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 400,
+        "total": 400,
+        "sell": 280,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        3147
+      ],
+      "tags": [
+        "Health"
+      ],
+      "stats": {
+        "FlatHPPoolMod": 150
+      },
+      "image": {
+        "full": "1028.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 336,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "1029": {
+      "id": 1029,
+      "name": "Armadura de Tela",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e15\u003c/attention\u003e de Armadura\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta ligeramente la Armadura.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 300,
+        "total": 300,
+        "sell": 210,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        2420,
+        3047
+      ],
+      "tags": [
+        "Armor"
+      ],
+      "stats": {
+        "FlatArmorMod": 15
+      },
+      "image": {
+        "full": "1029.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 384,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "1033": {
+      "id": 1033,
+      "name": "Manto Anulamagia",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e20\u003c/attention\u003e de Resistencia Mágica\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta ligeramente la Resistencia Mágica.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 400,
+        "total": 400,
+        "sell": 280,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        3111
+      ],
+      "tags": [
+        "SpellBlock"
+      ],
+      "stats": {
+        "FlatSpellBlockMod": 20
+      },
+      "image": {
+        "full": "1033.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 0,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "1052": {
+      "id": 1052,
+      "name": "Libro Amplificador",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e20\u003c/attention\u003e de Poder de Habilidad\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta levemente el poder de habilidad.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 400,
+        "total": 400,
+        "sell": 280,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        2420,
+        3147,
+        2508
+      ],
+      "tags": [
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatMagicDamageMod": 20
+      },
+      "image": {
+        "full": "1052.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 432,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "1058": {
+      "id": 1058,
+      "name": "Vara Innecesariamente Grande",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e65\u003c/attention\u003e de Poder de Habilidad\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta en gran medida el poder de habilidad.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 1200,
+        "total": 1200,
+        "sell": 840,
+        "purchasable": true
+      },
+      "from": [],
+      "into": [
+        3157,
+        3089
+      ],
+      "tags": [
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatMagicDamageMod": 65
+      },
+      "image": {
+        "full": "1058.png",
+        "sprite": "item0.png",
+        "group": "item",
+        "x": 240,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "2420": {
+      "id": 2420,
+      "name": "Guardabrazo del Buscador",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e40\u003c/attention\u003e de Poder de Habilidad\u003cbr\u003e\u003cattention\u003e25\u003c/attention\u003e de Armadura\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cactive\u003eDetener el Tiempo\u003c/active\u003e (Un solo uso):\u003cbr\u003eEntra en \u003ckeyword\u003eEstasis\u003c/keyword\u003e durante 2.5 seg.\u003c/mainText\u003e",
+      "plaintext": "Actívalo para volverte invencible. No podrás realizar ninguna acción.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 500,
+        "total": 1600,
+        "sell": 640,
+        "purchasable": true
+      },
+      "from": [
+        1052,
+        1029,
+        1052
+      ],
+      "into": [
+        3157
+      ],
+      "tags": [
+        "Armor",
+        "SpellDamage",
+        "Active"
+      ],
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatMagicDamageMod": 40
+      },
+      "image": {
+        "full": "2420.png",
+        "sprite": "item2.png",
+        "group": "item",
+        "x": 336,
+        "y": 432,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "2508": {
+      "id": 2508,
+      "name": "Cenizas Predestinadas",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e30\u003c/attention\u003e de Poder de Habilidad\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eEnardecer\u003c/passive\u003e\u003cbr\u003eLas habilidades de daño infligen \u003cmagicDamage\u003e15 de daño mágico adicional\u003c/magicDamage\u003e a lo largo de 3 seg.\u003cbr\u003eInflige \u003cmagicDamage\u003e45 de daño mágico\u003c/magicDamage\u003e adicional a monstruos.\u003c/mainText\u003e",
+      "plaintext": "",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 500,
+        "total": 900,
+        "sell": 630,
+        "purchasable": true
+      },
+      "from": [
+        1052
+      ],
+      "into": [
+        6653
+      ],
+      "tags": [
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatMagicDamageMod": 30
+      },
+      "image": {
+        "full": "2508.png",
+        "sprite": "item3.png",
+        "group": "item",
+        "x": 192,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3009": {
+      "id": 3009,
+      "name": "Botas de Rapidez",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e55\u003c/attention\u003e de Velocidad de Movimiento\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003ePies ligeros\u003c/passive\u003e\u003cbr\u003eReduce la eficacia de los efectos de \u003ckeyword\u003eralentización\u003c/keyword\u003e en un 25%.\u003c/mainText\u003e",
+      "plaintext": "Mejora la Velocidad de Movimiento y reduce el efecto de las ralentizaciones.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 700,
+        "total": 1000,
+        "sell": 700,
+        "purchasable": true
+      },
+      "from": [
+        1001
+      ],
+      "into": [],
+      "tags": [
+        "Boots"
+      ],
+      "stats": {
+        "FlatMovementSpeedMod": 55
+      },
+      "image": {
+        "full": "3009.png",
+        "sprite": "item3.png",
+        "group": "item",
+        "x": 96,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3047": {
+      "id": 3047,
+      "name": "Punteras de Acero Revestidas",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e25\u003c/attention\u003e de Armadura\u003cbr\u003e\u003cattention\u003e45\u003c/attention\u003e de Velocidad de Movimiento\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eRevestimiento\u003c/passive\u003e\u003cbr\u003eReduce el daño recibido de los ataques en un 10%.\u003c/mainText\u003e",
+      "plaintext": "Mejora la velocidad de movimiento y reduce el daño de ataque recibido.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 600,
+        "total": 1200,
+        "sell": 840,
+        "purchasable": true
+      },
+      "from": [
+        1001,
+        1029
+      ],
+      "into": [],
+      "tags": [
+        "Armor",
+        "Boots"
+      ],
+      "stats": {
+        "FlatArmorMod": 25,
+        "FlatMovementSpeedMod": 45
+      },
+      "image": {
+        "full": "3047.png",
+        "sprite": "item3.png",
+        "group": "item",
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3089": {
+      "id": 3089,
+      "name": "Sombrero Mortífero de Rabadon",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e130\u003c/attention\u003e de Poder de Habilidad\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eObra Mágica\u003c/passive\u003e\u003cbr\u003eAumenta tu \u003cscaleAP\u003ePoder de Habilidad total en un 30%\u003c/scaleAP\u003e.\u003c/mainText\u003e",
+      "plaintext": "Aumenta enormemente el poder de habilidad.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 1100,
+        "total": 3500,
+        "sell": 2450,
+        "purchasable": true
+      },
+      "from": [
+        1058,
+        1058
+      ],
+      "into": [],
+      "tags": [
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatMagicDamageMod": 130
+      },
+      "image": {
+        "full": "3089.png",
+        "sprite": "item3.png",
+        "group": "item",
+        "x": 288,
+        "y": 288,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3111": {
+      "id": 3111,
+      "name": "Botas de Mercurio",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e20\u003c/attention\u003e de Resistencia Mágica\u003cbr\u003e\u003cattention\u003e45\u003c/attention\u003e de Velocidad de Movimiento\u003cbr\u003e\u003cattention\u003e30%\u003c/attention\u003e de Tenacidad\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003c/mainText\u003e",
+      "plaintext": "Aumenta la velocidad de movimiento y reduce la duración de efectos incapacitantes.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 550,
+        "total": 1250,
+        "sell": 875,
+        "purchasable": true
+      },
+      "from": [
+        1001,
+        1033
+      ],
+      "into": [],
+      "tags": [
+        "Boots",
+        "SpellBlock",
+        "Tenacity"
+      ],
+      "stats": {
+        "FlatMovementSpeedMod": 45,
+        "FlatSpellBlockMod": 20
+      },
+      "image": {
+        "full": "3111.png",
+        "sprite": "item3.png",
+        "group": "item",
+        "x": 336,
+        "y": 336,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3147": {
+      "id": 3147,
+      "name": "Antifaz Embrujado",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e30\u003c/attention\u003e de Poder de Habilidad\u003cbr\u003e\u003cattention\u003e200\u003c/attention\u003e de Vida\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eLocura\u003c/passive\u003e\u003cbr\u003ePor cada seg en combate contra campeones enemigos, inflige un 2% de daño adicional, hasta un máximo del 6%. \u003c/mainText\u003e",
+      "plaintext": "Inflige daño físico adicional al emboscar enemigos.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 500,
+        "total": 1300,
+        "sell": 910,
+        "purchasable": true
+      },
+      "from": [
+        1052,
+        1028
+      ],
+      "into": [
+        6653
+      ],
+      "tags": [
+        "Health",
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatHPPoolMod": 200,
+        "FlatMagicDamageMod": 30
+      },
+      "image": {
+        "full": "3147.png",
+        "sprite": "item4.png",
+        "group": "item",
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "3157": {
+      "id": 3157,
+      "name": "Reloj de Arena de Zhonya",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e105\u003c/attention\u003e de Poder de Habilidad\u003cbr\u003e\u003cattention\u003e50\u003c/attention\u003e de Armadura\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cbr\u003e\u003cbr\u003e\u003cactive\u003eDetener el Tiempo\u003c/active\u003e\u003cbr\u003eEntras en \u003ckeyword\u003eEstasis\u003c/keyword\u003e durante 2.5 seg.\u003c/mainText\u003e",
+      "plaintext": "Actívalo para volverte invencible. No podrás realizar ninguna acción.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 450,
+        "total": 3250,
+        "sell": 2275,
+        "purchasable": true
+      },
+      "from": [
+        1058,
+        2420
+      ],
+      "into": [],
+      "tags": [
+        "Armor",
+        "SpellDamage",
+        "Active"
+      ],
+      "stats": {
+        "FlatArmorMod": 50,
+        "FlatMagicDamageMod": 105
+      },
+      "image": {
+        "full": "3157.png",
+        "sprite": "item4.png",
+        "group": "item",
+        "x": 336,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "6653": {
+      "id": 6653,
+      "name": "El Tormento de Liandry",
+      "description": "\u003cmainText\u003e\u003cstats\u003e\u003cattention\u003e60\u003c/attention\u003e de Poder de Habilidad\u003cbr\u003e\u003cattention\u003e300\u003c/attention\u003e de Vida\u003c/stats\u003e\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eTormento\u003c/passive\u003e\u003cbr\u003eInfligir daño con habilidades quema a los enemigos por un \u003cmagicDamage\u003e2% de su Vida Máxima como daño mágico\u003c/magicDamage\u003e por seg durante 3 seg.\u003cbr\u003e\u003cbr\u003e\u003cpassive\u003eSufrimiento\u003c/passive\u003e\u003cbr\u003ePor cada seg en combate contra campeones enemigos, inflige un 2% de daño adicional, hasta un 6%.\u003c/mainText\u003e",
+      "plaintext": "Cárgalo en combate para infligir una gran cantidad de daño prolongado, en especial contra enemigos resistentes.",
+      "purchasable": true,
+      "available_map_11": true,
+      "gold": {
+        "base": 800,
+        "total": 3000,
+        "sell": 2100,
+        "purchasable": true
+      },
+      "from": [
+        3147,
+        2508
+      ],
+      "into": [],
+      "tags": [
+        "Health",
+        "SpellDamage"
+      ],
+      "stats": {
+        "FlatHPPoolMod": 300,
+        "FlatMagicDamageMod": 60
+      },
+      "image": {
+        "full": "6653.png",
+        "sprite": "item6.png",
+        "group": "item",
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    }
+  },
+  "champions": {
+    "Ahri": {
+      "id": "Ahri",
+      "key": "103",
+      "name": "Ahri",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "passive": {
+        "name": "Essence Theft",
+        "description": "After killing 9 minions or monsters, Ahri heals.\u003cbr\u003eAfter taking down an enemy champion, Ahri heals for a greater amount."
+      },
+      "spells": [
+        {
+          "name": "Orb of Deception",
+          "description": "Ahri sends out and pulls back her orb, dealing magic damage on the way out and true damage on the way back. ",
+          "tooltip": "Ahri throws then pulls back her orb, dealing \u003cmagicDamage\u003e{{ totaldamage }} magic damage\u003c/magicDamage\u003e on the way out and \u003ctrueDamage\u003e{{ totaldamage }} true damage\u003c/trueDamage\u003e on the way back.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "name": "Fox-Fire",
+          "description": "Ahri gains a brief burst of Move Speed and releases three fox-fires, that lock onto and attack nearby enemies.",
+          "tooltip": "Ahri releases 3 fox-fires that seek nearby enemies and deal \u003cmagicDamage\u003e{{ singlefiredamage }} magic damage\u003c/magicDamage\u003e, reduced to \u003cmagicDamage\u003e{{ multifiredamage }} damage\u003c/magicDamage\u003e beyond the first. She also gains \u003cspeed\u003e{{ movementspeed*100 }}% Move Speed\u003c/speed\u003e decaying over {{ movementspeedduration }} seconds.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "name": "Charm",
+          "description": "Ahri blows a kiss that damages and charms an enemy it encounters, instantly stopping movement abilities and causing them to walk harmlessly towards her.",
+          "tooltip": "Ahri blows a kiss that \u003cstatus\u003eCharms\u003c/status\u003e the first enemy hit for {{ charmduration }} seconds and deals \u003cmagicDamage\u003e{{ totaldamage }} magic damage\u003c/magicDamage\u003e.{{ spellmodifierdescriptionappend }}"
+        },
+        {
+          "name": "Spirit Rush",
+          "description": "Ahri dashes forward and fires essence bolts, damaging nearby enemies. Spirit Rush can be cast up to three times before going on cooldown, and gains additional recasts when taking down enemy champions.",
+          "tooltip": "Ahri nimbly dashes, firing {{ rmaxtargetspercast }} essence bolts at nearby enemies, prioritizing champions. These bolts deal \u003cmagicDamage\u003e{{ rcalculateddamage }} magic damage\u003c/magicDamage\u003e each. \u003cspellName\u003eSpirit Rush\u003c/spellName\u003e can be \u003crecast\u003eRecast\u003c/recast\u003e up to 2 more times within {{ rrecastwindow }} seconds.\u003cbr /\u003e\u003cbr /\u003eConsuming a champion's Essence with \u003cspellName\u003eEssence Theft\u003c/spellName\u003e during this period extends the recast window by up to {{ pdurationextension }} seconds and grants an additional recast of \u003cspellName\u003eSpirit Rush\u003c/spellName\u003e (up to {{ rmaxcasts }} stored).{{ spellmodifierdescriptionappend }}"
+        }
+      ]
+    }
+  }
+}
