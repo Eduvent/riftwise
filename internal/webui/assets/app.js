@@ -200,6 +200,12 @@
       detail: "Por ahora el motor analiza a Garen en la Grieta del Invocador.",
       secondary: "No se mostrará una compra que no haya sido validada para este escenario.",
     },
+    insufficient_context: {
+      kicker: "CONTEXTO INSUFICIENTE",
+      title: "Aún no hay suficientes opciones para comparar",
+      detail: "El contexto actual no permite una comparación de objetos válida.",
+      secondary: "No se sugiere una compra hasta contar con una opción principal y dos alternativas válidas.",
+    },
     inventory_full: {
       kicker: "INVENTARIO LLENO",
       title: "No hay un espacio libre para otro componente",
@@ -890,6 +896,7 @@
       case "inventory_full":
       case "complete":
       case "unsupported":
+      case "insufficient_context":
       case "error":
         return recommendation.status;
       case "catalog_unavailable":

@@ -233,7 +233,7 @@ The separate **Historial y privacidad** view uses identity-free cards for champi
 
 The same view contains a separate optional account/statistics panel. It never asks for or stores an API key in browser state. Account linking requires an explicit consent checkbox, synchronization is manual unless server-side auto-sync was enabled, and account deletion preserves the independent local Live Client history. Historical groups label game count, observed wins, minimum-sample warnings, role/rank provenance, uniquely determined same-role matchup, and final item multiset; text explicitly says these are observations rather than causal recommendations.
 
-The UI explicitly handles loading, waiting for a game, catalog synchronization/unavailability, unsupported champion or mode, ready, saving for a component, full inventory, completed route, stale data, and calculation errors. Stale or disconnected advice is hidden or visibly paused rather than presented as current. Connection generations and aborted dashboard reads prevent an older response from reactivating advice after a newer event-stream disconnect.
+The UI explicitly handles loading, waiting for a game, catalog synchronization/unavailability, unsupported champion or mode, ready, saving for a component, full inventory, completed route, insufficient context, stale data, and calculation errors. A live `insufficient_context` recommendation shows **“CONTEXTO INSUFICIENTE”** and **“Aún no hay suficientes opciones para comparar”** in the polite status region, not a calculation error. It displays the engine's reason (or a Spanish fallback), preserves any warnings, and hides and clears prior purchase advice until a primary option and two valid alternatives are available. Stale or disconnected advice is hidden or visibly paused rather than presented as current. Connection generations and aborted dashboard reads prevent an older response from reactivating advice after a newer event-stream disconnect.
 
 The browser first reads `GET /api/dashboard`, then consumes complete `dashboard_snapshot` events from `/api/events`. Every dashboard snapshot includes an opaque server epoch in addition to its revision. A lower revision is accepted only after the epoch changes; the prior session, recommendation, toasts, and history view are paused/reset before the new snapshot can become live. Retired epochs are rejected so a delayed pre-restart response cannot reactivate old advice. After an event-stream reconnection the browser remains paused until it accepts a fresh dashboard read. Catalog source (`Data Dragon`, disk cache, in-memory cache, or active remote data that could not be persisted) and patch fallback are displayed independently: cached data is not automatically described as a patch mismatch, and a mismatch is warned regardless of source. In-memory fallback is identified explicitly, while unpersisted remote data warns that it could be lost after restart. Item icons are requested from the official Data Dragon CDN only after validating the patch and numeric item ID; text and dynamic elements use safe DOM APIs rather than HTML interpolation. A failed icon falls back to a local text tile. Unhashed CSS and JavaScript use HTTP revalidation rather than an hour-long freshness window, so restarting an updated binary cannot leave the old dashboard code silently active.
 
@@ -394,7 +394,7 @@ node --check internal/webui/assets/app.js
 node --check internal/webui/assets/state.js
 node --check internal/webui/assets/history.js
 node --check internal/webui/assets/history-state.js
-node --test internal/webui/state_test.js internal/webui/history_state_test.js
+node --test internal/webui/dashboard_test.js internal/webui/state_test.js internal/webui/history_state_test.js
 PATH=/opt/homebrew/opt/go@1.26/bin:$PATH GOTOOLCHAIN=local go test ./...
 PATH=/opt/homebrew/opt/go@1.26/bin:$PATH GOTOOLCHAIN=local go test -race ./...
 PATH=/opt/homebrew/opt/go@1.26/bin:$PATH GOTOOLCHAIN=local go vet ./...
@@ -410,7 +410,7 @@ PATH=/opt/homebrew/opt/go@1.26/bin:$PATH GOTOOLCHAIN=local \
   go test -tags=riotlive ./internal/riotapi -run TestLiveSmoke
 ```
 
-Embedded asset tests verify the root page, stylesheet, JavaScript, favicon, MIME types, API namespace isolation, authority checks, and safe browser-source contract without starting a server or making network requests.
+Embedded asset tests verify the root page, stylesheet, JavaScript, favicon, MIME types, API namespace isolation, authority checks, and safe browser-source contract without starting a server or making network requests. The Node dashboard tests execute the complete browser application with a minimal DOM and mocked fetch/SSE inputs, covering insufficient-context status copy, clearing prior advice, recovery, and existing ready/waiting/stale/error behavior; they do not require a running game or replace real-browser validation.
 
 ## Current limitations
 
