@@ -34,7 +34,7 @@ func (engine Engine) recommendGeneric(now time.Time, snapshot domain.Snapshot, k
 		return result
 	}
 	game := *snapshot.Game
-	if !strings.EqualFold(game.GameMode, "CLASSIC") || game.MapNumber != 11 {
+	if (!strings.EqualFold(game.GameMode, "CLASSIC") && !strings.EqualFold(game.GameMode, "PRACTICETOOL")) || game.MapNumber != 11 {
 		result.Status = StatusUnsupported
 		result.Reason = "Las recomendaciones de perfiles solo admiten la Grieta del Invocador."
 		return result

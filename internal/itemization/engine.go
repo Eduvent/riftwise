@@ -189,7 +189,7 @@ func (Engine) recommendLegacy(now time.Time, snapshot domain.Snapshot, knowledge
 		result.Reason = "Este MVP solo admite a Garen."
 		return result
 	}
-	if !strings.EqualFold(game.GameMode, "CLASSIC") || game.MapNumber != 11 {
+	if (!strings.EqualFold(game.GameMode, "CLASSIC") && !strings.EqualFold(game.GameMode, "PRACTICETOOL")) || game.MapNumber != 11 {
 		result.Status = StatusUnsupported
 		result.Reason = "Este MVP solo admite la Grieta del Invocador."
 		return result

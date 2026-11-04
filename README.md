@@ -417,7 +417,7 @@ The deterministic reconnect test (`node --test internal/webui/reconnect_test.js`
 
 ## Current limitations
 
-- Live recommendations remain limited to Summoner's Rift. Five champion/role pairs have explicit curated profiles; other champions deliberately use lower-confidence champion, role, tag, or neutral fallbacks.
+- Live recommendations support `CLASSIC` and `PRACTICETOOL` only on Summoner's Rift (map 11); other modes and maps remain unsupported. Practice Tool support does not imply that a compatible rule/profile document exists for the active catalog patch. Five champion/role pairs have explicit curated profiles; other champions deliberately use lower-confidence champion, role, tag, or neutral fallbacks.
 - Damage typing and ahead/even/behind state are documented heuristics, not Riot-provided truth.
 - Structured matchup traits are intentionally incomplete; unknown profiles lower confidence and require measured expansion.
 - No live rune detection, automatic rune/summoner selection, champion-select integration, causal historical coaching, overlay, Codex, or paid AI. Optional Match-V5 aggregates require consent and private/approved server configuration; local history still reports outcome as unavailable rather than guessing it. Pregame rune/summoner/initial options are curated profile comparisons, not detected loadouts or meta claims. Browser voice is an optional neutral live-decision cue, not generated coaching or a purchase command.
