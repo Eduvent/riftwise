@@ -38,8 +38,11 @@ class Element {
   setAttribute(name, value) { this.attributes[name] = String(value); }
   getAttribute(name) { return this.attributes[name] ?? null; }
   removeAttribute(name) { delete this.attributes[name]; delete this[name]; }
-  append(...nodes) { this.children.push(...nodes); }
-  replaceChildren(...nodes) { this.text = ""; this.children = [...nodes]; }
+  append(...nodes) { nodes.forEach((node) => { node.parent = this; }); this.children.push(...nodes); }
+  prepend(node) { node.parent = this; this.children.unshift(node); }
+  remove() { if (this.parent) this.parent.children = this.parent.children.filter((node) => node !== this); }
+  get lastElementChild() { return this.children.at(-1); }
+  replaceChildren(...nodes) { this.text = ""; this.children = []; this.append(...nodes); }
   addEventListener(name, listener) { this.listeners.set(name, listener); }
   get options() { return this.children.filter((child) => child.tagName === "option"); }
   get selectedOptions() { return this.options.filter((option) => option.selected); }
@@ -82,10 +85,11 @@ function createDocument() {
   };
 }
 
-async function startDashboard(snapshot) {
+async function startDashboard(snapshot, { decisionEvents = [] } = {}) {
   const document = createDocument();
   const streams = [];
   const requests = [];
+  const spoken = [];
   class EventSource {
     constructor(url) { this.url = url; this.listeners = new Map(); streams.push(this); }
     addEventListener(name, listener) { this.listeners.set(name, listener); }
@@ -99,6 +103,8 @@ async function startDashboard(snapshot) {
     document, EventSource, URLSearchParams, AbortController,
     localStorage: storage(), sessionStorage: storage(),
     location: { search: "" }, addEventListener() {}, setInterval() {}, setTimeout() {},
+    speechSynthesis: { cancel() {}, speak: (value) => spoken.push(value.text) },
+    SpeechSynthesisUtterance: function (text) { this.text = text; },
     fetch: async (url) => {
       requests.push(url);
       let payload;
@@ -106,7 +112,9 @@ async function startDashboard(snapshot) {
         case "/api/dashboard": payload = snapshot; break;
         case "/api/personalization/preferences": payload = {}; break;
         case "/api/personalization/options": payload = { patch: "16.18.1", items: [] }; break;
-        default: throw new Error(`Unexpected fetch: ${url}`);
+        default:
+          if (/^\/api\/matches\/[^/]+\/decision-events\?/.test(url)) payload = { events: decisionEvents };
+          else throw new Error(`Unexpected fetch: ${url}`);
       }
       return { ok: true, json: async () => structuredClone(payload) };
     },
@@ -121,7 +129,15 @@ async function startDashboard(snapshot) {
   assert.equal(streams.length, 1, "startup must reach the normal SSE connection");
   assert.equal(streams[0].url, "/api/events");
   streams[0].emit("open");
-  return { node: (id) => document.getElementById(id), send: (value) => streams[0].emit("dashboard_snapshot", value) };
+  return {
+    node: (id) => document.getElementById(id), spoken,
+    send: (value) => streams[0].emit("dashboard_snapshot", value),
+    enableVoice: () => {
+      const mode = document.getElementById("alert-mode");
+      mode.value = "voice";
+      mode.listeners.get("change")();
+    },
+  };
 }
 
 function snapshot(status, revision = 1, overrides = {}) {
@@ -184,6 +200,90 @@ function assertInsufficientContext(ui, detail) {
 
 const insufficientDetail = "El contexto actual no permite una comparación de objetos válida.";
 
+test("postgame ended session with waiting connection clears retained stale advice without reload", async () => {
+  const initial = ready();
+  initial.game.session = { id: "test-match", state: "active" };
+  const ui = await startDashboard(initial, { decisionEvents: [{
+    id: "test-decision", session_id: "test-match", sequence: 1,
+    kind: "component_affordable", importance: "important",
+    current_summary: "Componente disponible.", occurred_at: "2026-11-07T22:58:56Z",
+  }] });
+  assertReady(ui);
+  ui.enableVoice();
+  assert.equal(ui.node("decision-history-list").children.length, 1);
+
+  // Literal sanitized shape of the real postgame capture: the retained game
+  // and stale statuses coexist with a positively ended session, not an outage.
+  ui.send({
+    epoch: "test-epoch", revision: 2, updated_at: "2026-11-07T23:06:32.312022Z",
+    game: {
+      status: "stale", connection: "waiting", last_success_at: "2026-11-07T23:01:22.321377Z",
+      session: {
+        id: "test-match", state: "ended", end_reason: "terminal_event", end_confidence: 1,
+        ended_at: "2026-11-07T23:01:16.323632Z", last_game_time_seconds: 2464.1787109375,
+      },
+      game: { game_time_seconds: 2464.1787109375, game_mode: "PRACTICETOOL", map_number: 11 },
+    },
+    catalog: { ready: true, source: "remote", patch: "16.22.1" },
+    recommendation: { status: "stale", reason: "Los datos de la partida están desactualizados." },
+  });
+  assertCleared(ui);
+  assert.equal(ui.node("state-panel").hidden, false);
+  assert.equal(ui.node("state-panel").dataset.state, "waiting_for_game");
+  assert.equal(ui.node("state-panel").getAttribute("aria-live"), "polite");
+  assert.equal(ui.node("state-kicker").textContent, "LISTO PARA LEER");
+  assert.equal(ui.node("state-title").textContent, "Esperando una partida");
+  assert.equal(ui.node("state-detail").textContent, "Entra a una partida o a la Herramienta de práctica para activar el análisis.");
+  assert.equal(ui.node("state-secondary").textContent, "El launcher por sí solo no expone Live Client Data.");
+  assert.equal(ui.node("system-alert").hidden, true);
+  assert.equal(ui.node("system-alert-text").textContent, "");
+  assert.equal(ui.node("system-alert-details").children.length, 0);
+  assert.equal(ui.node("decision-alert-region").children.length, 0);
+  assert.equal(ui.node("decision-history-list").children.length, 1, "history is not replayed as new advice");
+  assert.deepEqual(ui.spoken, []);
+});
+
+test("independent T8 guard boundaries and next-match recovery", async () => {
+  const ui = await startDashboard(ready());
+  let revision = 2;
+  for (const [session, connection] of [
+    [{state:"active"}, "waiting"], [undefined, "waiting"],
+    [{state:"unknown"}, "waiting"], [null, "waiting"], [[], "waiting"],
+    [{state:"ended"}, "stale"], [{state:"ended"}, "connected"],
+    [{state:"ended"}, undefined], [{state:"active"}, "stale"],
+  ]) {
+    const next = ready(revision++);
+    Object.assign(next.game, {status:"stale", session, connection});
+    Object.assign(next.recommendation, {
+      status:"stale",
+      reason:"Los datos de la partida están desactualizados.",
+    });
+    ui.send(next);
+    assertCleared(ui);
+    assert.equal(ui.node("state-panel").dataset.state, "stale", JSON.stringify({session,connection}));
+    assert.equal(ui.node("state-title").textContent, "Recomendación pausada");
+    assert.equal(ui.node("system-alert-text").textContent, "Los datos dejaron de estar vigentes; la compra anterior permanece oculta.");
+    ui.send(ready(revision++));
+    assertReady(ui);
+  }
+  const ended = ready(revision++);
+  Object.assign(ended.game, {status:"stale", connection:"waiting", session:{state:"ended"}});
+  Object.assign(ended.recommendation, {status:"stale", reason:"Los datos de la partida están desactualizados."});
+  ui.send(ended);
+  assertCleared(ui);
+  assert.equal(ui.node("state-panel").dataset.state, "waiting_for_game");
+  assert.equal(ui.node("state-title").textContent, "Esperando una partida");
+  assert.equal(ui.node("state-detail").textContent, "Entra a una partida o a la Herramienta de práctica para activar el análisis.");
+  assert.equal(ui.node("system-alert").hidden, true);
+  ui.send(ready(revision++));
+  assertReady(ui);
+  const save = ready(revision++);
+  Object.assign(save.recommendation, {status:"save_for_component", gold_needed:50});
+  ui.send(save);
+  assert.equal(ui.node("dashboard-content").hidden, false);
+  assert.equal(ui.node("decision-status").textContent, "PLAN DE AHORRO");
+});
+
 test("initial dashboard fetch presents insufficient context without a calculation error", async () => {
   const ui = await startDashboard(snapshot("insufficient_context"));
   assertInsufficientContext(ui, insufficientDetail);
@@ -214,10 +314,16 @@ for (const [status, viewState, title, alert] of [
   ["stale", "stale", "Recomendación pausada", "Los datos dejaron de estar vigentes; la compra anterior permanece oculta."],
   ["error", "error", "Recomendación no disponible", "El motor seguirá escuchando actualizaciones para recuperarse automáticamente."],
 ]) {
-  test(`existing ${status} presentation still clears ready advice`, async () => {
+  test(`existing ${status === "stale" ? "active-match stale" : status} presentation still clears ready advice`, async () => {
     const ui = await startDashboard(ready());
     assertReady(ui);
-    ui.send(snapshot(status, 2));
+    const next = snapshot(status, 2);
+    if (status === "stale") {
+      next.game.status = "stale";
+      next.game.connection = "stale";
+      next.game.session = { id: "test-match", state: "active" };
+    }
+    ui.send(next);
     assertCleared(ui);
     assert.equal(ui.node("state-panel").hidden, false);
     assert.equal(ui.node("state-panel").dataset.state, viewState);
