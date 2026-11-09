@@ -184,6 +184,12 @@ An explicit pressure always wins. When a catalog-resolved lane opponent is suppl
 
 Rune, summoner, and initial-plan copy is stored in the strict patch-versioned generic profile registry. Each section has one to three stable `profile_curated` plain-text options with `when` and tradeoff fields. HTML/control characters and win-rate, pick-rate, tier, or “best” claims are rejected during registry compilation; lower-confidence fallbacks identify themselves as generic or assumed.
 
+### Proposed manual champion Draft contract
+
+Issue #4's [manual champion Draft v1 contract](docs/manual-draft-contract.md) and [deterministic synthetic acceptance fixtures](docs/draft-fixtures.json) define a separate, **proposed** pick-only comparison boundary: allied/enemy picks, bans as exclusions, explicit unknown/flexible roles, legal unranked alternatives, evidence provenance and insufficient-evidence states. The fixtures are review oracles, not results executed against a Draft engine; their structural notes are synthetic and non-empirical.
+
+`/api/pregame/plan` remains **item/recipe planning**, not champion picks/bans. No Draft endpoint, ranking model or automatic champion-select capture is implemented. Human review of the contract and fixtures, and separate approval of any future ranking model, remain pending; item scores and profile confidence are not champion-selection evidence.
+
 ### Match lifecycle and event semantics
 
 `/api/game` and `/api/dashboard` add the current connection state, local match session, decision revision, and a bounded recent-event view. SQLite history is authoritative; dashboard SSE remains a lossy latest-snapshot transport and is not the only copy of a semantic event. Event IDs and per-match sequences are stable, and `(match, dedupe_key)` uniqueness prevents cumulative Riot events from replaying after reconnect or restart.
