@@ -1,6 +1,6 @@
 {
   "version": "live-draft-fixtures.v1",
-  "notice": "Hypothetical acceptance oracles, not LCU captures or executed engine tests. Patch, revisions, role context and recommendation ordering are synthetic. No scores, confidence, performance or match-outcome probabilities are asserted.",
+  "notice": "Hypothetical acceptance oracles, not LCU captures or executed engine tests. Patch, revisions, role context, scores and recommendation ordering are synthetic. Scores are authored internal valuations on the inclusive 0.0..5.0 scale, not actual champion evaluations, confidence, performance or match-outcome probabilities.",
   "catalog": {
     "id": "synthetic-catalog.v2", "source": "synthetic_fixture", "version": "2", "patch": "0.0.0",
     "champions": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"],
@@ -15,7 +15,7 @@
       {"Lux": "middle", "Senna": "support"},
       {"Lux": "support", "Senna": "bottom"}
     ],
-    "limitation": "Curated synthetic role alternatives stand in for future curated/statistical per-role frequency context. They are not measured frequencies or proof of current patch suitability. Card order is authored, not calculated."
+    "limitation": "Curated synthetic role alternatives stand in for future curated/statistical per-role frequency context. They are not measured frequencies or proof of current patch suitability. Card scores and descending order are authored to test the contract, not calculated from gameplay evidence."
   },
   "preferences": {
     "id": "saved-mains.v1", "version": "1", "mains": {"middle": ["Ahri", "Vex"]}
@@ -49,9 +49,9 @@
                 {"champion": "Senna", "label": "Probable: bottom or support", "roles": ["bottom", "support"], "basis": "probable"}
               ],
               "recommendations": [
-                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ],
               "notices": ["Enemy lanes are probable; flex alternatives remain open."]
             }
@@ -71,8 +71,8 @@
                 {"champion": "Vex", "label": "Lane unknown", "roles": [], "basis": "unknown"}
               ],
               "recommendations": [
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ],
               "notices": ["Enemy lane context is incomplete."]
             }
@@ -91,7 +91,7 @@
                 {"champion": "Senna", "label": "Probable: bottom or support", "roles": ["bottom", "support"], "basis": "probable"},
                 {"champion": "Vex", "label": "Lane unknown", "roles": [], "basis": "unknown"}
               ],
-              "recommendations": [{"champion": "Annie", "reasons": ["Middle option outside your mains."]}],
+              "recommendations": [{"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}],
               "notices": ["Enemy lane context is incomplete.", "Only one supported middle option remains."]
             }
           }
@@ -112,9 +112,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ], "notices": []
             }
           }
@@ -128,9 +128,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ], "notices": []
             }
           }
@@ -144,9 +144,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ], "notices": []
             }
           }
@@ -160,8 +160,8 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Support · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Senna", "reasons": ["Support option; no saved support mains."]},
-                {"champion": "Lux", "reasons": ["Flexible support option; no saved support mains."]}
+                {"champion": "Senna", "score": 4.0, "reasons": ["Support option; no saved support mains."]},
+                {"champion": "Lux", "score": 0.0, "reasons": ["Flexible support option; no saved support mains."]}
               ], "notices": []
             }
           }
@@ -175,8 +175,8 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Support · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Senna", "reasons": ["Support option; no saved support mains."]},
-                {"champion": "Lux", "reasons": ["Flexible support option; no saved support mains."]}
+                {"champion": "Senna", "score": 4.0, "reasons": ["Support option; no saved support mains."]},
+                {"champion": "Lux", "score": 0.0, "reasons": ["Flexible support option; no saved support mains."]}
               ], "notices": []
             }
           }
@@ -228,9 +228,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+                {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
               ], "notices": []
             }
           }
@@ -264,9 +264,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]},
-                {"champion": "Lux", "reasons": ["Flexible middle option outside your mains."]}
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]},
+                {"champion": "Lux", "score": 0.0, "reasons": ["Flexible middle option outside your mains."]}
               ], "notices": []
             }
           }
@@ -304,9 +304,9 @@
             "presentation": {
               "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
               "recommendations": [
-                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
-                {"champion": "Annie", "reasons": ["Middle option outside your mains."]},
-                {"champion": "Lux", "reasons": ["Flexible middle option outside your mains."]}
+                {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]},
+                {"champion": "Lux", "score": 0.0, "reasons": ["Flexible middle option outside your mains."]}
               ], "notices": []
             }
           }

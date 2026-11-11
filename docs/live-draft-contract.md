@@ -1,12 +1,12 @@
-# Automatic live Draft assistance — proposed contract
+# Automatic live Draft assistance — approved product contract
 
-**Goal:** champion select automatically produces refreshed champion recommendations with reasons on a second screen or overlay. The player does not request advice, enter a role each match, or supply a candidate list. This is issue #4's product definition and synthetic acceptance contract, **not an implemented engine or product approval**.
+**Goal:** champion select automatically produces refreshed, scored champion recommendations with reasons on a second screen or overlay. The player does not request advice, enter a role each match, or supply a candidate list. **Product behavior and synthetic fixtures are approved with the numeric-scale correction below.** Issue #4 defines the product; it does not implement an engine or approve a ranking formula, data sources, empirical efficacy, LCU behavior or policy compliance.
 
 ## Happy path
 
 1. The player enters champion select. A future local observer reads the draft and identifies the local player's assigned role when available.
 2. Internal evaluation combines the observed picks/bans, catalog-backed availability, role context and optional saved mains. For example, saved middle mains Ahri/Vex receive preference without excluding Annie or other eligible non-mains.
-3. A second-screen view (two monitors) or overlay (one monitor) refreshes recommendations and reasons automatically as the draft changes. Multiple useful options are the goal, not a notes-only alphabetical catalog. The ranking formula, data sources and empirical efficacy still need separate review.
+3. A second-screen view (two monitors) or overlay (one monitor) refreshes recommendations, numeric ratings and reasons automatically as the draft changes. Show cards in descending score order. Multiple useful options are the goal, not a notes-only alphabetical catalog. The ranking formula, data sources and empirical efficacy still need separate review.
 4. A newly observed role assignment updates the advice. Losing fresh state pauses it; ending the draft clears it. No stale recommendation carries into a new session.
 
 No HTTP endpoint, CLI change, ranking algorithm or runtime UI is designed or implemented here. The existing manual item/recipe planner is independent; its form, scores and confidence are not Draft inputs or selection evidence.
@@ -17,14 +17,20 @@ No HTTP endpoint, CLI change, ranking algorithm or runtime UI is designed or imp
 | --- | --- |
 | `waiting` | No active draft; “Waiting for champion select.” No old cards. |
 | `collecting` | Coherent draft, but role or recommendation context is missing. Explain what is being awaited; do not ask for a per-match form. No unsupported role-specific advice. |
-| `live` | Current, coherent evaluation; show available champion options and readable reasons. Prefer multiple options when supported; one remaining option is not padded with invented alternatives. |
+| `live` | Current, coherent evaluation; show available champion options, numeric scores and readable reasons in descending score order. Prefer multiple options when supported; one remaining option is not padded with invented alternatives. |
 | `unavailable` | Connection loss, stale, inconsistent or out-of-order state; clear actionable cards and explain reconnection/resynchronization. Never blame “invalid input” on the player. |
 
 Detected local roles and **probable** hidden enemy lanes have different labels. Do not show a match-outcome probability or invented confidence/performance. Cards need not disclose every source; internal source/version/patch metadata remains available for debugging. Missing role data is not a player error. “Detected” means reported client assignment, not proof of an informal chat agreement.
 
+### Pick rating scale
+
+Every displayed suggested pick has a finite numeric `score` within **0.0..5.0 inclusive**. Higher means a stronger internal evaluation: **5.0 is highest; 0.0 is lowest**. Display cards in descending (non-increasing) score order. Scores are internal valuations, not probabilities, calibrated confidence or a mapping to measured gameplay efficacy. No formula, factors/weights, thresholds or tie policy is selected here.
+
+Missing context or evidence is **not score 0.0**. Keep actionable cards empty while collecting required context or while unavailable; a numeric minimum cannot substitute for an unsupported evaluation. The existing waiting, unknown-role and freshness rules still apply.
+
 ### Concrete synthetic example
 
-The following summary is pinned to `automatic_mains_and_draft_updates/detected_middle` in the [fixtures](draft-fixtures.json); the fixture stores the complete evaluation and presentation. The order is authored for illustration, not a scored result.
+The following summary is pinned to `automatic_mains_and_draft_updates/detected_middle` in the [fixtures](draft-fixtures.json); the fixture stores the complete evaluation and presentation. Scores and their descending order are authored solely to test the contract, **not actual champion evaluations**. Other existing steps include score 0.0 to exercise the lower boundary; it is not an unknown-data sentinel.
 
 ```json
 {
@@ -32,7 +38,11 @@ The following summary is pinned to `automatic_mains_and_draft_updates/detected_m
   "step": "detected_middle",
   "state": "live",
   "role_label": "Middle · detected",
-  "recommendations": ["Vex", "Ahri", "Annie"]
+  "recommendations": [
+    {"champion": "Vex", "score": 5.0, "reasons": ["Middle option; saved middle main."]},
+    {"champion": "Ahri", "score": 4.0, "reasons": ["Middle option; saved middle main."]},
+    {"champion": "Annie", "score": 3.0, "reasons": ["Middle option outside your mains."]}
+  ]
 }
 ```
 
@@ -71,7 +81,7 @@ Riot's [official League Client API documentation](https://developer.riotgames.co
 
 Use observed champions plus trusted curated/statistical **per-role frequency context**, retaining internal source, dataset/rule version, applicable patch and limitations. Hidden lanes remain probable even when one looks likely. Preserve flex alternatives and feasible team assignments; do not independently force two champions into one lane. If supporting context is missing, retain “Lane unknown” rather than invent frequencies or identify hidden players. Algorithm and data-source selection are future scope; fixtures use authored role alternatives, not measured statistics.
 
-Long-term analysis of **synergy, counters and AD/AP composition** remains a product roadmap, not a notes-only ceiling and not required runtime work here. Empirical efficacy, ranking/formula acceptance, population/patch applicability and calibration need independent evidence and approval. [Live rune suggestions #7](https://github.com/Eduvent/riftwise/issues/7) are a separate enhancement ([scope](rune-suggestions-follow-up.md)); existing curated manual pregame rune copy is not that feature.
+Long-term analysis of **synergy, counters and AD/AP composition** remains a product roadmap, not a notes-only ceiling and not required runtime work here. Empirical efficacy, ranking/formula acceptance, population/patch applicability and calibration need independent evidence and approval. The first [Draft feasibility and scoring investigation](draft-engine-investigation.md) separates that research from #4's approved product definition. [Live rune suggestions #7](https://github.com/Eduvent/riftwise/issues/7) are a separate enhancement ([scope](rune-suggestions-follow-up.md)); existing curated manual pregame rune copy is not that feature.
 
 ### Freshness and revision rules
 
@@ -95,7 +105,7 @@ These are safety invariants, not a storage/event-bus protocol. Internal diagnost
 | `unknown_or_missing_role` | Blank and absent assignment; collecting without a form or invented role. |
 | `freshness_and_session_boundaries` | Loss, stale, recovery, older revision, conflicting state, fresh recovery, end, new session, retired-session arrival. |
 
-All numbers (patch `0.0.0`, versions and revisions) are synthetic identifiers/order markers. The role pair scenarios and card copy are hypothetical acceptance choices, not gameplay evidence. No Draft engine has executed these cases. Applicable behavior RED/GREEN and differential runtime checks are inapplicable: only passive artifacts change, and no shared runtime helpers change. Do not implement a validator/model merely to execute them. No Go/Node suites are required.
+Patch `0.0.0`, versions and revisions are synthetic identifiers/order markers. Card scores are synthetic numeric valuations, authored only to exercise the inclusive scale and descending order, not actual champion evaluations. The role pair scenarios and card copy are hypothetical acceptance choices, not gameplay evidence. No Draft engine has executed these cases. Applicable behavior RED/GREEN and differential runtime checks are inapplicable: only passive artifacts change, and no shared runtime helpers change. Do not implement a validator/model merely to execute them. No Go/Node suites are required.
 
 Run from the repository root; the standard-library command reads only these artifacts, writes nothing and performs **stored-artifact consistency inspection**, not engine evaluation:
 
@@ -105,6 +115,7 @@ python3 -c 'from pathlib import Path; exec(Path("docs/live-draft-contract.md").r
 
 ```python
 import json
+import math
 import re
 from pathlib import Path
 
@@ -147,6 +158,16 @@ required = {
 cases = {case["id"]: case for case in data["cases"]}
 assert len(cases) == len(data["cases"]) and set(cases) == set(required)
 outputs = {}
+observed_scores = []
+# Authored card identity/reason expectations, not a recommendation algorithm.
+card_reasons = {
+    ("middle", "Vex"): ["Middle option; saved middle main."],
+    ("middle", "Ahri"): ["Middle option; saved middle main."],
+    ("middle", "Annie"): ["Middle option outside your mains."],
+    ("middle", "Lux"): ["Flexible middle option outside your mains."],
+    ("support", "Senna"): ["Support option; no saved support mains."],
+    ("support", "Lux"): ["Flexible support option; no saved support mains."],
+}
 for cid, case in cases.items():
     assert case["preference_ref"] == prefs["id"]
     assert [s["id"] for s in case["steps"]] == required[cid]
@@ -184,8 +205,13 @@ for cid, case in cases.items():
         assert len({card["champion"] for card in cards}) == len(cards)
         assert bool(cards) == (view["state"] == "live")
         for card in cards:
-            assert set(card) == {"champion", "reasons"} and card["champion"] in ev["eligible"]
-            assert card["reasons"] and all(isinstance(r, str) and r for r in card["reasons"])
+            assert set(card) == {"champion", "score", "reasons"} and card["champion"] in ev["eligible"]
+            score = card["score"]
+            assert type(score) in (int, float) and math.isfinite(score)
+            assert 0.0 <= score <= 5.0
+            assert card["reasons"] == card_reasons[(ev["role"]["value"], card["champion"])]
+            observed_scores.append(score)
+        assert all(a["score"] >= b["score"] for a, b in zip(cards, cards[1:]))
         for lane in view["enemy_lanes"]:
             assert set(lane) == {"champion", "label", "roles", "basis"}
             alternatives = ctx["role_context"].get(lane["champion"], [])
@@ -193,6 +219,7 @@ for cid, case in cases.items():
             assert lane["basis"] == ("probable" if alternatives else "unknown")
             assert lane["label"] == ("Probable: " + " or ".join(alternatives) if alternatives else "Lane unknown")
         outputs[(cid, step["id"])] = expected
+assert len(outputs) == 21 and {0.0, 5.0} <= set(observed_scores)
 first = "automatic_mains_and_draft_updates"
 initial = outputs[(first, "detected_middle")]
 assert "Annie" in initial["evaluation"]["eligible"] and "Annie" not in prefs["mains"]["middle"]
@@ -203,7 +230,12 @@ swap = "observable_and_unobservable_swaps"
 assert outputs[(swap, "before_swaps")]["presentation"] == outputs[(swap, "pick_order_only")]["presentation"] == outputs[(swap, "champion_swap_only")]["presentation"]
 assert outputs[(swap, "explicit_position_update")]["presentation"] == outputs[(swap, "informal_swap_unobservable")]["presentation"]
 assert outputs[(swap, "explicit_position_update")]["evaluation"]["role"]["value"] == "support"
+assert [c["champion"] for c in outputs[(swap, "before_swaps")]["presentation"]["recommendations"]] == ["Vex", "Ahri", "Annie"]
+assert [c["champion"] for c in outputs[(swap, "explicit_position_update")]["presentation"]["recommendations"]] == ["Senna", "Lux"]
 life = "freshness_and_session_boundaries"
+assert [c["champion"] for c in outputs[(life, "initial_live")]["presentation"]["recommendations"]] == ["Vex", "Ahri", "Annie"]
+for sid in ("recovery", "coherent_recovery"):
+    assert [c["champion"] for c in outputs[(life, sid)]["presentation"]["recommendations"]] == ["Ahri", "Annie", "Lux"]
 assert [outputs[(life, sid)]["evaluation"]["validity"] for sid in required[life]] == [
     "current", "disconnected", "stale", "current", "out_of_order", "inconsistent", "current", "no_session", "current", "current"
 ]
@@ -211,12 +243,14 @@ assert outputs[(life, "retired_session_arrival")] == outputs[(life, "new_session
 text = Path("docs/live-draft-contract.md").read_text()
 example, = [json.loads(b, object_pairs_hook=unique_object) for b in re.findall(r"```json\n(.*?)\n```", text, re.S)]
 view = outputs[(example["case"], example["step"])]["presentation"]
-assert example == {"case": first, "step": "detected_middle", "state": view["state"], "role_label": view["role_label"], "recommendations": [c["champion"] for c in view["recommendations"]]}
-print(f"PASS: {len(cases)} cases, {len(outputs)} complete stored outputs; references, timelines, preferences, probable/detected labels and concrete example consistent. No Draft engine executed.")
+assert example == {"case": first, "step": "detected_middle", "state": view["state"], "role_label": view["role_label"], "recommendations": view["recommendations"]}
+print(f"PASS: {len(cases)} cases, {len(outputs)} complete stored outputs; {len(observed_scores)} cards with finite 0.0..5.0 scores in descending order, both boundaries observed; identities/reasons, references, timelines, preferences, probable/detected labels and concrete example consistent. No Draft engine executed.")
 ```
 
 ## Review and next steps
 
-Authored: this live contract, [superseded pointer](manual-draft-contract.md), synthetic timelines, [replacement #4 issue body](issue-4-live-draft.md), [rune follow-up](rune-suggestions-follow-up.md) and README summary. Publication belongs to the parent workflow; these files do not publish an issue.
+**Approved definition:** product behavior and synthetic fixtures, including every pick's 5.0-to-0.0 rating and descending display order. This is sufficient for #4's product-definition acceptance; research and runtime delivery are separate, not remaining completion criteria for this definition issue.
 
-Pending human gates: approve/narrow product behavior and fixtures; separately approve implementation, ranking/evidence criteria and source selection. Pending technical proof: policy/endpoint-usage checks, real-client assigned-role and explicit-swap observations, unknown-role behavior, availability, ordering/freshness/recovery, and second-screen/overlay integration. None are satisfied by passive inspection.
+Authored: this live contract, [superseded pointer](manual-draft-contract.md), synthetic timelines, [#4 issue body](issue-4-live-draft.md), [first investigation scope](draft-engine-investigation.md), [rune follow-up](rune-suggestions-follow-up.md) and README summary. Integration, issue publication and closure belong to the parent workflow; these files do not claim they have occurred.
+
+**Future gates:** separately approve implementation, ranking/evidence criteria and source selection. Obtain policy/endpoint-usage evidence, real-client assigned-role and explicit-swap observations, unknown-role behavior, availability, ordering/freshness/recovery, and second-screen/overlay validation. The investigation proposes a bounded path to those decisions; neither its publication nor passive fixture inspection proves them.
