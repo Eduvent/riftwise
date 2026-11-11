@@ -71,7 +71,7 @@ Riot's [official League Client API documentation](https://developer.riotgames.co
 
 Use observed champions plus trusted curated/statistical **per-role frequency context**, retaining internal source, dataset/rule version, applicable patch and limitations. Hidden lanes remain probable even when one looks likely. Preserve flex alternatives and feasible team assignments; do not independently force two champions into one lane. If supporting context is missing, retain “Lane unknown” rather than invent frequencies or identify hidden players. Algorithm and data-source selection are future scope; fixtures use authored role alternatives, not measured statistics.
 
-Long-term analysis of **synergy, counters and AD/AP composition** remains a product roadmap, not a notes-only ceiling and not required runtime work here. Empirical efficacy, ranking/formula acceptance, population/patch applicability and calibration need independent evidence and approval. [Live rune suggestions](rune-suggestions-follow-up.md) are a separate enhancement; existing curated manual pregame rune copy is not that feature.
+Long-term analysis of **synergy, counters and AD/AP composition** remains a product roadmap, not a notes-only ceiling and not required runtime work here. Empirical efficacy, ranking/formula acceptance, population/patch applicability and calibration need independent evidence and approval. [Live rune suggestions #7](https://github.com/Eduvent/riftwise/issues/7) are a separate enhancement ([scope](rune-suggestions-follow-up.md)); existing curated manual pregame rune copy is not that feature.
 
 ### Freshness and revision rules
 

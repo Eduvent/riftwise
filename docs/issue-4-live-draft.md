@@ -1,4 +1,4 @@
-# Title: Define automatic live champion-select assistance and acceptance timelines
+# Title: [P1] Define automatic live champion-select assistance and acceptance timelines
 
 ## Goal
 
@@ -23,7 +23,7 @@ These branch-qualified links work before merge; they identify the proposal, not 
 - [Live contract and reproducible passive inspection](https://github.com/Eduvent/riftwise/blob/docs/4-manual-draft-contract/docs/live-draft-contract.md)
 - [Synthetic event timelines with complete expected outputs](https://github.com/Eduvent/riftwise/blob/docs/4-manual-draft-contract/docs/draft-fixtures.json)
 - [README implementation boundary](https://github.com/Eduvent/riftwise/blob/docs/4-manual-draft-contract/README.md)
-- [Separate live rune enhancement proposal](https://github.com/Eduvent/riftwise/blob/docs/4-manual-draft-contract/docs/rune-suggestions-follow-up.md) — link the exact follow-up issue after publication.
+- [Separate live rune enhancement #7](https://github.com/Eduvent/riftwise/issues/7), with its [scope document](https://github.com/Eduvent/riftwise/blob/docs/4-manual-draft-contract/docs/rune-suggestions-follow-up.md).
 
 The obsolete manual Draft proposal is now only a superseded pointer. The existing manual **item/recipe planner** and its curated rune copy remain independent and unchanged.
 
@@ -35,7 +35,7 @@ The obsolete manual Draft proposal is now only a superseded pointer. The existin
 - [x] Separate catalog availability from optional saved mains, retaining a non-main option in the middle example.
 - [x] Provide deterministic synthetic timelines covering role detection/swaps/unknowns, probable flex lanes, picks/bans, stale/recovery, contradictory/out-of-order state and session boundaries, with complete stored expected outputs.
 - [x] Replace the manual-spec entry point and update the README without changing runtime/API/CLI contracts.
-- [x] Draft a separate live rune enhancement rather than silently adding it to #4's implementation scope.
+- [x] Publish separate live rune enhancement [#7](https://github.com/Eduvent/riftwise/issues/7) rather than silently adding it to #4's implementation scope.
 
 ### Pending human decisions and technical proof
 
@@ -43,7 +43,6 @@ The obsolete manual Draft proposal is now only a superseded pointer. The existin
 - [ ] Review ranking/evidence criteria and source-selection requirements before approving a ranking method or efficacy claims.
 - [ ] Confirm future implementation scope separately, including second-screen/overlay delivery and safe missing-data behavior.
 - [ ] Before LCU integration, verify current Riot policy/endpoint registration requirements and real-client role, explicit-swap, blank-role, availability and freshness behavior.
-- [ ] Replace the rune proposal link with the exact published enhancement issue number after publication.
 
 ## Feasibility and boundaries
 
