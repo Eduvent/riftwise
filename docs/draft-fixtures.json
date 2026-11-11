@@ -1,355 +1,351 @@
 {
-  "version": "manual-draft-fixtures.v1",
-  "notice": "Proposed acceptance oracles only; no Draft engine has executed them. Identity examples use familiar names, but the catalog patch and structural mechanics are synthetic and non-empirical.",
+  "version": "live-draft-fixtures.v1",
+  "notice": "Hypothetical acceptance oracles, not LCU captures or executed engine tests. Patch, revisions, role context and recommendation ordering are synthetic. No scores, confidence, performance or match-outcome probabilities are asserted.",
   "catalog": {
-    "id": "synthetic-catalog.v1", "revision": "1", "patch": "0.0.0", "source": "synthetic_fixture",
-    "champions": [
-      {"id": "Ahri", "name": "Ahri"}, {"id": "Amumu", "name": "Amumu"},
-      {"id": "Annie", "name": "Annie"}, {"id": "Ashe", "name": "Ashe"},
-      {"id": "Garen", "name": "Garen"}, {"id": "Jinx", "name": "Jinx"},
-      {"id": "Khazix", "name": "Kha'Zix"}, {"id": "Leona", "name": "Leona"},
-      {"id": "Lux", "name": "Lux"}, {"id": "Nami", "name": "Nami"},
-      {"id": "Ornn", "name": "Ornn"}, {"id": "Riven", "name": "Riven"},
-      {"id": "Senna", "name": "Senna"}, {"id": "Shen", "name": "Shen"},
-      {"id": "Vi", "name": "Vi"}, {"id": "Yasuo", "name": "Yasuo"}
-    ]
+    "id": "synthetic-catalog.v2", "source": "synthetic_fixture", "version": "2", "patch": "0.0.0",
+    "champions": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"],
+    "available": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"]
   },
-  "structural_sets": [
-    {"id": "synthetic-structure.v1", "revision": "1", "source": "synthetic_fixture", "patch": "0.0.0", "records": [
-      {"id": "s-ahri", "kind": "curated_structural", "champion_id": "Ahri", "source": "synthetic_fixture", "revision": "1", "patch": "0.0.0", "claim": "Synthetic option A trades reach for setup.", "limitation": "Invented fixture mechanic; not a claim about Ahri or match outcomes."},
-      {"id": "s-garen", "kind": "curated_structural", "champion_id": "Garen", "source": "synthetic_fixture", "revision": "1", "patch": "0.0.0", "claim": "Synthetic option B trades setup for reach.", "limitation": "Invented fixture mechanic; not a claim about Garen or match outcomes."}
-    ]},
-    {"id": "synthetic-empty.v1", "revision": "1", "source": "synthetic_fixture", "patch": "0.0.0", "records": []}
-  ],
-  "empirical_records": [],
-  "identity_examples": {"garen":"Garen"," AHRI ":"Ahri","Kha'Zix":"Khazix","Kha Zix":"Khazix","jinx":"Jinx","ahri":"Ahri"},
+  "context": {
+    "id": "synthetic-context.v1", "source": "authored_fixture", "version": "1", "patch": "0.0.0",
+    "catalog_ref": "synthetic-catalog.v2",
+    "role_context": {"Lux": ["middle", "support"], "Senna": ["bottom", "support"]},
+    "feasible_pair_scenarios": [
+      {"Lux": "middle", "Senna": "bottom"},
+      {"Lux": "middle", "Senna": "support"},
+      {"Lux": "support", "Senna": "bottom"}
+    ],
+    "limitation": "Curated synthetic role alternatives stand in for future curated/statistical per-role frequency context. They are not measured frequencies or proof of current patch suitability. Card order is authored, not calculated."
+  },
+  "preferences": {
+    "id": "saved-mains.v1", "version": "1", "mains": {"middle": ["Ahri", "Vex"]}
+  },
   "cases": [
     {
-      "id": "partial_unknown_roles", "description": "Partial picks; omitted/null roles and target; case/spacing/display-name aliases; bans exclude Leona.",
-      "context": {"catalog_id": "synthetic-catalog.v1", "structural_set_id": "synthetic-structure.v1"},
-      "input": {"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx"}],"bans":[]},"enemy":{"picks":[{"champion":"Kha'Zix","role":null}],"bans":["Leona"]},"candidates":["garen"," AHRI "],"target_role":null},
-      "expected": {
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx","role":"unknown","flex_roles":[]}],"bans":[]},"enemy":{"picks":[{"champion":"Khazix","role":"unknown","flex_roles":[]}],"bans":["Leona"]},"candidates":["Ahri","Garen"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/allied/picks/0/role","/enemy/picks/0/role","/target_role"],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
+      "id": "automatic_mains_and_draft_updates",
+      "description": "No user request. Detect middle; preserve non-mains and flex enemies; an enemy pick and a ban refresh advice automatically.",
+      "preference_ref": "saved-mains.v1",
+      "steps": [
+        {
+          "id": "waiting", "event": {"kind": "no_session"},
+          "expected": {
+            "evaluation": {"validity": "no_session", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "waiting", "message": "Waiting for champion select.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "detected_middle",
+          "event": {"kind": "fresh_snapshot", "session": "draft-a", "revision": 1,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": ["Lux", "Senna"], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-a", "revision": 1}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected",
+              "enemy_lanes": [
+                {"champion": "Lux", "label": "Probable: middle or support", "roles": ["middle", "support"], "basis": "probable"},
+                {"champion": "Senna", "label": "Probable: bottom or support", "roles": ["bottom", "support"], "basis": "probable"}
+              ],
+              "recommendations": [
+                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ],
+              "notices": ["Enemy lanes are probable; flex alternatives remain open."]
+            }
+          }
+        },
+        {
+          "id": "enemy_picks_vex",
+          "event": {"kind": "fresh_snapshot", "session": "draft-a", "revision": 2,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": ["Lux", "Senna", "Vex"], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-a", "revision": 2}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Annie", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected",
+              "enemy_lanes": [
+                {"champion": "Lux", "label": "Probable: middle or support", "roles": ["middle", "support"], "basis": "probable"},
+                {"champion": "Senna", "label": "Probable: bottom or support", "roles": ["bottom", "support"], "basis": "probable"},
+                {"champion": "Vex", "label": "Lane unknown", "roles": [], "basis": "unknown"}
+              ],
+              "recommendations": [
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ],
+              "notices": ["Enemy lane context is incomplete."]
+            }
+          }
+        },
+        {
+          "id": "ahri_banned",
+          "event": {"kind": "fresh_snapshot", "session": "draft-a", "revision": 3,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": ["Lux", "Senna", "Vex"], "bans": ["Ahri"]},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-a", "revision": 3}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Annie", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected",
+              "enemy_lanes": [
+                {"champion": "Lux", "label": "Probable: middle or support", "roles": ["middle", "support"], "basis": "probable"},
+                {"champion": "Senna", "label": "Probable: bottom or support", "roles": ["bottom", "support"], "basis": "probable"},
+                {"champion": "Vex", "label": "Lane unknown", "roles": [], "basis": "unknown"}
+              ],
+              "recommendations": [{"champion": "Annie", "reasons": ["Middle option outside your mains."]}],
+              "notices": ["Enemy lane context is incomplete.", "Only one supported middle option remains."]
+            }
+          }
+        }
+      ]
     },
     {
-      "id":"empty_draft_no_empirical","description":"No picks/bans supplied; structural comparison does not imply empirical evidence or a recommendation.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Garen","Ahri"]},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/target_role"],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
+      "id": "observable_and_unobservable_swaps",
+      "description": "Hypothetical observed position update, not proven LCU behavior. Pick-order/champion swaps leave assigned middle unchanged. A later informal chat agreement leaves the observed support assignment unchanged and cannot be detected.",
+      "preference_ref": "saved-mains.v1",
+      "steps": [
+        {
+          "id": "before_swaps",
+          "event": {"kind": "fresh_snapshot", "session": "draft-swap", "revision": 1,
+            "local_role": "middle", "allied_picks": ["Garen", "Jinx"], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-swap", "revision": 1}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "pick_order_only",
+          "event": {"kind": "fresh_snapshot", "session": "draft-swap", "revision": 2, "cue": "pick_order_swap",
+            "local_role": "middle", "allied_picks": ["Garen", "Jinx"], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-swap", "revision": 2}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "champion_swap_only",
+          "event": {"kind": "fresh_snapshot", "session": "draft-swap", "revision": 3, "cue": "teammate_champion_swap",
+            "local_role": "middle", "allied_picks": ["Jinx", "Garen"], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-swap", "revision": 3}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "explicit_position_update",
+          "event": {"kind": "fresh_snapshot", "session": "draft-swap", "revision": 4, "cue": "position_swap_with_assignment_update",
+            "local_role": "support", "allied_picks": ["Jinx", "Garen"], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-swap", "revision": 4}, "role": {"value": "support", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Support · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Senna", "reasons": ["Support option; no saved support mains."]},
+                {"champion": "Lux", "reasons": ["Flexible support option; no saved support mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "informal_swap_unobservable",
+          "event": {"kind": "fresh_snapshot", "session": "draft-swap", "revision": 5,
+            "local_role": "support", "allied_picks": ["Jinx", "Garen"], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-swap", "revision": 5}, "role": {"value": "support", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Support · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Senna", "reasons": ["Support option; no saved support mains."]},
+                {"champion": "Lux", "reasons": ["Flexible support option; no saved support mains."]}
+              ], "notices": []
+            }
+          }
+        }
+      ]
     },
     {
-      "id":"explicit_unknown_roles","description":"Explicit unknown is preserved; punctuation/spacing fallback resolves Kha Zix.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Kha Zix","Ashe"]},"enemy":{"picks":[{"champion":"Jinx","role":"unknown"}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"unknown"},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Ashe","Khazix"]},"enemy":{"picks":[{"champion":"Jinx","role":"unknown","flex_roles":[]}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/enemy/picks/0/role","/target_role"],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
+      "id": "unknown_or_missing_role",
+      "description": "Blank and absent assignment both collect context without asking for input or inferring a local role from champions or saved mains.",
+      "preference_ref": "saved-mains.v1",
+      "steps": [
+        {
+          "id": "blank_assignment",
+          "event": {"kind": "fresh_snapshot", "session": "draft-unknown", "revision": 1,
+            "local_role": "", "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-unknown", "revision": 1}, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "collecting", "message": "Waiting for an observable role.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "missing_assignment",
+          "event": {"kind": "fresh_snapshot", "session": "draft-unknown", "revision": 2,
+            "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-unknown", "revision": 2}, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "collecting", "message": "Waiting for an observable role.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        }
+      ]
     },
     {
-      "id":"flex_ambiguity","description":"Sort user-stated flex sets of two and five roles; do not assign either team a role or infer a matchup.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":["support","middle"]}],"bans":[]},"enemy":{"picks":[{"champion":"Shen","role":"unknown","flex_roles":["support","bottom","middle","jungle","top"]}],"bans":[]},"candidates":["Garen","Ahri"],"target_role":"middle"},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":"unknown","flex_roles":["middle","support"]}],"bans":[]},"enemy":{"picks":[{"champion":"Shen","role":"unknown","flex_roles":["top","jungle","middle","bottom","support"]}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"middle"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/allied/picks/0/role","/enemy/picks/0/role"],"flex_role_paths":["/allied/picks/0/flex_roles","/enemy/picks/0/flex_roles"],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
-    },
-    {
-      "id":"explicit_roles","description":"Opposing teams may have the same known role; no inferred suitability for candidate target top.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx","role":"bottom"}],"bans":[]},"enemy":{"picks":[{"champion":"Ashe","role":"bottom"}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"top"},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx","role":"bottom","flex_roles":[]}],"bans":[]},"enemy":{"picks":[{"champion":"Ashe","role":"bottom","flex_roles":[]}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"top"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":[],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
-    },
-    {
-      "id":"occupied_flex_is_preserved","description":"Known support plus overlapping flex and target bottom is not solved into a forced role.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":"support"},{"champion":"Senna","flex_roles":["support","bottom"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"bottom"},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":"support","flex_roles":[]},{"champion":"Senna","role":"unknown","flex_roles":["bottom","support"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"bottom"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/allied/picks/1/role"],"flex_role_paths":["/allied/picks/1/flex_roles"],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
-    },
-    {
-      "id":"missing_structural","description":"One unannotated candidate prevents comparison_available but is retained as a legal alternative.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Lux","Ahri"]},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"insufficient_evidence",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Lux"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Lux","champion_name":"Lux","reason_codes":["structural_evidence_missing"],"evidence_ids":[]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/target_role"],"flex_role_paths":[],"missing_structural_ids":["Lux"],"comparison_limits":["empirical_evidence_unavailable","structural_evidence_missing"]},"errors":[]
-      }
-    },
-    {
-      "id":"empty_structural","description":"Valid empty structural bundle is an evidence shortage, not invalid input.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-empty.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"insufficient_evidence",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["structural_evidence_missing"],"evidence_ids":[]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["structural_evidence_missing"],"evidence_ids":[]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-empty.v1","structural_ids":[],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/target_role"],"flex_role_paths":[],"missing_structural_ids":["Ahri","Garen"],"comparison_limits":["empirical_evidence_unavailable","structural_evidence_missing"]},"errors":[]
-      }
-    },
-    {
-      "id":"single_candidate","description":"One legal annotated candidate is accepted but cannot form a comparison.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri"]},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"insufficient_evidence",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/target_role"],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable","single_candidate"]},"errors":[]
-      }
-    },
-    {
-      "id":"upper_bounds","description":"Four allied picks, five enemy picks and five allied bans remain legal; preserve pick order.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Ornn","role":"top"},{"champion":"Vi","role":"jungle"},{"champion":"Annie","role":"middle"},{"champion":"Ashe","role":"bottom"}],"bans":["Yasuo","Shen","Senna","Riven","Amumu"]},"enemy":{"picks":[{"champion":"Khazix","role":"top"},{"champion":"Jinx","role":"jungle"},{"champion":"Leona","role":"middle"},{"champion":"Lux","role":"bottom"},{"champion":"Nami","role":"support"}],"bans":[]},"candidates":["Garen","Ahri"],"target_role":"support"},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"comparison_available",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Ornn","role":"top","flex_roles":[]},{"champion":"Vi","role":"jungle","flex_roles":[]},{"champion":"Annie","role":"middle","flex_roles":[]},{"champion":"Ashe","role":"bottom","flex_roles":[]}],"bans":["Amumu","Riven","Senna","Shen","Yasuo"]},"enemy":{"picks":[{"champion":"Khazix","role":"top","flex_roles":[]},{"champion":"Jinx","role":"jungle","flex_roles":[]},{"champion":"Leona","role":"middle","flex_roles":[]},{"champion":"Lux","role":"bottom","flex_roles":[]},{"champion":"Nami","role":"support","flex_roles":[]}],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"support"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":[],"flex_role_paths":[],"missing_structural_ids":[],"comparison_limits":["empirical_evidence_unavailable"]},"errors":[]
-      }
-    },
-    {
-      "id":"five_candidates","description":"Five candidates and five enemy bans are valid; absent annotations do not filter candidates.",
-      "context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":["Ornn","Nami","Leona","Jinx","Ashe"]},"candidates":["Lux","Garen","Annie","Amumu","Ahri"]},
-      "expected":{
-        "version":"manual-draft.v1","decision":"accept","status":"insufficient_evidence",
-        "normalized":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":["Ashe","Jinx","Leona","Nami","Ornn"]},"candidates":["Ahri","Amumu","Annie","Garen","Lux"],"target_role":"unknown"},
-        "alternatives":[{"champion_id":"Ahri","champion_name":"Ahri","reason_codes":["curated_structure"],"evidence_ids":["s-ahri"]},{"champion_id":"Amumu","champion_name":"Amumu","reason_codes":["structural_evidence_missing"],"evidence_ids":[]},{"champion_id":"Annie","champion_name":"Annie","reason_codes":["structural_evidence_missing"],"evidence_ids":[]},{"champion_id":"Garen","champion_name":"Garen","reason_codes":["curated_structure"],"evidence_ids":["s-garen"]},{"champion_id":"Lux","champion_name":"Lux","reason_codes":["structural_evidence_missing"],"evidence_ids":[]}],
-        "evidence":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1","structural_ids":["s-ahri","s-garen"],"empirical_ids":[]},
-        "uncertainty":{"unknown_role_paths":["/target_role"],"flex_role_paths":[],"missing_structural_ids":["Amumu","Annie","Lux"],"comparison_limits":["empirical_evidence_unavailable","structural_evidence_missing"]},"errors":[]
-      }
-    },
-    {
-      "id":"duplicate_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx","role":"bottom"},{"champion":"Ashe","role":"bottom"}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"duplicate_role","path":"/allied/picks/1/role"}]}
-    },
-    {
-      "id":"duplicate_pick_alias","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Khazix"},{"champion":"Kha'Zix"}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"champion_conflict","path":"/allied/picks/1/champion"}]}
-    },
-    {
-      "id":"cross_team_pick","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx"}],"bans":[]},"enemy":{"picks":[{"champion":"Jinx"}],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"champion_conflict","path":"/enemy/picks/0/champion"}]}
-    },
-    {
-      "id":"pick_ban_conflict","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Jinx"]},"enemy":{"picks":[{"champion":"Jinx"}],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"champion_conflict","path":"/allied/bans/0"}]}
-    },
-    {
-      "id":"duplicate_ban","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Jinx","jinx"]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"champion_conflict","path":"/allied/bans/1"}]}
-    },
-    {
-      "id":"cross_team_ban","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Jinx"]},"enemy":{"picks":[],"bans":["Jinx"]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"champion_conflict","path":"/enemy/bans/0"}]}
-    },
-    {
-      "id":"duplicate_candidate","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","ahri"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"duplicate_candidate","path":"/candidates/1"}]}
-    },
-    {
-      "id":"candidate_picked","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[{"champion":"Ahri"}],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"candidate_unavailable","path":"/candidates/0"}]}
-    },
-    {
-      "id":"candidate_banned","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Garen"]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"candidate_unavailable","path":"/candidates/1"}]}
-    },
-    {
-      "id":"target_role_occupied","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Ornn","role":"top"}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"top"},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"target_role_occupied","path":"/target_role"}]}
-    },
-    {
-      "id":"unknown_champion","invalid_identity_paths":["/candidates/0"],"context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["NotInCatalog","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unknown_champion","path":"/candidates/0"}]}
-    },
-    {
-      "id":"bad_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":"mid"}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_role","path":"/allied/picks/0/role"}]}
-    },
-    {
-      "id":"bad_flex","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":["unknown","support"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_flex_roles","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"known_role_with_flex","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":"middle","flex_roles":["middle","support"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_flex_roles","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"duplicate_flex_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":["middle","middle"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_flex_roles","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"single_flex_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":["middle"]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_flex_roles","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"empty_flex_roles","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":[]}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_flex_roles","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"null_flex_roles","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","flex_roles":null}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_type","path":"/allied/picks/0/flex_roles"}]}
-    },
-    {
-      "id":"too_many_allied_picks","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Ashe"},{"champion":"Jinx"},{"champion":"Leona"},{"champion":"Lux"},{"champion":"Nami"}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/allied/picks"}]}
-    },
-    {
-      "id":"too_many_enemy_picks","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[{"champion":"Ashe"},{"champion":"Jinx"},{"champion":"Leona"},{"champion":"Lux"},{"champion":"Nami"},{"champion":"Ornn"}],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/enemy/picks"}]}
-    },
-    {
-      "id":"too_many_bans","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":["Ashe","Jinx","Leona","Lux","Nami","Ornn"]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/allied/bans"}]}
-    },
-    {
-      "id":"too_many_enemy_bans","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":["Ashe","Jinx","Leona","Lux","Nami","Ornn"]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/enemy/bans"}]}
-    },
-    {
-      "id":"too_many_candidates","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen","Ashe","Jinx","Leona","Lux"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/candidates"}]}
-    },
-    {
-      "id":"empty_candidates","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":[]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"cardinality","path":"/candidates"}]}
-    },
-    {
-      "id":"bad_version","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v2","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unsupported_version","path":"/version"}]}
-    },
-    {
-      "id":"ban_intent","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"ban","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unsupported_intent","path":"/intent"}]}
-    },
-    {
-      "id":"shape_precedes_version","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v2","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"score":10},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unknown_field","path":"/score"}]}
-    },
-    {
-      "id":"lexical_error_order","invalid_identity_paths":["/candidates/1"],"context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v2","intent":"ban","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","NotInCatalog"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unsupported_intent","path":"/intent"}]}
-    },
-    {
-      "id":"missing_required","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"required","path":"/enemy/bans"}]}
-    },
-    {
-      "id":"wrong_type","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":"Ahri"},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_type","path":"/candidates"}]}
-    },
-    {
-      "id":"null_required","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":null},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_type","path":"/candidates"}]}
-    },
-    {
-      "id":"blank_identity","invalid_identity_paths":["/candidates/0"],"context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["   ","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_identity","path":"/candidates/0"}]}
-    },
-    {
-      "id":"unknown_field","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Jinx","rank":1}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"unknown_field","path":"/allied/picks/0/rank"}]}
-    },
-    {
-      "id":"bad_target_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"],"target_role":"adc"},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_role","path":"/target_role"}]}
-    },
-    {
-      "id":"empty_role","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[{"champion":"Lux","role":""}],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["Ahri","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_role","path":"/allied/picks/0/role"}]}
-    },
-    {
-      "id":"long_identity","invalid_identity_paths":["/candidates/0"],"context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "input":{"version":"manual-draft.v1","intent":"pick","allied":{"picks":[],"bans":[]},"enemy":{"picks":[],"bans":[]},"candidates":["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","Garen"]},
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_identity","path":"/candidates/0"}]}
-    },
-    {
-      "id":"malformed_json","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "raw_input":"{",
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_json","path":""}]}
-    },
-    {
-      "id":"trailing_json","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "raw_input":"{} {}",
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_json","path":""}]}
-    },
-    {
-      "id":"duplicate_object_key","context":{"catalog_id":"synthetic-catalog.v1","structural_set_id":"synthetic-structure.v1"},
-      "raw_input":"{\"version\":\"manual-draft.v1\",\"version\":\"manual-draft.v1\",\"intent\":\"pick\",\"allied\":{\"picks\":[],\"bans\":[]},\"enemy\":{\"picks\":[],\"bans\":[]},\"candidates\":[\"Ahri\",\"Garen\"]}",
-      "expected":{"version":"manual-draft.v1","decision":"reject","status":"invalid_input","normalized":null,"alternatives":[],"evidence":null,"uncertainty":null,"errors":[{"code":"invalid_json","path":""}]}
+      "id": "freshness_and_session_boundaries",
+      "description": "Clear actionable advice on loss, stale, out-of-order or inconsistent observations. Only a fresh coherent read recovers. Retire the ended session before starting another.",
+      "preference_ref": "saved-mains.v1",
+      "steps": [
+        {
+          "id": "initial_live",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 1,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-old", "revision": 1}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Vex", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "client_loss", "event": {"kind": "client_lost"},
+          "expected": {
+            "evaluation": {"validity": "disconnected", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "unavailable", "message": "Draft connection lost. Reconnecting.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "stale", "event": {"kind": "freshness_expired"},
+          "expected": {
+            "evaluation": {"validity": "stale", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "unavailable", "message": "Draft data is stale. Waiting for fresh data.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "recovery",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 2,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": [], "bans": ["Vex"]},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-old", "revision": 2}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]},
+                {"champion": "Lux", "reasons": ["Flexible middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "late_revision",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 1,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "out_of_order", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "unavailable", "message": "Resynchronizing draft data.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "contradictory_snapshot",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 3,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": ["Ahri"], "bans": ["Ahri"]},
+          "expected": {
+            "evaluation": {"validity": "inconsistent", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "unavailable", "message": "Resynchronizing draft data.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "coherent_recovery",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 4,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": [], "bans": ["Vex"]},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-old", "revision": 4}, "role": {"value": "middle", "basis": "detected"}, "eligible": ["Ahri", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "live", "message": "Recommendations updated.", "role_label": "Middle · detected", "enemy_lanes": [],
+              "recommendations": [
+                {"champion": "Ahri", "reasons": ["Middle option; saved middle main."]},
+                {"champion": "Annie", "reasons": ["Middle option outside your mains."]},
+                {"champion": "Lux", "reasons": ["Flexible middle option outside your mains."]}
+              ], "notices": []
+            }
+          }
+        },
+        {
+          "id": "draft_ended", "event": {"kind": "draft_end", "session": "draft-old", "revision": 5},
+          "expected": {
+            "evaluation": {"validity": "no_session", "binding": null, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": [], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "waiting", "message": "Waiting for champion select.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "new_session",
+          "event": {"kind": "fresh_snapshot", "session": "draft-new", "revision": 1,
+            "local_role": "", "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-new", "revision": 1}, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "collecting", "message": "Waiting for an observable role.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        },
+        {
+          "id": "retired_session_arrival",
+          "event": {"kind": "fresh_snapshot", "session": "draft-old", "revision": 6,
+            "local_role": "middle", "allied_picks": [], "enemy_picks": [], "bans": []},
+          "expected": {
+            "evaluation": {"validity": "current", "binding": {"session": "draft-new", "revision": 1}, "role": {"value": "unknown", "basis": "unavailable"}, "eligible": ["Ahri", "Vex", "Annie", "Lux", "Senna", "Garen", "Jinx"], "context_ref": "synthetic-context.v1"},
+            "presentation": {
+              "state": "collecting", "message": "Waiting for an observable role.", "role_label": "Role not available",
+              "enemy_lanes": [], "recommendations": [], "notices": []
+            }
+          }
+        }
+      ]
     }
   ]
 }

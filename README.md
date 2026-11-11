@@ -184,11 +184,13 @@ An explicit pressure always wins. When a catalog-resolved lane opponent is suppl
 
 Rune, summoner, and initial-plan copy is stored in the strict patch-versioned generic profile registry. Each section has one to three stable `profile_curated` plain-text options with `when` and tradeoff fields. HTML/control characters and win-rate, pick-rate, tier, or “best” claims are rejected during registry compilation; lower-confidence fallbacks identify themselves as generic or assumed.
 
-### Proposed manual champion Draft contract
+### Proposed automatic live champion Draft assistance
 
-Issue #4's [manual champion Draft v1 contract](docs/manual-draft-contract.md) and [deterministic synthetic acceptance fixtures](docs/draft-fixtures.json) define a separate, **proposed** pick-only comparison boundary: allied/enemy picks, bans as exclusions, explicit unknown/flexible roles, legal unranked alternatives, evidence provenance and insufficient-evidence states. The fixtures are review oracles, not results executed against a Draft engine; their structural notes are synthetic and non-empirical.
+Issue #4's [automatic live Draft contract](docs/live-draft-contract.md) and [synthetic event timelines](docs/draft-fixtures.json) describe the proposed goal: observed champion-select state automatically refreshes multiple champion recommendations with reasons on a second screen or overlay. There is no per-match request or candidate-list form. The assigned role should be detected when observable; optional saved mains (for example, Ahri/Vex middle) prioritize preferences without excluding other eligible champions. Hidden enemy lanes remain explicitly probable, not detected facts.
 
-`/api/pregame/plan` remains **item/recipe planning**, not champion picks/bans. No Draft endpoint, ranking model or automatic champion-select capture is implemented. Human review of the contract and fixtures, and separate approval of any future ranking model, remain pending; item scores and profile confidence are not champion-selection evidence.
+These are product-definition artifacts, not an implemented Draft engine or actual LCU captures. No Draft endpoint, ranking algorithm, champion-select integration or overlay is implemented. Human contract/fixture approval, ranking-method approval, policy checks and real-client role/swap validation remain pending. See the [replacement issue body](docs/issue-4-live-draft.md) and separate [live rune enhancement proposal](docs/rune-suggestions-follow-up.md).
+
+`/api/pregame/plan` remains the independent manual **item/recipe planner**. Existing item scores, profile confidence and curated pregame rune options are not live champion-selection evidence.
 
 ### Match lifecycle and event semantics
 
