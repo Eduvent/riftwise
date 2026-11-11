@@ -19,12 +19,12 @@ The product is not limited to alphabetical structural notes. Multiple reasoned r
 
 ## Definition artifacts
 
-These links target the intended **main** integration destination. They are not a claim that this correction has already merged or that this issue has closed; publication/integration belongs to the parent workflow.
+The approved definition is recorded in these repository artifacts:
 
 - [Live contract and reproducible passive inspection](https://github.com/Eduvent/riftwise/blob/main/docs/live-draft-contract.md)
 - [Synthetic event timelines with complete expected outputs](https://github.com/Eduvent/riftwise/blob/main/docs/draft-fixtures.json)
 - [README implementation boundary](https://github.com/Eduvent/riftwise/blob/main/README.md)
-- [First Draft engine investigation scope](https://github.com/Eduvent/riftwise/blob/main/docs/draft-engine-investigation.md). **Research issue number pending publication:** this is a scope-document placeholder, not a published issue link; replace it with the actual issue link when the parent publishes the follow-up. The [local scope document](draft-engine-investigation.md) is the authored source.
+- [First Draft engine investigation #8](https://github.com/Eduvent/riftwise/issues/8), with its [scope document](https://github.com/Eduvent/riftwise/blob/main/docs/draft-engine-investigation.md).
 - [Separate live rune enhancement #7](https://github.com/Eduvent/riftwise/issues/7), with its [scope document](https://github.com/Eduvent/riftwise/blob/main/docs/rune-suggestions-follow-up.md).
 
 The obsolete manual Draft proposal is now only a superseded pointer. The existing manual **item/recipe planner** and its curated rune copy remain independent and unchanged. Overlay delivery stays within [#5](https://github.com/Eduvent/riftwise/issues/5), not this definition's runtime scope.
@@ -40,16 +40,16 @@ The obsolete manual Draft proposal is now only a superseded pointer. The existin
 - [x] Replace the manual-spec entry point and update the README without changing runtime/API/CLI contracts.
 - [x] Keep live rune enhancement [#7](https://github.com/Eduvent/riftwise/issues/7) separate from #4, and author one first feasibility/scoring investigation scope rather than speculative runtime implementation.
 
-Integration, follow-up issue publication and #4 closure are parent-owned delivery steps. This authored body does not assert those operations have happened.
+This issue delivers the approved definition and acceptance examples. Investigation #8 carries the unresolved technical/evidence work; it does not establish an implemented motor.
 
 ## Separate future research and implementation acceptance
 
-The [investigation scope](draft-engine-investigation.md) defines the first follow-up. Its publication is not research execution; no game session or data collection is required to complete #4. These unchecked items belong to that future work, **not remaining #4 definition gates**:
+[Investigation #8](https://github.com/Eduvent/riftwise/issues/8) defines the first follow-up. Its publication is not research execution; no game session or data collection is required to complete #4. Its acceptance checklist tracks the following future work, **not remaining #4 definition gates**:
 
-- [ ] Produce an evidence-backed go/no-go/conditional feasibility report covering real-client roles/swaps, availability, ordering/freshness and current Riot policy/endpoint registration requirements.
-- [ ] Assess trustworthy role/recommendation/rune/catalog sources, patch/queue/rank coverage and access/update/licensing/cost/privacy constraints.
-- [ ] Propose an explainable 5.0..0.0 score design and mains weighting for later decision, without treating this approval as formula or empirical-efficacy validation.
-- [ ] Derive bounded implementation issues and automated plus real-client validation plans from findings; confirm implementation scope separately, coordinating runes with #7 and overlay with #5.
+- An evidence-backed go/no-go/conditional feasibility report covering real-client roles/swaps, availability, ordering/freshness and current Riot policy/endpoint registration requirements.
+- Trustworthy role/recommendation/rune/catalog source assessment, patch/queue/rank coverage and access/update/licensing/cost/privacy constraints.
+- Explainable 5.0..0.0 score design and mains weighting for later decision, without treating this approval as formula or empirical-efficacy validation.
+- Bounded implementation issues and automated plus real-client validation plans derived from findings; separate implementation approval, coordinating runes with #7 and overlay with #5.
 
 ## Feasibility and boundaries
 

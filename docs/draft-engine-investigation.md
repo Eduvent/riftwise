@@ -4,7 +4,7 @@
 
 Produce one evidence-backed **go / no-go / conditional** feasibility report before proposing a live Draft engine implementation. [#4](https://github.com/Eduvent/riftwise/issues/4) approves product behavior and synthetic fixtures, including ratings from 5.0 (highest) to 0.0 (lowest), not a formula, trustworthy sources, gameplay efficacy, client feasibility or policy compliance.
 
-This document is the scope for one first investigative follow-up; its issue number is pending parent publication. Publishing the issue is **not executing the research**. No game session, client capture, data collection or runtime implementation occurs as part of this documentation task. Do not create speculative implementation issues before the report identifies bounded, supported work.
+This document defines one first investigative follow-up. Publishing the issue is **not executing the research**. No game session, client capture, data collection or runtime implementation occurs as part of this documentation task. Do not create speculative implementation issues before the report identifies bounded, supported work.
 
 ## Investigate
 
@@ -29,6 +29,6 @@ This document is the scope for one first investigative follow-up; its issue numb
 
 Research may recommend narrowing or sequencing future implementation, but cannot silently redefine #4's approved product behavior. No engine, API, overlay, automatic rune application, gameplay automation or broad data collection is authorized by this scope. Existing catalog identity/snapshot methods remain reuse references, not proof of Draft suitability.
 
-- Approved definition: [live Draft contract](live-draft-contract.md) and [synthetic fixtures](draft-fixtures.json).
-- Separate enhancement boundaries: [rune scope](rune-suggestions-follow-up.md) / #7; overlay / #5.
+- Approved definition: [live Draft contract](https://github.com/Eduvent/riftwise/blob/main/docs/live-draft-contract.md) and [synthetic fixtures](https://github.com/Eduvent/riftwise/blob/main/docs/draft-fixtures.json).
+- Separate enhancement boundaries: [rune scope](https://github.com/Eduvent/riftwise/blob/main/docs/rune-suggestions-follow-up.md) / #7; overlay / #5.
 - Starting policy reference to recheck: [official League Client API documentation](https://developer.riotgames.com/docs/lol#league-client-api). It is not evidence that registration or product approval has already been obtained.
