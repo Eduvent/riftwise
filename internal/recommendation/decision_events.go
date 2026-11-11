@@ -166,19 +166,24 @@ func (cursor decisionCursor) advance(now time.Time, snapshot domain.Snapshot, re
 				"La conexión se restableció; las opciones vigentes vuelven a estar disponibles.", "connection_restored", &lifecycle[index])
 		}
 	}
-	if current.RulesAvailable && cursor.state.TargetID > 0 && current.TargetID > 0 && cursor.state.TargetID != current.TargetID {
+	if !cursor.state.Stale && current.RulesAvailable && cursor.state.TargetID > 0 && current.TargetID > 0 && cursor.state.TargetID != current.TargetID {
 		appendEvent(domain.DecisionTargetChanged, domain.DecisionImportant,
 			fmt.Sprintf("Las opciones cambiaron; %s figura como opción principal.", neutralItemName(current.TargetName)),
 			"stable_target_changed", nil)
 	}
-	if cursor.state.ComponentID > 0 && current.ComponentID > 0 && cursor.state.ComponentID != current.ComponentID {
+	if !cursor.state.Stale && cursor.state.ComponentID > 0 && current.ComponentID > 0 && cursor.state.ComponentID != current.ComponentID {
 		if related := latestLifecycle(lifecycle, domain.EventInventoryChanged, domain.EventItemPurchased, domain.EventReturnedToBase); related != nil {
 			appendEvent(domain.DecisionComponentChanged, domain.DecisionImportant,
 				fmt.Sprintf("El componente sugerido cambió a %s después de actividad de inventario.", neutralItemName(current.ComponentName)),
 				"component_changed_after_inventory", related)
 		}
 	}
-	if !cursor.state.Affordable && current.Affordable && current.ComponentID > 0 {
+	wasAffordable := cursor.state.Affordable
+	if cursor.state.Stale && (cursor.state.TargetID != current.TargetID || cursor.state.ComponentID != current.ComponentID) {
+		// Last-fresh affordability belongs only to that target/component pair.
+		wasAffordable = false
+	}
+	if !current.Stale && !wasAffordable && current.Affordable && current.ComponentID > 0 {
 		appendEvent(domain.DecisionComponentAffordable, domain.DecisionImportant,
 			fmt.Sprintf("El componente sugerido %s ahora está dentro del oro disponible.", neutralItemName(current.ComponentName)),
 			"component_affordable", nil)
@@ -201,6 +206,16 @@ func (cursor decisionCursor) advance(now time.Time, snapshot domain.Snapshot, re
 		}
 	}
 
+	if current.Stale {
+		// Stale results pause advice; they contain no new economic observation.
+		// Keep the last-fresh opportunity in the existing checkpoint fields so
+		// reconnects (including after restart) cannot invent an affordability
+		// crossing. Target/component alerts above still require a fresh prior
+		// state, preserving their existing recovery semantics.
+		current.TargetID, current.TargetName = cursor.state.TargetID, cursor.state.TargetName
+		current.ComponentID, current.ComponentName = cursor.state.ComponentID, cursor.state.ComponentName
+		current.Affordable = cursor.state.Affordable
+	}
 	cursor.state = current
 	cursor.evidence = currentEvidence
 	cursor.evidenceDigest = recommendationEvidenceDigest(currentEvidence)

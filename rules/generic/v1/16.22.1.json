@@ -1,0 +1,334 @@
+{
+  "schema_version": 2,
+  "ruleset_version": "generic-v1.16.22.1.1",
+  "patch": "16.22.1",
+  "tag_priority": [
+    "Mage"
+  ],
+  "alternative_count": 2,
+  "phases": {
+    "early_end_seconds": 840,
+    "mid_end_seconds": 1500
+  },
+  "context": {
+    "lane_weight_by_phase": {
+      "early": 700,
+      "mid": 400,
+      "late": 150
+    },
+    "missing_trait_penalty": 450,
+    "armor_full_scale": 160,
+    "magic_resist_full_scale": 160
+  },
+  "stability": {
+    "switch_margin": 150,
+    "confirmation_seconds": 12,
+    "minimum_hold_seconds": 20,
+    "critical_threshold": 800
+  },
+  "champion_traits": {
+    "Ahri": {
+      "healing": 150,
+      "crowd_control": 700,
+      "burst": 850,
+      "sustained": 450
+    }
+  },
+  "families": {
+    "mage": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "mage_liandry",
+            "item_id": 6653,
+            "category": "core",
+            "base_score": 470,
+            "covers": [
+              "sustained"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "sustained",
+                "minimum": 550,
+                "add": 260,
+                "reason_code": "sustained_damage_window"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_rabadon",
+            "item_id": 3089,
+            "category": "core",
+            "base_score": 350,
+            "covers": [
+              "ahead"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 80,
+              "split_push": 60,
+              "teamfight": 60
+            },
+            "adjustments": [
+              {
+                "signal": "ahead",
+                "minimum": 1000,
+                "add": 300,
+                "reason_code": "convert_lead"
+              }
+            ]
+          }
+        },
+        {
+          "rule": {
+            "id": "mage_zhonya",
+            "item_id": 3157,
+            "category": "situational",
+            "base_score": 300,
+            "covers": [
+              "physical",
+              "burst"
+            ],
+            "phase_scores": {
+              "early": 120,
+              "mid": 80,
+              "late": 40
+            },
+            "strategy_scores": {
+              "balanced": 60,
+              "split_push": 20,
+              "teamfight": 140
+            },
+            "adjustments": [
+              {
+                "signal": "burst",
+                "minimum": 600,
+                "add": 470,
+                "reason_code": "survive_burst",
+                "critical": true
+              },
+              {
+                "signal": "physical",
+                "minimum": 550,
+                "add": 180,
+                "reason_code": "physical_threat_response"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "neutral": {
+      "candidates": [
+        {
+          "rule": {
+            "id": "neutral_steelcaps",
+            "item_id": 3047,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "physical"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "physical",
+                "minimum": 500,
+                "add": 500,
+                "reason_code": "explicit_physical_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "physical",
+              "minimum": 500
+            },
+            {
+              "signal": "burst",
+              "minimum": 700
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_mercs",
+            "item_id": 3111,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "magic",
+              "crowd_control",
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "magic",
+                "minimum": 500,
+                "add": 500,
+                "reason_code": "explicit_magic_pressure"
+              },
+              {
+                "signal": "crowd_control",
+                "minimum": 600,
+                "add": 450,
+                "reason_code": "explicit_crowd_control"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "magic",
+              "minimum": 500
+            },
+            {
+              "signal": "crowd_control",
+              "minimum": 600
+            },
+            {
+              "signal": "slows",
+              "minimum": 650
+            }
+          ]
+        },
+        {
+          "rule": {
+            "id": "neutral_swifties",
+            "item_id": 3009,
+            "category": "boots",
+            "base_score": 0,
+            "covers": [
+              "slows"
+            ],
+            "mutual_exclusion_group": "boots",
+            "adjustments": [
+              {
+                "signal": "slows",
+                "minimum": 600,
+                "add": 430,
+                "reason_code": "explicit_slow_pressure"
+              }
+            ]
+          },
+          "activation": [
+            {
+              "signal": "crowd_control",
+              "minimum": 600
+            },
+            {
+              "signal": "slows",
+              "minimum": 600
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "profiles": [
+    {
+      "id": "ahri_default",
+      "kind": "champion_default",
+      "families": [
+        "mage"
+      ],
+      "runes": {
+        "summary": "Plan genérico asumido: Plan de runas estructural para daño y movilidad.",
+        "options": [
+          {
+            "id": "tempo",
+            "label": "Tempo",
+            "when": "Si puedes jugar por oleadas y rotaciones.",
+            "tradeoff": "Ofrece menos margen defensivo."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "Plan genérico asumido: Movilidad y una respuesta defensiva ofrecen opciones según la amenaza.",
+        "options": [
+          {
+            "id": "safety",
+            "label": "Seguridad",
+            "when": "Si enfrentas control o ráfaga.",
+            "tradeoff": "Reduce presión ofensiva."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "champion": "Ahri",
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Oleada y tempo.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wave_tempo",
+            "label": "Oleada y tempo",
+            "when": "Si quieres preparar el primer regreso alrededor de la oleada.",
+            "tradeoff": "Cede margen para responder a una pelea imprevista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "neutral",
+      "kind": "neutral",
+      "families": [
+        "neutral"
+      ],
+      "runes": {
+        "summary": "No se asume una página óptima sin campeón y rol compatibles.",
+        "options": [
+          {
+            "id": "wait",
+            "label": "Esperar contexto",
+            "when": "Si faltan campeón o rol.",
+            "tradeoff": "Evita fabricar una recomendación específica."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "summoners": {
+        "summary": "No se asume un plan de hechizos sin campeón y rol compatibles.",
+        "options": [
+          {
+            "id": "wait",
+            "label": "Esperar contexto",
+            "when": "Si faltan campeón o rol.",
+            "tradeoff": "Evita fabricar una recomendación específica."
+          }
+        ],
+        "source": "profile_curated"
+      },
+      "initial_plan": {
+        "summary": "Plan genérico asumido: Contexto pendiente.",
+        "source": "profile_curated",
+        "options": [
+          {
+            "id": "wait_context",
+            "label": "Esperar contexto",
+            "when": "Si el perfil compatible todavía no está definido.",
+            "tradeoff": "Evita asumir una apertura específica."
+          }
+        ]
+      }
+    }
+  ],
+  "neutral_profile": "neutral"
+}

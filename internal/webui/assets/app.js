@@ -882,6 +882,11 @@
     const catalog = objectValue(snapshot.catalog);
     const recommendation = objectValue(snapshot.recommendation);
 
+    // Retained telemetry can be stale after the lifecycle has confirmed an end.
+    // A waiting connection alone must never turn an active outage into postgame.
+    if (objectValue(gameSnapshot.session).state === "ended" && gameSnapshot.connection === "waiting") {
+      return "waiting_for_game";
+    }
     if (gameSnapshot.status === "stale" || recommendation.status === "stale") {
       return "stale";
     }
@@ -944,7 +949,9 @@
 
     const viewState = deriveViewState(snapshot);
     if (viewState !== "ready" && viewState !== "save_for_component") {
-      showState(viewState, snapshot);
+      const detailOverride = viewState === "waiting_for_game" && recommendation.status === "stale" ?
+        stateCopy.waiting_for_game.detail : undefined;
+      showState(viewState, snapshot, detailOverride);
       return true;
     }
 
