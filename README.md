@@ -2,6 +2,12 @@
 
 LoL Engine is a localhost-only Go application that watches the active League of Legends match and presents deterministic, choice-oriented itemization guidance on an embedded second-screen dashboard. A separate manual pregame planner compares a user-supplied scenario without fabricating live telemetry or changing the active match. Garen keeps its pinned v2 route; other champions use strict champion/role profiles with conservative, explicit fallbacks. Recommendations work without AI, remain available from a cached patch catalog, and never control the game.
 
+## Platform focus
+
+Riftwise is a macOS-first project, focused on League of Legends players on macOS. Platform-specific features, especially the native overlay, must prioritize macOS feasibility and validation.
+
+macOS-first does not imply macOS-only, but compatibility with other operating systems must not drive the initial product architecture.
+
 ## Quick start
 
 Requirements: Go 1.26.8 and Internet access for the first Data Dragon synchronization.
