@@ -8,6 +8,8 @@ Riftwise is a macOS-first project, focused on League of Legends players on macOS
 
 macOS-first does not imply macOS-only, but compatibility with other operating systems must not drive the initial product architecture.
 
+An isolated [native macOS overlay spike](docs/macos-overlay-spike.md) is available for feasibility testing, not as a completed product overlay. Real-game visibility, Spaces and input/focus observations remain pending.
+
 ## Quick start
 
 Requirements: Go 1.26.8 and Internet access for the first Data Dragon synchronization.
