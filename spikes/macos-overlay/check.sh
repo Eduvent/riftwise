@@ -1,12 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 cd "$(dirname "$0")"
+if [ "$#" -gt 1 ]; then echo 'Expected exactly one argument' >&2; exit 2; fi
 case "${1:-help}" in
   help|--help|-h) echo 'Usage: bash spikes/macos-overlay/check.sh {test|build|help} (macOS arm64, Xcode SDK; never launches GUI)'; exit 0 ;;
   test|build) mode="$1" ;;
   *) echo 'Expected test, build or help' >&2; exit 2 ;;
 esac
-if [ "$#" -ne 1 ]; then echo 'Expected exactly one argument' >&2; exit 2; fi
 mkdir -p .build/modules
 compiler=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk

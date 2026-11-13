@@ -39,7 +39,7 @@ The **RW status menu** independently provides show/hide, next screen, top-left/t
 
 Host evidence supplied for this task: macOS **27.0.1**, build **26A434**, arm64; Swift **6.4.2**, installed Xcode SDK metadata **27.2**. The earlier `xcrun --show-sdk-version` lookup failed; it was not retried or repaired. Explicit SDK compilation and synthetic policy/HTTP delegate tests succeeded. Tests cover clearing advice, local expiry without completion, Go fractional timestamps/integer fields, ready/save behavior, incoherence and redirect denial; the original checks do not connect to a server or establish AppKit focus, Spaces or League behavior. A separate verifier passed 26 additional synthetic policy checks and 16 real URLSession exchanges against an exclusively owned synthetic loopback server: origin/path/header checks, redirect/auth denial, proxy/cookie isolation, exact/oversized streaming bodies, and stalled/truncated responses. Its redirect/proxy trap received zero connections. These are native wire observations, not game observations.
 
-Observed verification: Swift tests reported 31 passes / `0 failure(s)` and the overlay build succeeded without launching. These regression commands also passed (two Go packages, 23 Node tests, clean tracked diff):
+Observed verification: Swift tests reported 41 passes / `0 failure(s)`, including exact exit/stdout/stderr checks for default/aliased help and invalid/extra arguments, and the overlay build succeeded without launching. These regression commands also passed (two Go packages, 23 Node tests, clean tracked diff):
 
 ```bash
 go test ./internal/api ./internal/webui

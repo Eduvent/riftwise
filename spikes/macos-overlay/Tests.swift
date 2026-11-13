@@ -104,6 +104,38 @@ struct Tests {
                   "redirect denied without forwarding or activating advice: \(destination)")
         }
         session.invalidateAndCancel()
+        let usage = "Usage: bash spikes/macos-overlay/check.sh {test|build|help} (macOS arm64, Xcode SDK; never launches GUI)\n"
+        let commandCases: [([String], Int32, String, String)] = [
+            ([], 0, usage, ""),
+            (["help"], 0, usage, ""),
+            (["--help"], 0, usage, ""),
+            (["-h"], 0, usage, ""),
+            (["help", "build"], 2, "", "Expected exactly one argument\n"),
+            (["--help", "build"], 2, "", "Expected exactly one argument\n"),
+            (["-h", "build"], 2, "", "Expected exactly one argument\n"),
+            (["test", "extra"], 2, "", "Expected exactly one argument\n"),
+            (["build", "extra"], 2, "", "Expected exactly one argument\n"),
+            (["invalid"], 2, "", "Expected test, build or help\n")
+        ]
+        for (arguments, status, stdout, stderr) in commandCases {
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/bin/bash")
+            process.arguments = ["check.sh"] + arguments
+            let output = Pipe()
+            let error = Pipe()
+            process.standardOutput = output
+            process.standardError = error
+            do {
+                try process.run()
+                process.waitUntilExit()
+                let actualOutput = output.fileHandleForReading.readDataToEndOfFile()
+                let actualError = error.fileHandleForReading.readDataToEndOfFile()
+                check(process.terminationStatus == status && actualOutput == Data(stdout.utf8) &&
+                      actualError == Data(stderr.utf8), "check.sh \(arguments) exact exit/stdout/stderr")
+            } catch {
+                check(false, "check.sh \(arguments) launch failed: \(error)")
+            }
+        }
         print("\(failures) failure(s)")
         if failures > 0 { exit(1) }
     }
