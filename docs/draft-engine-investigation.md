@@ -1,10 +1,14 @@
 # Title: [P1] Investigate live Draft feasibility, evidence sources and explainable scoring
 
+## Research outcome
+
+**Conditional go, not engine delivery.** The [feasibility report](draft-feasibility-report.md) records dated observations, source/policy findings, scoring alternatives and unresolved conditions. The [validation/follow-up plan](draft-validation-plan.md) maps the acceptance criteria to bounded proposals, automated checks and separately authorized client trials. Only free providers are considered; exact pick order is deferred, and simple human visual validation precedes an internal randomized laboratory.
+
 ## Decision to enable
 
 Produce one evidence-backed **go / no-go / conditional** feasibility report before proposing a live Draft engine implementation. [#4](https://github.com/Eduvent/riftwise/issues/4) approves product behavior and synthetic fixtures, including ratings from 5.0 (highest) to 0.0 (lowest), not a formula, trustworthy sources, gameplay efficacy, client feasibility or policy compliance.
 
-This document defines one first investigative follow-up. Publishing the issue is **not executing the research**. No game session, client capture, data collection or runtime implementation occurs as part of this documentation task. Do not create speculative implementation issues before the report identifies bounded, supported work.
+This document preserves the original investigative brief. Publishing the issue did not itself authorize client capture, collection or implementation; later separately authorized minimized observations are recorded in the report. No engine or broad data collection is delivered. The report proposes bounded follow-ups with dependencies and acceptance criteria, without creating new implementation issues or duplicating #5/#7.
 
 ## Investigate
 
@@ -18,12 +22,12 @@ This document defines one first investigative follow-up. Publishing the issue is
 
 ## Report and acceptance
 
-- [ ] State a go/no-go/conditional conclusion for the approved contract, supported by dated references and an evidence table distinguishing observed, documented, inferred and unknown claims. Explain conditions, blockers, coverage gaps and known limits; do not infer universal feasibility from one client/queue observation.
-- [ ] Include a source comparison with patch/queue/rank coverage, update cadence and access/licensing/cost/privacy constraints, plus policy/registration findings. Keep private identifiers, credentials and raw player payloads out of public artifacts; any future collection needs a separately approved, minimized plan.
-- [ ] Present explainable scoring design options and mains-weighting tradeoffs for a later decision. Identify which evidence would justify formula selection and which separate study would be needed for efficacy claims; this report must not turn synthetic fixture values into champion evaluations.
-- [ ] Derive only bounded implementation issues justified by findings, with dependencies, explicit non-goals and acceptance criteria. Reuse [#7](https://github.com/Eduvent/riftwise/issues/7) for live runes and [#5](https://github.com/Eduvent/riftwise/issues/5) for overlay delivery; do not duplicate those scopes.
-- [ ] Provide an automated validation plan for scoring bounds/order/reasons, mains/non-main eligibility, picks/bans, role unknowns/swaps, availability and observation/freshness/session races. Use the approved timelines as acceptance oracles, not proof of an existing engine.
-- [ ] Provide a separately authorized real-client validation plan specifying supported queues/client versions, observations to collect, privacy safeguards and pass/fail evidence for roles/swaps, availability, ordering, freshness, recovery and display integration. Record untestable cases and stop conditions rather than promising detection of informal agreements.
+- [x] State a go/no-go/conditional conclusion for the approved contract, supported by dated references and an evidence table distinguishing observed, documented, inferred and unknown claims. Explain conditions, blockers, coverage gaps and known limits; do not infer universal feasibility from one client/queue observation.
+- [x] Include a source comparison with patch/queue/rank coverage, update cadence and access/licensing/cost/privacy constraints, plus policy/registration findings. Keep private identifiers, credentials and raw player payloads out of public artifacts; any future collection needs a separately approved, minimized plan.
+- [x] Present explainable scoring design options and mains-weighting tradeoffs for a later decision. Identify which evidence would justify formula selection and which separate study would be needed for efficacy claims; this report must not turn synthetic fixture values into champion evaluations.
+- [x] Derive only bounded implementation issues justified by findings, with dependencies, explicit non-goals and acceptance criteria. Reuse [#7](https://github.com/Eduvent/riftwise/issues/7) for live runes and [#5](https://github.com/Eduvent/riftwise/issues/5) for overlay delivery; do not duplicate those scopes.
+- [x] Provide an automated validation plan for scoring bounds/order/reasons, mains/non-main eligibility, picks/bans, role unknowns/swaps, availability and observation/freshness/session races. Use the approved timelines as acceptance oracles, not proof of an existing engine.
+- [x] Provide a separately authorized real-client validation plan specifying supported queues/client versions, observations to collect, privacy safeguards and pass/fail evidence for roles/swaps, availability, ordering, freshness, recovery and display integration. Record untestable cases and stop conditions rather than promising detection of informal agreements.
 
 ## Boundaries and references
 
