@@ -12,9 +12,9 @@ compiler=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xcto
 sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 flags=(-sdk "$sdk" -target arm64-apple-macos14.0 -module-cache-path .build/modules)
 if [ "$mode" = test ]; then
-  "$compiler" "${flags[@]}" Policy.swift Transport.swift Tests.swift -o .build/policy-tests
+  "$compiler" "${flags[@]}" GameWindowLevel.swift Policy.swift Transport.swift Tests.swift -o .build/policy-tests
   .build/policy-tests
 else
-  "$compiler" "${flags[@]}" Policy.swift Transport.swift Overlay.swift -o .build/overlay
+  "$compiler" "${flags[@]}" GameWindowLevel.swift Policy.swift Transport.swift Overlay.swift -o .build/overlay
   echo 'Built spikes/macos-overlay/.build/overlay (not launched)'
 fi

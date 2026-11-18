@@ -10,6 +10,7 @@ final class Overlay: NSObject, NSApplicationDelegate {
     private let transport = DashboardTransport()
     private var policy = OverlayPolicy()
     private var pending = false
+    private var nextLevelCheck = Date.distantPast
     private var nextPoll = Date.distantPast
     private var timer: Timer?
     private var item: NSStatusItem!
@@ -31,7 +32,7 @@ final class Overlay: NSObject, NSApplicationDelegate {
         panel = OverlayPanel(contentRect: NSRect(x: 0, y: 0, width: 360, height: 210),
                              styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         panel.level = .floating
-        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .canJoinAllApplications]
         panel.hidesOnDeactivate = false
         panel.ignoresMouseEvents = true
         panel.isMovableByWindowBackground = true
@@ -52,6 +53,12 @@ final class Overlay: NSObject, NSApplicationDelegate {
         add("Placement: left / right top corner", #selector(toggleCorner), to: menu)
         add("Quit overlay", #selector(quit), to: menu)
         item.menu = menu
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(refreshLevel),
+            name: NSWorkspace.didActivateApplicationNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(refreshLevel),
+            name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(place),
+            name: NSApplication.didChangeScreenParametersNotification, object: nil)
         place()
         panel.orderFrontRegardless()
         let timer = Timer(timeInterval: 0.25, repeats: true) { [weak self] _ in self?.tick() }
@@ -67,6 +74,7 @@ final class Overlay: NSObject, NSApplicationDelegate {
     }
 
     private func tick() {
+        if panel.isVisible && Date() >= nextLevelCheck { refreshLevel() }
         let view = policy.present(now: Date())
         status.stringValue = view.status
         advice.stringValue = view.advice
@@ -83,17 +91,30 @@ final class Overlay: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func place() {
+    @objc private func refreshLevel() {
+        nextLevelCheck = Date().addingTimeInterval(1)
+        let level = panel.isVisible ? GameWindowLevel.current(on: panel.screen) : .floating
+        if panel.level != level { panel.level = level }
+    }
+
+    @objc private func place() {
         let screens = NSScreen.screens
         guard !screens.isEmpty else { return }
         screenIndex %= screens.count
         let frame = screens[screenIndex].visibleFrame
         let x = right ? frame.maxX - panel.frame.width - 16 : frame.minX + 16
         panel.setFrameOrigin(NSPoint(x: max(frame.minX, x), y: max(frame.minY, frame.maxY - panel.frame.height - 16)))
+        refreshLevel()
     }
 
     @objc private func toggleVisible() {
-        if panel.isVisible { panel.orderOut(nil) } else { place(); panel.orderFrontRegardless() }
+        if panel.isVisible {
+            panel.orderOut(nil)
+        } else {
+            place()
+            panel.orderFrontRegardless()
+        }
+        refreshLevel()
     }
     @objc private func toggleInteraction() { panel.ignoresMouseEvents.toggle() }
     @objc private func nextScreen() { screenIndex += 1; place() }

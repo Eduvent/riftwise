@@ -1,4 +1,4 @@
-import Foundation
+import AppKit
 
 @main
 struct Tests {
@@ -31,6 +31,23 @@ struct Tests {
             policy.receive(data)
             return policy.present(now: at ?? now)
         }
+        let display = CGRect(x: -1920, y: 0, width: 1920, height: 1200)
+        func window(_ pid: Int32, _ bounds: CGRect, _ layer: Int) -> [String: Any] {
+            [kCGWindowOwnerPID as String: NSNumber(value: pid), kCGWindowBounds as String: bounds.dictionaryRepresentation,
+             kCGWindowLayer as String: NSNumber(value: layer)]
+        }
+        func panelLevel(_ windows: [[String: Any]]) -> NSWindow.Level {
+            GameWindowLevel.level(for: 7, display: display, windows: windows)
+        }
+        let fullscreenLayer = Int(CGShieldingWindowLevel())
+        check(panelLevel([window(7, display, fullscreenLayer)]).rawValue == fullscreenLayer + 1,
+              "panel above observed gameplay layer on selected display")
+        check(panelLevel([window(7, display, 0)]) == .floating, "normal borderless window below floating panel")
+        check(panelLevel([window(8, display, fullscreenLayer), window(7, display.offsetBy(dx: 1920, dy: 0), fullscreenLayer),
+                          window(7, display.insetBy(dx: 50, dy: 50), 25)]) == .floating,
+              "ignore other processes, monitors and ordinary windows")
+        check(panelLevel([]) == .floating && panelLevel([window(7, display, Int(CGWindowLevelForKey(.cursorWindow)) - 1)]) == .floating,
+              "missing metadata or unsafe window level falls back to floating")
         let ready = view(payload())
         check(ready.advice == "Compare: Target\nComponent: Component (500 gold)" &&
               ready.status == "API connected • telemetry fresh • catalog cache", "fresh actionable / Go fractional timestamp / cached catalog")
