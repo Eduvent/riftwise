@@ -8,7 +8,7 @@ Riftwise is a macOS-first project, focused on League of Legends players on macOS
 
 macOS-first does not imply macOS-only, but compatibility with other operating systems must not drive the initial product architecture.
 
-An isolated [native macOS overlay spike](docs/macos-overlay-spike.md) is available for feasibility testing, not as a completed product overlay. Real-game visibility, Spaces and input/focus observations remain pending.
+The native AppKit overlay was visible and let clicks through in both Fullscreen and Borderless during a real Practice Tool match on macOS 27.0.1 (arm64). To run it alongside the local server, follow the [overlay build instructions and tested configurations](docs/macos-overlay-spike.md).
 
 ## Quick start
 

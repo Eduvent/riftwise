@@ -1,6 +1,6 @@
-# macOS overlay spike: conditional feasibility, not game proof
+# Native overlay over League of Legends on macOS
 
-**The native candidate compiles and its deterministic checks pass; coexistence with League is still unproven.** Continue only to bounded human testing, not a permanent shell decision. T2 provides an experimental AppKit panel; independent native transport checks passed, while T3 real-game observations remain pending. No GUI or game was launched during implementation.
+**The player confirmed that the panel is visible and passes clicks to the game in both Fullscreen and Borderless on the tested Mac.** The table below records the observed configuration and control checks.
 
 ## Build, test, then manually run
 
@@ -26,7 +26,7 @@ The **RW status menu** independently provides show/hide, next screen, top-left/t
 
 | Boundary | Deliberately bounded behavior |
 | --- | --- |
-| Window hypothesis | Nonactivating, non-key/non-main `NSPanel`, floating level, `canJoinAllSpaces` and `fullScreenAuxiliary`; not proof of above-game placement or preserved focus. |
+| Window hypothesis | Nonactivating, non-key/non-main `NSPanel`, normally floating, `canJoinAllSpaces`, `fullScreenAuxiliary` and `canJoinAllApplications`; the last flag opts into joining other applications' fullscreen spaces when eligible, not a visibility/focus guarantee. |
 | Transport | Fixed GET `http://127.0.0.1:8080/api/dashboard`, matching `Origin: http://127.0.0.1:8080`; sequential requests, next poll two seconds after completion. |
 | HTTP limits | 3-second request / 5-second resource timeout, 1 MiB decoded-body cap while streaming, HTTP 200 JSON only. All redirects (including same loopback), authentication challenges, other origins/statuses and oversized bodies fail closed. |
 | Local isolation | Ephemeral session, no proxy, cookie store, credential store or URL cache; no configuration flags, persistence or raw payload/error logging. Only needed dashboard fields are decoded, not player identity. |
@@ -49,24 +49,28 @@ git diff --check
 
 The native consumer sends the existing exact local Origin and leaves Go loopback/Host/Origin/CSP protections unchanged. API/webui Go and browser-state Node checks are separate regression checks, not native/browser equivalence. **Native requests do not exercise browser CSP; browser compatibility is not established by this spike.** A different process on the fixed loopback port remains a trust limitation. Risk item 2 (new native transport boundary) received independent verification with no candidate-caused blocker. The verifier's API execution was unavailable because its isolated offline cache lacked dependencies; the writer's targeted API tests and parent's full `go test ./...` passed. Parent spot checks also passed Swift tests/build and all 35 Node tests.
 
-## Human observation matrix — all pending
+## Practice Tool observations
 
-Record for each run: macOS version/build: ___; machine/architecture: ___; League version: ___; display resolution/scaling: ___; monitor arrangement: ___; Spaces/Stage Manager settings: ___; game graphics/display settings: ___. Do not record player identifiers or raw payloads.
+Tested on the main display of an arm64 Mac running macOS 27.0.1 (26A434), League game bundle 16.23.8396405. A second 1920 × 1080 display was connected to the left. Stage Manager and Spaces settings were not recorded.
 
-| Configuration | Show/hide and above-game visibility | Input focus, default click-through, interaction toggle | Regain RW controls / hide / quit | Screen/corner placement and Spaces |
+| Game video mode | Main display bounds (Quartz) | Panel above game | Mouse reaches game through panel | Controls |
 | --- | --- | --- | --- | --- |
-| Ordinary desktop | Untested | Untested | Untested | Untested |
-| LoL windowed | Untested | Untested | Untested | Untested |
-| LoL borderless | Untested | Untested | Untested | Untested |
-| LoL native fullscreen | Untested | Untested | Untested | Untested |
+| Pantalla completa | 1920 × 1200 | Confirmed by player | Confirmed by player | Player confirmed Hide, recovery via RW, and keyboard/mouse back in game |
+| Sin bordes | 1728 × 1117 | Confirmed by player | Confirmed by player | Player confirmed Hide, recovery via RW, and keyboard/mouse back in game |
 
-For each row, record pass/fail/not available and precise settings. Verify no game focus loss when showing; mouse reaches the game with click-through on; interaction can be regained and disabled; show/hide and quit remain practical after switching Spaces/displays. Separately observe advice clearing on backend stop and telemetry loss, then recovery only with fresh coherent data. A failed fullscreen row is a documented unsupported configuration, not permission to use injection or weaken security.
+In the earlier floating-level build the player saw the panel and RW menu on the desktop and the panel in windowed League. In Fullscreen it disappeared, including after the addition of `canJoinAllApplications`. An initial name-filtered diagnostic returned windows belonging to the launcher/client and missed the foreground gameplay windows.
 
-**Decision gate:** go only to this observation matrix. No-go on permanent framework selection or distribution until real supported modes and input behavior are recorded; independent native boundary checks have passed. S2/S4/S5 coexistence/visibility/focus proof, S3 tested game configuration, and S8 demonstrated-option recommendation are not complete; T3 stays pending. T2 implements the hypotheses and S6 bounded consumption, preserves S7/S9 boundaries, and prioritizes S10 macOS. No Riot approval is assumed; check current official policies before any later distribution.
+### Foreground game window ordering, 18 November 2026
 
-## References — unverified, not evidence
+On macOS 27.0.1 (26A434), arm64, League game bundle 16.23.8396405, a public WindowServer query matched the foreground gameplay **PID** from `com.riotgames.LeagueofLegends.GameClient`. On the main 1920 × 1200 display it returned two display-sized game windows at level 2147483628, both ahead of the original level-3 panel. Matching the window owner by its display name had missed both. The display's shielding window ID was zero. The numeric level alone does not establish exclusive capture.
 
-Earlier Apple retrieval required JavaScript and yielded no usable API text. These URLs are navigation aids only, not fetched proof of behavior or Riot approval:
+The candidate now checks the foreground application's bundle, then uses the frontmost on-screen window of that PID whose Quartz bounds equal the panel's display. It uses the greater of floating or that window's level plus one, provided that level stays below the cursor. It falls back to floating on app switch, a different display, missing metadata or an unsupported level. App/Space changes refresh the level, display changes reapply placement, and a visible panel checks once a second to pick up video-mode changes within the game. The display-size check applies to both game modes without reading or changing League settings.
+
+After rebuilding and replacing the old panel, a second sample found the panel first (2147483629, 360 × 210, fully inside the main display) followed by both game windows (2147483628). In Borderless the panel was first at level 1001 followed by the display-sized game window at 1000. League remained foreground during both samples. The build, 45 Swift checks, API/web UI Go tests and 35 Node tests passed. The running backend reported connected telemetry and an unavailable generic profile for catalog patch 16.23.1, and the native consumer returned “API connected • telemetry fresh • advice unavailable — advice paused” with empty advice. Actionable advice, stale expiry and disconnect clearing are covered by fixtures. [Apple documents that compositing over fullscreen graphics can vary with the renderer and hardware.](https://developer.apple.com/documentation/coregraphics/cgshieldingwindowlevel%28%29)
+
+**Feasibility decision.** Proceed with an external AppKit panel for these two tested modes on this configuration. Renderer, display topology and OS changes warrant a new check. Secondary-screen gameplay, other hardware and distribution remain unvalidated.
+
+## AppKit API references
 
 - [NSPanel](https://developer.apple.com/documentation/appkit/nspanel)
 - [nonactivatingPanel](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/nonactivatingpanel)
